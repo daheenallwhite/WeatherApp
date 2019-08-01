@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var weatherIconImageView: UIImageView!
     @IBOutlet weak var hourlyCollectionView: UICollectionView!
+    @IBOutlet weak var dailyTableView: UITableView!
     let locationManager = CLLocationManager()
     var response: JSONDictionary!
     
