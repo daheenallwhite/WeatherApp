@@ -10,6 +10,9 @@ import UIKit
 
 class DailyTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var dayLabel: UILabel!
+    @IBOutlet weak var weatherIconImageView: UIImageView!
+    @IBOutlet weak var maxMinTemperatureLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         self.textLabel?.textColor = .white
