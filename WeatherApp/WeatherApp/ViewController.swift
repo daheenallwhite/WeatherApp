@@ -40,7 +40,6 @@ class ViewController: UIViewController {
         queryItems.append(contentsOf: [latitudeQuery, longtitudeQuery, appIdQuery])
         return queryItems
     }
-
     
     func getWeatherData(latitude: String, longtitude: String) {
         var weatherURLComponents = URLComponents(string: WeatherAPI.currentWeatherURL)
@@ -63,6 +62,24 @@ class ViewController: UIViewController {
             }
         }
         dataTask.resume()
+    }
+    
+    func saveResponse(from data: Data) {
+        do {
+            guard let reponseDictionary = try JSONSerialization.jsonObject(with: data, options: []) as? JSONDictionary else {
+                return
+            }
+            self.response = reponseDictionary
+            print(self.response)
+        } catch let parseError as NSError {
+            print("JSONSerialization error: \(parseError.localizedDescription)\n")
+            return
+        }
+        updateWeatherLabels()
+    }
+    
+    func updateWeatherLabels() {
+        self.cityLabel.text = response["name"] as? String
     }
 }
 
