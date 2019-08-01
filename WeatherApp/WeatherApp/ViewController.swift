@@ -24,3 +24,23 @@ class ViewController: UIViewController {
 
 }
 
+extension ViewController: CLLocationManagerDelegate {
+    // when it's done updating current location of device
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        //when locationManager finds location information
+        
+        // 마지막 element가 가장 정확도가 높은 위치
+        let location = locations[locations.count-1]
+        
+        // stop updating when you got a valid result
+        if location.horizontalAccuracy > 0 {
+            locationManager.stopUpdatingLocation()
+            
+            let latitude = String(location.coordinate.latitude)
+            let longtitude = String(location.coordinate.longitude)
+            print("longitude = \(longtitude), latitude = \(latitude)")
+            
+            
+        }
+    }
+}
