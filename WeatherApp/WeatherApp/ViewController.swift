@@ -34,6 +34,9 @@ class ViewController: UIViewController {
         
         locationManager.startUpdatingLocation() //Asynchronous
         // didUpdataLocation <- when it's done updating
+        
+        self.hourlyCollectionView.dataSource = self
+        self.hourlyCollectionView.delegate = self
     }
     
     func getQueryItems(latitude: String, longtitude: String) -> [URLQueryItem] {
@@ -106,4 +109,21 @@ extension ViewController: CLLocationManagerDelegate {
             getWeatherData(latitude: latitude, longtitude: longtitude)
         }
     }
+}
+
+extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.icons.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = hourlyCollectionView.dequeueReusableCell(withReuseIdentifier: "HourlyCollectionViewCell", for: indexPath) as? HourlyCollectionViewCell else {
+            return HourlyCollectionViewCell()
+        }
+        cell.temperatureLabel.text = "self"
+        cell.hourLabel.text = "3AM"
+        cell.weatherIconImageView.image = icons[indexPath.row]
+        return cell
+    }
+    
 }
