@@ -28,6 +28,15 @@ class ViewController: UIViewController {
         locationManager.startUpdatingLocation() //Asynchronous
         // didUpdataLocation <- when it's done updating
     }
+    
+    func getQueryItems(latitude: String, longtitude: String) -> [URLQueryItem] {
+        var queryItems = [URLQueryItem]()
+        let latitudeQuery = URLQueryItem(name: "lat", value: latitude)
+        let longtitudeQuery = URLQueryItem(name: "lon", value: longtitude)
+        let appIdQuery = URLQueryItem(name: "APPID", value: WeatherAPI.appID)
+        queryItems.append(contentsOf: [latitudeQuery, longtitudeQuery, appIdQuery])
+        return queryItems
+    }
 
 }
 
