@@ -17,8 +17,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var weatherLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var weatherIconImageView: UIImageView!
+    @IBOutlet weak var hourlyCollectionView: UICollectionView!
     let locationManager = CLLocationManager()
     var response: JSONDictionary!
+    
+    var numbers = ["1", "2", "3", "4", "5", "6", "7"]
+    var icons = [UIImage(named: "01d"), UIImage(named: "02d"), UIImage(named: "01d"), UIImage(named: "03d"), UIImage(named: "01d"), UIImage(named: "01d"), UIImage(named: "02d"), UIImage(named: "01d"), UIImage(named: "03d"), UIImage(named: "01d")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
