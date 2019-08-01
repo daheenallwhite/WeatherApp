@@ -112,10 +112,25 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cwO-aC-1g5">
+                                <rect key="frame" x="0.0" y="453" width="414" height="409"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="WZp-mM-nGn">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WZp-mM-nGn" id="Ugx-BE-Zs8">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="2ng-tj-7QH" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" multiplier="0.65" id="3ad-Xi-anf"/>
+                            <constraint firstItem="cwO-aC-1g5" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" id="DTV-YI-6yS"/>
                             <constraint firstItem="36j-Yt-bEc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Gw7-50-RfG"/>
                             <constraint firstAttribute="trailing" secondItem="36j-Yt-bEc" secondAttribute="trailing" id="HMQ-xo-blb"/>
                             <constraint firstItem="2ng-tj-7QH" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.15" id="JcF-OH-ant"/>
@@ -126,11 +141,14 @@
                             <constraint firstItem="D3F-zz-jQ4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Zuj-E6-VCq"/>
                             <constraint firstItem="2ng-tj-7QH" firstAttribute="top" secondItem="eZU-3h-1Re" secondAttribute="bottom" constant="40" id="cvw-3a-MF7"/>
                             <constraint firstItem="D3F-zz-jQ4" firstAttribute="top" secondItem="2ng-tj-7QH" secondAttribute="bottom" constant="15" id="diQ-YQ-XKQ"/>
+                            <constraint firstItem="cwO-aC-1g5" firstAttribute="top" secondItem="D3F-zz-jQ4" secondAttribute="bottom" constant="10" id="fWt-ne-vi0"/>
                             <constraint firstItem="i4Y-dN-wfF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lVm-Gl-23c"/>
                             <constraint firstItem="D3F-zz-jQ4" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" id="n3D-Zs-nDc"/>
                             <constraint firstAttribute="bottom" secondItem="36j-Yt-bEc" secondAttribute="bottom" id="que-eK-jB7"/>
                             <constraint firstItem="i4Y-dN-wfF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="rBu-C8-DGC"/>
                             <constraint firstItem="2ng-tj-7QH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tIa-eB-Srp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="cwO-aC-1g5" secondAttribute="bottom" id="ubO-ai-Src"/>
+                            <constraint firstItem="cwO-aC-1g5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yW1-Ml-xiW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
