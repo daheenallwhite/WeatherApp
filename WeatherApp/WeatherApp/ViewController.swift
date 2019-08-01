@@ -38,6 +38,9 @@ class ViewController: UIViewController {
         
         self.hourlyCollectionView.dataSource = self
         self.hourlyCollectionView.delegate = self
+        self.dailyTableView.dataSource = self
+        self.dailyTableView.delegate = self
+        dailyTableView.separatorStyle = .none
     }
     
     func getQueryItems(latitude: String, longtitude: String) -> [URLQueryItem] {
@@ -127,4 +130,24 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
         return cell
     }
     
+}
+
+extension ViewController: UITableViewDataSource, UITableViewDelegate {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return icons.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = dailyTableView.dequeueReusableCell(withIdentifier: "DailyTableViewCell", for: indexPath) as? DailyTableViewCell else {
+            return DailyTableViewCell()
+        }
+        cell.weatherIconImageView.image = icons[indexPath.row]
+        cell.dayLabel.text = "Monday"
+        cell.maxMinTemperatureLabel.text = "34  25"
+        return cell
+    }
 }

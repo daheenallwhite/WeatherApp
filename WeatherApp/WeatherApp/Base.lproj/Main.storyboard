@@ -188,6 +188,7 @@
                     </view>
                     <connections>
                         <outlet property="cityLabel" destination="i4Y-dN-wfF" id="Udz-qr-FnZ"/>
+                        <outlet property="dailyTableView" destination="cwO-aC-1g5" id="VeP-r7-gF8"/>
                         <outlet property="hourlyCollectionView" destination="D3F-zz-jQ4" id="wUv-3t-w7l"/>
                         <outlet property="temperatureLabel" destination="dQZ-Wp-Y0W" id="Ja6-4o-G6I"/>
                         <outlet property="weatherIconImageView" destination="Wf4-FS-1NY" id="Fe9-ap-Ekk"/>
