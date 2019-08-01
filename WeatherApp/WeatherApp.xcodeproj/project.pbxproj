@@ -13,6 +13,7 @@
 		C249FB1322F35706003297A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C249FB1222F35706003297A6 /* Assets.xcassets */; };
 		C249FB1622F35706003297A6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C249FB1422F35706003297A6 /* LaunchScreen.storyboard */; };
 		C249FB1E22F35EC8003297A6 /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249FB1D22F35EC8003297A6 /* WeatherAPI.swift */; };
+		C249FB2022F363F2003297A6 /* HourlyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249FB1F22F363F2003297A6 /* HourlyCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		C249FB1522F35706003297A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C249FB1722F35706003297A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C249FB1D22F35EC8003297A6 /* WeatherAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPI.swift; sourceTree = "<group>"; };
+		C249FB1F22F363F2003297A6 /* HourlyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				C249FB0D22F35705003297A6 /* ViewController.swift */,
 				C249FB0F22F35705003297A6 /* Main.storyboard */,
 				C249FB1D22F35EC8003297A6 /* WeatherAPI.swift */,
+				C249FB1F22F363F2003297A6 /* HourlyCollectionViewCell.swift */,
 				C249FB1222F35706003297A6 /* Assets.xcassets */,
 				C249FB1422F35706003297A6 /* LaunchScreen.storyboard */,
 				C249FB1722F35706003297A6 /* Info.plist */,
@@ -141,6 +144,7 @@
 				C249FB1E22F35EC8003297A6 /* WeatherAPI.swift in Sources */,
 				C249FB0E22F35705003297A6 /* ViewController.swift in Sources */,
 				C249FB0C22F35705003297A6 /* AppDelegate.swift in Sources */,
+				C249FB2022F363F2003297A6 /* HourlyCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

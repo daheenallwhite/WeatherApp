@@ -68,13 +68,47 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="GTX-wU-KFW">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HourlyCollectionViewCell" id="GTX-wU-KFW" customClass="HourlyCollectionViewCell" customModule="WeatherApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="84" height="125"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="84" height="125"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nvo-fu-sPE">
+                                                    <rect key="frame" x="21" y="3" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Rw-OF-Cg0">
+                                                    <rect key="frame" x="21" y="101" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tvQ-PQ-VSs">
+                                                    <rect key="frame" x="17" y="37.5" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="tvQ-PQ-VSs" secondAttribute="height" multiplier="1:1" id="oZJ-k1-feT"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="tvQ-PQ-VSs" firstAttribute="centerY" secondItem="GTX-wU-KFW" secondAttribute="centerY" id="0j4-mT-Q19"/>
+                                            <constraint firstItem="Nvo-fu-sPE" firstAttribute="centerX" secondItem="GTX-wU-KFW" secondAttribute="centerX" id="Fp6-c2-zBq"/>
+                                            <constraint firstItem="tvQ-PQ-VSs" firstAttribute="centerX" secondItem="GTX-wU-KFW" secondAttribute="centerX" id="PX7-Of-90i"/>
+                                            <constraint firstAttribute="bottom" secondItem="7Rw-OF-Cg0" secondAttribute="bottom" constant="3" id="W3Z-pJ-Wu0"/>
+                                            <constraint firstItem="Nvo-fu-sPE" firstAttribute="top" secondItem="GTX-wU-KFW" secondAttribute="top" constant="3" id="XQN-6j-0Jx"/>
+                                            <constraint firstItem="tvQ-PQ-VSs" firstAttribute="width" secondItem="GTX-wU-KFW" secondAttribute="width" multiplier="0.6" id="bvG-fa-fde"/>
+                                            <constraint firstItem="7Rw-OF-Cg0" firstAttribute="centerX" secondItem="GTX-wU-KFW" secondAttribute="centerX" id="xbs-KJ-ZZo"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="hourLabel" destination="Nvo-fu-sPE" id="L1c-or-fd9"/>
+                                            <outlet property="temperatureLabel" destination="7Rw-OF-Cg0" id="dFW-lU-C3H"/>
+                                            <outlet property="weatherIconImageView" destination="tvQ-PQ-VSs" id="uqo-de-HDB"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
