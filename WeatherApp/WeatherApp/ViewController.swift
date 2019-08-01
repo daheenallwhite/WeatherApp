@@ -9,6 +9,8 @@
 import UIKit
 import CoreLocation
 
+typealias JSONDictionary = [String: Any]
+
 class ViewController: UIViewController {
 
     @IBOutlet weak var cityLabel: UILabel!
@@ -16,6 +18,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var weatherIconImageView: UIImageView!
     let locationManager = CLLocationManager()
+    var response: JSONDictionary!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +41,29 @@ class ViewController: UIViewController {
         return queryItems
     }
 
+    
+    func getWeatherData(latitude: String, longtitude: String) {
+        var weatherURLComponents = URLComponents(string: WeatherAPI.currentWeatherURL)
+        weatherURLComponents?.queryItems = getQueryItems(latitude: latitude, longtitude: longtitude)
+        guard let weatherRequestURL = weatherURLComponents?.url else {
+            return
+        }
+        let dataTask = URLSession.shared.dataTask(with: weatherRequestURL) {
+            [weak self] (data: Data?, response: URLResponse?, error: Error?) in
+            if let error = error {
+                print("DataTask error:  \(error.localizedDescription)")
+            } else if
+                let data = data,
+                let response = response as? HTTPURLResponse,
+                response.statusCode == 200 {
+                
+                DispatchQueue.main.async {
+                    self?.saveResponse(from: data)
+                }
+            }
+        }
+        dataTask.resume()
+    }
 }
 
 extension ViewController: CLLocationManagerDelegate {
@@ -56,7 +82,7 @@ extension ViewController: CLLocationManagerDelegate {
             let longtitude = String(location.coordinate.longitude)
             print("longitude = \(longtitude), latitude = \(latitude)")
             
-            
+            getWeatherData(latitude: latitude, longtitude: longtitude)
         }
     }
 }
