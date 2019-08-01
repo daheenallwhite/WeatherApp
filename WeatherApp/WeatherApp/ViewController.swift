@@ -20,6 +20,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        self.locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.requestWhenInUseAuthorization()
+        
+        locationManager.startUpdatingLocation() //Asynchronous
+        // didUpdataLocation <- when it's done updating
     }
 
 }
