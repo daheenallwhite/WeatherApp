@@ -9,8 +9,6 @@
 import UIKit
 import CoreLocation
 
-typealias JSONDictionary = [String: Any]
-
 class ViewController: UIViewController {
 
     @IBOutlet weak var cityLabel: UILabel!
@@ -43,22 +41,13 @@ class ViewController: UIViewController {
         dailyTableView.separatorStyle = .none
     }
     
-    func getQueryItems(latitude: String, longtitude: String) -> [URLQueryItem] {
-        var queryItems = [URLQueryItem]()
-        let latitudeQuery = URLQueryItem(name: "lat", value: latitude)
-        let longtitudeQuery = URLQueryItem(name: "lon", value: longtitude)
-        let appIdQuery = URLQueryItem(name: "APPID", value: WeatherAPI.appID)
-        queryItems.append(contentsOf: [latitudeQuery, longtitudeQuery, appIdQuery])
-        return queryItems
     }
     
-    func getWeatherData(latitude: String, longtitude: String) {
-        var weatherURLComponents = URLComponents(string: WeatherAPI.forecastURL)
-        weatherURLComponents?.queryItems = getQueryItems(latitude: latitude, longtitude: longtitude)
-        guard let weatherRequestURL = weatherURLComponents?.url else {
+    func getWeatherData(using coordinate: Coordinate) {
+        guard let weatherForecastURL = Service.getWeatherForecastURL(using: coordinate) else {
             return
         }
-        let dataTask = URLSession.shared.weatherTask(with: weatherRequestURL) {
+        let dataTask = URLSession.shared.weatherTask(with: weatherForecastURL) {
             [weak self] (data: Weather?, response: URLResponse?, error: Error?) in
             if let data = data {
                 DispatchQueue.main.async {
