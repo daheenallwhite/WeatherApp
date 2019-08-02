@@ -20,6 +20,7 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.searchCompleter.delegate = self
+        self.searchCompleter.filterType = .locationsOnly
         self.searchBar.delegate = self
         self.searchResultTable.dataSource = self
         self.searchResultTable.delegate = self
