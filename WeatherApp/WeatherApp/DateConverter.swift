@@ -14,4 +14,11 @@ class DateConverter {
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         return formatter.date(from: string) ?? Date()
     }
+    
+    static func getDayOfWeek(from date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd"
+        return formatter.string(from: date)
+    }
+    
 }
