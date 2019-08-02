@@ -8,8 +8,6 @@
 
 import Foundation
 
-import Foundation
-
 // MARK: - Weather
 struct Weather: Codable {
     let cod: String
@@ -58,7 +56,6 @@ struct Clouds: Codable {
     let all: Int
 }
 
-
 // MARK: - MainClass
 struct MainClass: Codable {
     let temp, tempMin, tempMax, pressure: Double
@@ -80,14 +77,8 @@ struct MainClass: Codable {
 
 // MARK: - Sys
 struct Sys: Codable {
-    let pod: Pod
+    let pod: String
 }
-
-enum Pod: String, Codable {
-    case d = "d"
-    case n = "n"
-}
-
 
 // MARK: - WeatherElement
 struct WeatherElement: Codable {
@@ -95,11 +86,15 @@ struct WeatherElement: Codable {
     let main: String
     let weatherDescription: String
     let icon: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id, main
+        case weatherDescription = "description"
+        case icon
+    }
 }
-
 
 // MARK: - Wind
 struct Wind: Codable {
     let speed, deg: Double
 }
-
