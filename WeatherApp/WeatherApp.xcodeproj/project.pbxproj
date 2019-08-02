@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C2326F8122F4840300FBEDEB /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2326F8022F4840300FBEDEB /* CurrentWeather.swift */; };
 		C249FB0C22F35705003297A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249FB0B22F35705003297A6 /* AppDelegate.swift */; };
 		C249FB0E22F35705003297A6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249FB0D22F35705003297A6 /* ViewController.swift */; };
 		C249FB1122F35705003297A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C249FB0F22F35705003297A6 /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C2326F8022F4840300FBEDEB /* CurrentWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
 		C249FB0822F35705003297A6 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C249FB0B22F35705003297A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C249FB0D22F35705003297A6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -45,6 +47,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C2326F7F22F483D800FBEDEB /* Supporting Views */ = {
+			isa = PBXGroup;
+			children = (
+				C249FB1F22F363F2003297A6 /* HourlyCollectionViewCell.swift */,
+				C249FB2122F369A6003297A6 /* DailyTableViewCell.swift */,
+			);
+			path = "Supporting Views";
+			sourceTree = "<group>";
+		};
 		C249FAFF22F35705003297A6 = {
 			isa = PBXGroup;
 			children = (
@@ -67,12 +78,11 @@
 				C249FB0B22F35705003297A6 /* AppDelegate.swift */,
 				C249FB0D22F35705003297A6 /* ViewController.swift */,
 				C249FB0F22F35705003297A6 /* Main.storyboard */,
-				C249FB1D22F35EC8003297A6 /* WeatherAPI.swift */,
+				C2326F7F22F483D800FBEDEB /* Supporting Views */,
 				C249FB5C22F48340003297A6 /* Model */,
-				C249FB1F22F363F2003297A6 /* HourlyCollectionViewCell.swift */,
 				C249FB5D22F48367003297A6 /* DateConverter.swift */,
+				C249FB1D22F35EC8003297A6 /* WeatherAPI.swift */,
 				C249FB1222F35706003297A6 /* Assets.xcassets */,
-				C249FB2122F369A6003297A6 /* DailyTableViewCell.swift */,
 				C249FB1422F35706003297A6 /* LaunchScreen.storyboard */,
 				C249FB1722F35706003297A6 /* Info.plist */,
 			);
@@ -83,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				C249FB5A22F482FE003297A6 /* Weather.swift */,
+				C2326F8022F4840300FBEDEB /* CurrentWeather.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -160,6 +171,7 @@
 			files = (
 				C249FB5E22F48367003297A6 /* DateConverter.swift in Sources */,
 				C249FB1E22F35EC8003297A6 /* WeatherAPI.swift in Sources */,
+				C2326F8122F4840300FBEDEB /* CurrentWeather.swift in Sources */,
 				C249FB2222F369A6003297A6 /* DailyTableViewCell.swift in Sources */,
 				C249FB0E22F35705003297A6 /* ViewController.swift in Sources */,
 				C249FB0C22F35705003297A6 /* AppDelegate.swift in Sources */,
