@@ -9,7 +9,7 @@
 
 import UIKit
 
-class HourlyWeather: WeatherPresentable {
+class HourlyWeatherItem: WeatherPresentable {
     var icon: UIImage {
         return UIImage(named: self.iconName) ?? UIImage()
     }
