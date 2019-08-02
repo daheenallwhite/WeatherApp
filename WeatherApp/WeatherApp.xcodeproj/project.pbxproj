@@ -21,6 +21,7 @@
 		C249FB3122F441A3003297A6 /* Temperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249FB3022F441A3003297A6 /* Temperature.swift */; };
 		C249FB3822F44B1B003297A6 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249FB3722F44B1B003297A6 /* Service.swift */; };
 		C249FB3A22F44E8E003297A6 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249FB3922F44E8E003297A6 /* Coordinate.swift */; };
+		C249FB3C22F45722003297A6 /* HourlyWeatherItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249FB3B22F45722003297A6 /* HourlyWeatherItem.swift */; };
 		C249FB4022F4669A003297A6 /* WeatherPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249FB3F22F4669A003297A6 /* WeatherPresentable.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 		C249FB3022F441A3003297A6 /* Temperature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temperature.swift; sourceTree = "<group>"; };
 		C249FB3722F44B1B003297A6 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		C249FB3922F44E8E003297A6 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
+		C249FB3B22F45722003297A6 /* HourlyWeatherItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyWeatherItem.swift; sourceTree = "<group>"; };
 		C249FB3F22F4669A003297A6 /* WeatherPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherPresentable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,6 +96,7 @@
 				C249FB1D22F35EC8003297A6 /* WeatherAPI.swift */,
 				C249FB2922F43587003297A6 /* Weather.swift */,
 				C249FB3F22F4669A003297A6 /* WeatherPresentable.swift */,
+				C249FB3B22F45722003297A6 /* HourlyWeatherItem.swift */,
 				C249FB3022F441A3003297A6 /* Temperature.swift */,
 				C249FB2C22F439D9003297A6 /* DateConverter.swift */,
 			);
@@ -199,6 +202,7 @@
 				C249FB2D22F439D9003297A6 /* DateConverter.swift in Sources */,
 				C249FB0C22F35705003297A6 /* AppDelegate.swift in Sources */,
 				C249FB3822F44B1B003297A6 /* Service.swift in Sources */,
+				C249FB3C22F45722003297A6 /* HourlyWeatherItem.swift in Sources */,
 				C249FB2022F363F2003297A6 /* HourlyCollectionViewCell.swift in Sources */,
 				C249FB2A22F43587003297A6 /* Weather.swift in Sources */,
 			);
