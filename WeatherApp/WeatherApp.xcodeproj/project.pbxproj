@@ -15,6 +15,7 @@
 		C249FB1E22F35EC8003297A6 /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249FB1D22F35EC8003297A6 /* WeatherAPI.swift */; };
 		C249FB2022F363F2003297A6 /* HourlyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249FB1F22F363F2003297A6 /* HourlyCollectionViewCell.swift */; };
 		C249FB2222F369A6003297A6 /* DailyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249FB2122F369A6003297A6 /* DailyTableViewCell.swift */; };
+		C249FB5B22F482FE003297A6 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249FB5A22F482FE003297A6 /* Weather.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		C249FB1D22F35EC8003297A6 /* WeatherAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPI.swift; sourceTree = "<group>"; };
 		C249FB1F22F363F2003297A6 /* HourlyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyCollectionViewCell.swift; sourceTree = "<group>"; };
 		C249FB2122F369A6003297A6 /* DailyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTableViewCell.swift; sourceTree = "<group>"; };
+		C249FB5A22F482FE003297A6 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				C249FB0D22F35705003297A6 /* ViewController.swift */,
 				C249FB0F22F35705003297A6 /* Main.storyboard */,
 				C249FB1D22F35EC8003297A6 /* WeatherAPI.swift */,
+				C249FB5A22F482FE003297A6 /* Weather.swift */,
 				C249FB1F22F363F2003297A6 /* HourlyCollectionViewCell.swift */,
 				C249FB1222F35706003297A6 /* Assets.xcassets */,
 				C249FB2122F369A6003297A6 /* DailyTableViewCell.swift */,
@@ -148,6 +151,7 @@
 				C249FB2222F369A6003297A6 /* DailyTableViewCell.swift in Sources */,
 				C249FB0E22F35705003297A6 /* ViewController.swift in Sources */,
 				C249FB0C22F35705003297A6 /* AppDelegate.swift in Sources */,
+				C249FB5B22F482FE003297A6 /* Weather.swift in Sources */,
 				C249FB2022F363F2003297A6 /* HourlyCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
