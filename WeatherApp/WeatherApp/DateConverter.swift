@@ -21,4 +21,9 @@ class DateConverter {
         return formatter.string(from: date)
     }
     
+    static func getHour(from date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "ha"
+        return formatter.string(from: date)
+    }
 }
