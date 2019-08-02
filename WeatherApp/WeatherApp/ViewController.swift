@@ -58,15 +58,9 @@ class ViewController: UIViewController {
         guard let weatherRequestURL = weatherURLComponents?.url else {
             return
         }
-        let dataTask = URLSession.shared.dataTask(with: weatherRequestURL) {
-            [weak self] (data: Data?, response: URLResponse?, error: Error?) in
-            if let error = error {
-                print("DataTask error:  \(error.localizedDescription)")
-            } else if
-                let data = data,
-                let response = response as? HTTPURLResponse,
-                response.statusCode == 200 {
-                
+        let dataTask = URLSession.shared.weatherTask(with: weatherRequestURL) {
+            [weak self] (data: Weather?, response: URLResponse?, error: Error?) in
+            if let data = data {
                 DispatchQueue.main.async {
                     self?.saveResponse(from: data)
                 }
