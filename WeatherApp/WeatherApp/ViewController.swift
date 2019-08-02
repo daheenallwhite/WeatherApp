@@ -53,7 +53,7 @@ class ViewController: UIViewController {
     }
     
     func getWeatherData(latitude: String, longtitude: String) {
-        var weatherURLComponents = URLComponents(string: WeatherAPI.currentWeatherURL)
+        var weatherURLComponents = URLComponents(string: WeatherAPI.forecastURL)
         weatherURLComponents?.queryItems = getQueryItems(latitude: latitude, longtitude: longtitude)
         guard let weatherRequestURL = weatherURLComponents?.url else {
             return
