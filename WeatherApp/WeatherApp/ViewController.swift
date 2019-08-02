@@ -9,21 +9,20 @@
 import UIKit
 import CoreLocation
 
-typealias JSONDictionary = [String: Any]
-
 class ViewController: UIViewController {
 
     @IBOutlet weak var cityLabel: UILabel!
-    @IBOutlet weak var weatherLabel: UILabel!
+    @IBOutlet weak var condionLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var weatherIconImageView: UIImageView!
     @IBOutlet weak var hourlyCollectionView: UICollectionView!
     @IBOutlet weak var dailyTableView: UITableView!
     let locationManager = CLLocationManager()
-    var response: JSONDictionary!
+    let maxItemCount = 20
     
-    var numbers = ["1", "2", "3", "4", "5", "6", "7"]
-    var icons = [UIImage(named: "01d"), UIImage(named: "02d"), UIImage(named: "01d"), UIImage(named: "03d"), UIImage(named: "01d"), UIImage(named: "01d"), UIImage(named: "02d"), UIImage(named: "01d"), UIImage(named: "03d"), UIImage(named: "01d")]
+    var currentWeather: CurrentWeather!
+    var dailyWeatherItems = [DailyWeatherItem]()
+    var hourlyWeatherItems = [HourlyWeatherItem]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
