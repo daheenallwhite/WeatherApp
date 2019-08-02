@@ -157,16 +157,17 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return icons.count
+        return self.dailyWeatherItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = dailyTableView.dequeueReusableCell(withIdentifier: "DailyTableViewCell", for: indexPath) as? DailyTableViewCell else {
             return DailyTableViewCell()
         }
-        cell.weatherIconImageView.image = icons[indexPath.row]
-        cell.dayLabel.text = "Monday"
-        cell.maxMinTemperatureLabel.text = "34  25"
+        let weatherItem = dailyWeatherItems[indexPath.row]
+        cell.weatherIconImageView.image = weatherItem.icon
+        cell.dayLabel.text = weatherItem.dateText
+        cell.maxMinTemperatureLabel.text = weatherItem.temperatureText
         return cell
     }
 }
