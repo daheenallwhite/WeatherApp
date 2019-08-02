@@ -59,6 +59,7 @@ class ViewController: UIViewController {
             [weak self] (data: Weather?, response: URLResponse?, error: Error?) in
             if let error = error {
                 print("DataTask error:  \(error.localizedDescription)")
+                return
             }
             guard let data = data else {
                 print("json parsing error")
