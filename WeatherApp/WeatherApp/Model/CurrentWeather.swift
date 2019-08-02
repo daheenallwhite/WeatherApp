@@ -10,7 +10,7 @@ import UIKit
 
 class CurrentWeather: WeatherPresentable {
     var icon: UIImage {
-        return UIImage(named: self.iconName) ?? UIImage()
+        return WeatherIconImagePicker.getImage(named: iconName)
     }
     
     var temperatureText: String {
@@ -22,13 +22,13 @@ class CurrentWeather: WeatherPresentable {
     }
     
     let city: String
+    let condition: String
     private let iconName: String
     private let currentTemperature: Temperature
-    private let condition: String
     private let date: Date
     
     init(city: String, iconName: String, temperature: Double, condition: String, date: String) {
-        self.city: String
+        self.city = city
         self.iconName = iconName
         self.currentTemperature = Temperature(kelvin: temperature)
         self.condition = condition

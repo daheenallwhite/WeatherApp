@@ -10,7 +10,7 @@ import UIKit
 
 class DailyWeatherItem: WeatherPresentable {
     var icon: UIImage {
-        return UIImage(named: self.iconName) ?? UIImage()
+        return WeatherIconImagePicker.getImage(named: iconName)
     }
     
     var temperatureText: String {
