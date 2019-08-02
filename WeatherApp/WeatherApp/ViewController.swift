@@ -71,22 +71,49 @@ class ViewController: UIViewController {
         dataTask.resume()
     }
     
-    func saveResponse(from data: Data) {
-        do {
-            guard let reponseDictionary = try JSONSerialization.jsonObject(with: data, options: []) as? JSONDictionary else {
-                return
-            }
-            self.response = reponseDictionary
-            print(self.response)
-        } catch let parseError as NSError {
-            print("JSONSerialization error: \(parseError.localizedDescription)\n")
-            return
-        }
+    func saveResponse(from data: Weather) {
+        saveCurrentWeather(from: data)
+        saveHourlyWeatherItems(from: data)
+        saveDailyWeatherItems(from: data)
         updateWeatherLabels()
     }
     
+    func saveCurrentWeather(from data: Weather) {
+        let weather = data.list[0].weather[0]
+        let firstListItem = data.list[0]
+        currentWeather = CurrentWeather(city: data.city.name, iconName: weather.icon, temperature: firstListItem.main.temp, condition: weather.weatherDescription, date: firstListItem.dtTxt)
+    }
+    
+    func saveHourlyWeatherItems(from data: Weather) {
+        let maxCount = data.list.count > maxItemCount ? maxItemCount : data.list.count
+        let weatherList = data.list[0...maxCount]
+        hourlyWeatherItems = weatherList.map({ (list) -> HourlyWeatherItem in
+            let temp = list.main.temp
+            let date = list.dtTxt
+            let iconName = list.weather[0].icon
+            return HourlyWeatherItem(iconName: iconName, temperature: temp, date: date)
+        })
+    }
+    
+    func saveDailyWeatherItems(from data: Weather) {
+        let maxCount = data.list.count > maxItemCount ? maxItemCount : data.list.count
+        dailyWeatherItems = data.list[0...maxCount].map({ (list) -> DailyWeatherItem in
+            let max = list.main.tempMax
+            let min = list.main.tempMin
+            let date = list.dtTxt
+            let iconName = list.weather[0].icon
+            return DailyWeatherItem(iconName: iconName, date: date, maxTemperature: max, minTemperature: min)
+        })
+        
+    }
+    
     func updateWeatherLabels() {
-        self.cityLabel.text = response["name"] as? String
+        self.dailyTableView.reloadData()
+        self.hourlyCollectionView.reloadData()
+        self.cityLabel.text = currentWeather.city
+        self.condionLabel.text = currentWeather.condition
+        self.temperatureLabel.text = currentWeather.temperatureText
+        self.weatherIconImageView.image = currentWeather.icon
     }
 }
 
