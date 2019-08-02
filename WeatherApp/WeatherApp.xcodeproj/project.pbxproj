@@ -17,6 +17,7 @@
 		C249FB2222F369A6003297A6 /* DailyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249FB2122F369A6003297A6 /* DailyTableViewCell.swift */; };
 		C249FB2822F42860003297A6 /* URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249FB2722F42860003297A6 /* URLSession.swift */; };
 		C249FB2A22F43587003297A6 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249FB2922F43587003297A6 /* Weather.swift */; };
+		C249FB2D22F439D9003297A6 /* DateConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249FB2C22F439D9003297A6 /* DateConverter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +79,15 @@
 				C249FB1722F35706003297A6 /* Info.plist */,
 			);
 			path = WeatherApp;
+			sourceTree = "<group>";
+		};
+		C249FB2B22F43853003297A6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C249FB2922F43587003297A6 /* Weather.swift */,
+				C249FB2C22F439D9003297A6 /* DateConverter.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,6 +165,7 @@
 				C249FB2222F369A6003297A6 /* DailyTableViewCell.swift in Sources */,
 				C249FB2822F42860003297A6 /* URLSession.swift in Sources */,
 				C249FB0E22F35705003297A6 /* ViewController.swift in Sources */,
+				C249FB2D22F439D9003297A6 /* DateConverter.swift in Sources */,
 				C249FB0C22F35705003297A6 /* AppDelegate.swift in Sources */,
 				C249FB2022F363F2003297A6 /* HourlyCollectionViewCell.swift in Sources */,
 				C249FB2A22F43587003297A6 /* Weather.swift in Sources */,
