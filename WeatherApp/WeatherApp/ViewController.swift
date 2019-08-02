@@ -51,24 +51,21 @@ class ViewController: UIViewController {
         return queryItems
     }
     
-    func getWeatherData(latitude: String, longtitude: String) {
-        var weatherURLComponents = URLComponents(string: WeatherAPI.currentWeatherURL)
-        weatherURLComponents?.queryItems = getQueryItems(latitude: latitude, longtitude: longtitude)
-        guard let weatherRequestURL = weatherURLComponents?.url else {
+    func getWeatherData(using coordinate: Coordinate) {
+        guard let weatherRequestURL = Service.getWeatherForecastURL(using: coordinate) else {
             return
         }
-        let dataTask = URLSession.shared.dataTask(with: weatherRequestURL) {
-            [weak self] (data: Data?, response: URLResponse?, error: Error?) in
+        let dataTask = URLSession.shared.weatherTask(with: weatherRequestURL) {
+            [weak self] (data: Weather?, response: URLResponse?, error: Error?) in
             if let error = error {
                 print("DataTask error:  \(error.localizedDescription)")
-            } else if
-                let data = data,
-                let response = response as? HTTPURLResponse,
-                response.statusCode == 200 {
-                
-                DispatchQueue.main.async {
-                    self?.saveResponse(from: data)
-                }
+            }
+            guard let data = data else {
+                print("json parsing error")
+                return
+            }
+            DispatchQueue.main.async {
+                self?.saveResponse(from: data)
             }
         }
         dataTask.resume()
