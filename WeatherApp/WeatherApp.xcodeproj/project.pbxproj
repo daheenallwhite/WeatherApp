@@ -12,6 +12,7 @@
 		C2326F8522F4847F00FBEDEB /* HourlyWeatherItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2326F8422F4847F00FBEDEB /* HourlyWeatherItem.swift */; };
 		C2326F8722F484AD00FBEDEB /* Temperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2326F8622F484AD00FBEDEB /* Temperature.swift */; };
 		C2326F8922F484F000FBEDEB /* WeatherPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2326F8822F484F000FBEDEB /* WeatherPresentable.swift */; };
+		C2326F8E22F4854C00FBEDEB /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2326F8D22F4854C00FBEDEB /* Coordinate.swift */; };
 		C249FB0C22F35705003297A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249FB0B22F35705003297A6 /* AppDelegate.swift */; };
 		C249FB0E22F35705003297A6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249FB0D22F35705003297A6 /* ViewController.swift */; };
 		C249FB1122F35705003297A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C249FB0F22F35705003297A6 /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 		C2326F8422F4847F00FBEDEB /* HourlyWeatherItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyWeatherItem.swift; sourceTree = "<group>"; };
 		C2326F8622F484AD00FBEDEB /* Temperature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temperature.swift; sourceTree = "<group>"; };
 		C2326F8822F484F000FBEDEB /* WeatherPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherPresentable.swift; sourceTree = "<group>"; };
+		C2326F8D22F4854C00FBEDEB /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 		C249FB0822F35705003297A6 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C249FB0B22F35705003297A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C249FB0D22F35705003297A6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -64,6 +66,14 @@
 			path = "Supporting Views";
 			sourceTree = "<group>";
 		};
+		C2326F8C22F4853D00FBEDEB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C2326F8D22F4854C00FBEDEB /* Coordinate.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		C249FAFF22F35705003297A6 = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +96,7 @@
 				C249FB0B22F35705003297A6 /* AppDelegate.swift */,
 				C249FB0D22F35705003297A6 /* ViewController.swift */,
 				C249FB0F22F35705003297A6 /* Main.storyboard */,
+				C2326F8C22F4853D00FBEDEB /* Extensions */,
 				C2326F7F22F483D800FBEDEB /* Supporting Views */,
 				C249FB5C22F48340003297A6 /* Model */,
 				C249FB5D22F48367003297A6 /* DateConverter.swift */,
@@ -187,6 +198,7 @@
 				C249FB1E22F35EC8003297A6 /* WeatherAPI.swift in Sources */,
 				C2326F8122F4840300FBEDEB /* CurrentWeather.swift in Sources */,
 				C249FB2222F369A6003297A6 /* DailyTableViewCell.swift in Sources */,
+				C2326F8E22F4854C00FBEDEB /* Coordinate.swift in Sources */,
 				C2326F8722F484AD00FBEDEB /* Temperature.swift in Sources */,
 				C249FB0E22F35705003297A6 /* ViewController.swift in Sources */,
 				C2326F8922F484F000FBEDEB /* WeatherPresentable.swift in Sources */,
