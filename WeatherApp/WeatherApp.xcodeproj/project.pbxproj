@@ -24,6 +24,7 @@
 		C249FB3C22F45722003297A6 /* HourlyWeatherItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249FB3B22F45722003297A6 /* HourlyWeatherItem.swift */; };
 		C249FB3E22F4656B003297A6 /* DailyWeatherItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249FB3D22F4656B003297A6 /* DailyWeatherItem.swift */; };
 		C249FB4022F4669A003297A6 /* WeatherPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249FB3F22F4669A003297A6 /* WeatherPresentable.swift */; };
+		C249FB4222F4678E003297A6 /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249FB4122F4678E003297A6 /* CurrentWeather.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		C249FB3B22F45722003297A6 /* HourlyWeatherItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyWeatherItem.swift; sourceTree = "<group>"; };
 		C249FB3D22F4656B003297A6 /* DailyWeatherItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeatherItem.swift; sourceTree = "<group>"; };
 		C249FB3F22F4669A003297A6 /* WeatherPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherPresentable.swift; sourceTree = "<group>"; };
+		C249FB4122F4678E003297A6 /* CurrentWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 				C249FB1D22F35EC8003297A6 /* WeatherAPI.swift */,
 				C249FB2922F43587003297A6 /* Weather.swift */,
 				C249FB3F22F4669A003297A6 /* WeatherPresentable.swift */,
+				C249FB4122F4678E003297A6 /* CurrentWeather.swift */,
 				C249FB3B22F45722003297A6 /* HourlyWeatherItem.swift */,
 				C249FB3D22F4656B003297A6 /* DailyWeatherItem.swift */,
 				C249FB3022F441A3003297A6 /* Temperature.swift */,
@@ -196,6 +199,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C249FB1E22F35EC8003297A6 /* WeatherAPI.swift in Sources */,
+				C249FB4222F4678E003297A6 /* CurrentWeather.swift in Sources */,
 				C249FB2222F369A6003297A6 /* DailyTableViewCell.swift in Sources */,
 				C249FB3122F441A3003297A6 /* Temperature.swift in Sources */,
 				C249FB2822F42860003297A6 /* URLSession.swift in Sources */,

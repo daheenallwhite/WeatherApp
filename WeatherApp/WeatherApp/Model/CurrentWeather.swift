@@ -1,0 +1,35 @@
+//
+//  CurrentWeather.swift
+//  WeatherApp
+//
+//  Created by Daheen Lee on 02/08/2019.
+//  Copyright © 2019 allwhite. All rights reserved.
+//
+
+import UIKit
+
+class CurrentWeather: WeatherPresentable {
+    var icon: UIImage {
+        return UIImage(named: self.iconName) ?? UIImage()
+    }
+    
+    var temperatureText: String {
+        return "\(self.currentTemperature.toCelcius)"
+    }
+    
+    var dateText: String {
+        return DateConverter.getDayOfWeek(from: self.date)
+    }
+    
+    private let iconName: String
+    private let currentTemperature: Temperature
+    private let condition: String
+    private let date: Date
+    
+    init(iconName: String, temperature: Double, condition: String, date: String) {
+        self.iconName = iconName
+        self.currentTemperature = Temperature(kelvin: temperature)
+        self.condition = condition
+        self.date = DateConverter.getDate(from: date)
+    }
+}
