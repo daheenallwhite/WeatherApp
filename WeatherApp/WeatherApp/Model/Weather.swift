@@ -43,13 +43,13 @@ struct List: Codable {
     let sys: Sys
     let dtTxt: String
     
-    var date: Date {
-        return DateConverter.getDate(from: dtTxt)
-    }
-    
     enum CodingKeys: String, CodingKey {
         case dt, main, weather, clouds, wind, sys
         case dtTxt = "dt_txt"
+    }
+    
+    var date: Date {
+        return DateConverter.getDate(from: dtTxt)
     }
 }
 
