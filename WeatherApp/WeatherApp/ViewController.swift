@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var hourlyCollectionView: UICollectionView!
     @IBOutlet weak var dailyTableView: UITableView!
     let locationManager = CLLocationManager()
-    var response: JSONDictionary!
+    var weather: Weather!
     
     var numbers = ["1", "2", "3", "4", "5", "6", "7"]
     var icons = [UIImage(named: "01d"), UIImage(named: "02d"), UIImage(named: "01d"), UIImage(named: "03d"), UIImage(named: "01d"), UIImage(named: "01d"), UIImage(named: "02d"), UIImage(named: "01d"), UIImage(named: "03d"), UIImage(named: "01d")]
