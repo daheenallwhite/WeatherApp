@@ -79,12 +79,9 @@ extension ViewController: CLLocationManagerDelegate {
         // stop updating when you got a valid result
         if location.horizontalAccuracy > 0 {
             locationManager.stopUpdatingLocation()
-            
-            let latitude = String(location.coordinate.latitude)
-            let longtitude = String(location.coordinate.longitude)
-            print("longitude = \(longtitude), latitude = \(latitude)")
-            
-            getWeatherData(latitude: latitude, longtitude: longtitude)
+            let coordinatePair = location.coordinate.getCoordinatePair()
+            print("\(coordinatePair)")
+            getWeatherData(using: coordinatePair)
         }
     }
 }
