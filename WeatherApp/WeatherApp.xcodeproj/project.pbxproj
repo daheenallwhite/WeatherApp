@@ -15,6 +15,8 @@
 		C249FB1E22F35EC8003297A6 /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249FB1D22F35EC8003297A6 /* WeatherAPI.swift */; };
 		C249FB2022F363F2003297A6 /* HourlyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249FB1F22F363F2003297A6 /* HourlyCollectionViewCell.swift */; };
 		C249FB2222F369A6003297A6 /* DailyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249FB2122F369A6003297A6 /* DailyTableViewCell.swift */; };
+		C249FB2822F42860003297A6 /* URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249FB2722F42860003297A6 /* URLSession.swift */; };
+		C249FB2A22F43587003297A6 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249FB2922F43587003297A6 /* Weather.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,9 @@
 		C249FB1D22F35EC8003297A6 /* WeatherAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPI.swift; sourceTree = "<group>"; };
 		C249FB1F22F363F2003297A6 /* HourlyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyCollectionViewCell.swift; sourceTree = "<group>"; };
 		C249FB2122F369A6003297A6 /* DailyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTableViewCell.swift; sourceTree = "<group>"; };
+		C249FB2722F42860003297A6 /* URLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSession.swift; sourceTree = "<group>"; };
+		C249FB2922F43587003297A6 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		C249FB2C22F439D9003297A6 /* DateConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DateConverter.swift; path = ../DateConverter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +70,8 @@
 				C249FB0F22F35705003297A6 /* Main.storyboard */,
 				C249FB1D22F35EC8003297A6 /* WeatherAPI.swift */,
 				C249FB1F22F363F2003297A6 /* HourlyCollectionViewCell.swift */,
+				C249FB2722F42860003297A6 /* URLSession.swift */,
+				C249FB2B22F43853003297A6 /* Model */,
 				C249FB1222F35706003297A6 /* Assets.xcassets */,
 				C249FB2122F369A6003297A6 /* DailyTableViewCell.swift */,
 				C249FB1422F35706003297A6 /* LaunchScreen.storyboard */,
@@ -146,9 +153,11 @@
 			files = (
 				C249FB1E22F35EC8003297A6 /* WeatherAPI.swift in Sources */,
 				C249FB2222F369A6003297A6 /* DailyTableViewCell.swift in Sources */,
+				C249FB2822F42860003297A6 /* URLSession.swift in Sources */,
 				C249FB0E22F35705003297A6 /* ViewController.swift in Sources */,
 				C249FB0C22F35705003297A6 /* AppDelegate.swift in Sources */,
 				C249FB2022F363F2003297A6 /* HourlyCollectionViewCell.swift in Sources */,
+				C249FB2A22F43587003297A6 /* Weather.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
