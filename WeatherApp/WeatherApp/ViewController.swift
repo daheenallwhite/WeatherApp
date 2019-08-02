@@ -14,7 +14,7 @@ typealias JSONDictionary = [String: Any]
 class ViewController: UIViewController {
 
     @IBOutlet weak var cityLabel: UILabel!
-    @IBOutlet weak var weatherLabel: UILabel!
+    @IBOutlet weak var conditionLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var weatherIconImageView: UIImageView!
     @IBOutlet weak var hourlyCollectionView: UICollectionView!
