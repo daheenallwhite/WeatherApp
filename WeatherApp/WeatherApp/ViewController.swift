@@ -135,16 +135,17 @@ extension ViewController: CLLocationManagerDelegate {
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.icons.count
+        return self.hourlyWeatherItems.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = hourlyCollectionView.dequeueReusableCell(withReuseIdentifier: "HourlyCollectionViewCell", for: indexPath) as? HourlyCollectionViewCell else {
             return HourlyCollectionViewCell()
         }
-        cell.temperatureLabel.text = "self"
-        cell.hourLabel.text = "3AM"
-        cell.weatherIconImageView.image = icons[indexPath.row]
+        let weatherItem = hourlyWeatherItems[indexPath.row]
+        cell.temperatureLabel.text = weatherItem.temperatureText
+        cell.hourLabel.text = weatherItem.dateText
+        cell.weatherIconImageView.image = weatherItem.icon
         return cell
     }
     
