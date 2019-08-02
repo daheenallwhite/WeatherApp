@@ -58,7 +58,7 @@
                                     <constraint firstItem="Wf4-FS-1NY" firstAttribute="centerY" secondItem="2ng-tj-7QH" secondAttribute="centerY" id="lav-yn-I9F"/>
                                 </constraints>
                             </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="D3F-zz-jQ4">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="D3F-zz-jQ4">
                                 <rect key="frame" x="0.0" y="319.5" width="414" height="123.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ElE-YZ-8yg">
