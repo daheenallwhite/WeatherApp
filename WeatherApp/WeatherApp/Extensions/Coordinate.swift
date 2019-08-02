@@ -13,8 +13,11 @@ typealias Coordinate = (latitude: String, longitude: String)
 
 extension CLLocationCoordinate2D {
     func getCoordinatePair() -> Coordinate {
+        let maxLength = 10
         let latitude = String(self.latitude)
         let longitude = String(self.longitude)
-        return (latitude, longitude)
+        let lengthModifiedLatitude = latitude.prefix(latitude.count > maxLength ? maxLength : latitude.count)
+        let lengthModifiedlongitude = longitude.prefix(longitude.count > maxLength ? maxLength : longitude.count)
+        return (String(lengthModifiedLatitude), String(lengthModifiedlongitude))
     }
 }
