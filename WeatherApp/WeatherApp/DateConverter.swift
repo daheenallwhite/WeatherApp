@@ -12,6 +12,6 @@ class DateConverter {
     static func getDate(from string: String) -> Date {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        return formatter.date(from: string)
+        return formatter.date(from: string) ?? Date()
     }
 }
