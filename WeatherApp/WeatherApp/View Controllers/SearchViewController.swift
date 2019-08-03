@@ -74,7 +74,8 @@ extension SearchViewController: UITableViewDelegate {
         let search = MKLocalSearch(request: searchRequest)
         search.start { (response, error) in
             let coordinate = response?.mapItems[0].placemark.coordinate
-            print(coordinate?.getCoordinatePair() ?? "")
+            print(coordinate?.getCoordinatePairString() ?? "")
+            // coordinate 데이터 가지고 stored city 화면으로 돌아감
         }
     }
 }
