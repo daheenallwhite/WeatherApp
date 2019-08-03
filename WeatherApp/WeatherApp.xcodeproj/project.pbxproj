@@ -27,6 +27,7 @@
 		C249FB5B22F482FE003297A6 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249FB5A22F482FE003297A6 /* Weather.swift */; };
 		C249FB5E22F48367003297A6 /* DateConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249FB5D22F48367003297A6 /* DateConverter.swift */; };
 		C26C355022F5B5EE001B13B8 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26C354F22F5B5EE001B13B8 /* Error.swift */; };
+		C26C355722F5C75F001B13B8 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26C355622F5C75F001B13B8 /* Observable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		C249FB5A22F482FE003297A6 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		C249FB5D22F48367003297A6 /* DateConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateConverter.swift; sourceTree = "<group>"; };
 		C26C354F22F5B5EE001B13B8 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		C26C355622F5C75F001B13B8 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +222,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C26C355722F5C75F001B13B8 /* Observable.swift in Sources */,
 				C2326F8522F4847F00FBEDEB /* HourlyWeatherItem.swift in Sources */,
 				C2326F9322F48D0300FBEDEB /* WeatherIconImagePicker.swift in Sources */,
 				C2326F8B22F4852E00FBEDEB /* OpenWeatherMapService.swift in Sources */,
