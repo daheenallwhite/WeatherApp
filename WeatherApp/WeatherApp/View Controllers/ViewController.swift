@@ -43,15 +43,6 @@ class ViewController: UIViewController {
         dailyTableView.separatorStyle = .none
     }
     
-    func getQueryItems(latitude: String, longtitude: String) -> [URLQueryItem] {
-        var queryItems = [URLQueryItem]()
-        let latitudeQuery = URLQueryItem(name: "lat", value: latitude)
-        let longtitudeQuery = URLQueryItem(name: "lon", value: longtitude)
-        let appIdQuery = URLQueryItem(name: "APPID", value: WeatherAPI.appID)
-        queryItems.append(contentsOf: [latitudeQuery, longtitudeQuery, appIdQuery])
-        return queryItems
-    }
-    
     func getWeatherData(using coordinate: Coordinate) {
         guard let weatherRequestURL = Service.getWeatherForecastURL(using: coordinate) else {
             return
@@ -72,20 +63,20 @@ class ViewController: UIViewController {
         }
         dataTask.resume()
     }
-    
+
     func saveResponse(from data: Weather) {
         saveCurrentWeather(from: data)
         saveHourlyWeatherItems(from: data)
         saveDailyWeatherItems(from: data)
         updateWeatherLabels()
     }
-    
+
     func saveCurrentWeather(from data: Weather) {
         let weather = data.list[0].weather[0]
         let firstListItem = data.list[0]
         currentWeather = CurrentWeather(city: data.city.name, iconName: weather.icon, temperature: firstListItem.main.temp, condition: weather.description, date: firstListItem.dtTxt)
     }
-    
+
     func saveHourlyWeatherItems(from data: Weather) {
         let maxCount = data.list.count > maxItemCount ? maxItemCount : data.list.count
         let weatherList = data.list[0...maxCount]
@@ -96,7 +87,7 @@ class ViewController: UIViewController {
             return HourlyWeatherItem(iconName: iconName, temperature: temp, date: date)
         })
     }
-    
+
     func saveDailyWeatherItems(from data: Weather) {
         let maxCount = data.list.count > maxItemCount ? maxItemCount : data.list.count
         dailyWeatherItems = data.list[0...maxCount].map({ (list) -> DailyWeatherItem in
@@ -106,9 +97,9 @@ class ViewController: UIViewController {
             let iconName = list.weather[0].icon
             return DailyWeatherItem(iconName: iconName, date: date, maxTemperature: max, minTemperature: min)
         })
-        
+
     }
-    
+
     func updateWeatherLabels() {
         self.dailyTableView.reloadData()
         self.hourlyCollectionView.reloadData()
