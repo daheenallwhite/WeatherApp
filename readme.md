@@ -1,16 +1,6 @@
 # WeatherApp
 
-## 구현
-
-
-
-
-
-
-
-## 학습한 내용
-
-## 네트워크
+## 구현 & 학습한 내용
 
 ### URL Loading System
 
@@ -106,6 +96,22 @@ DispatchQueue.main.async {
 network request 같은 무거운 작업을 할 때는 background queue 에서 실행되는게 앱의 main 에서 실행되는것보다 권장됨. - UI 는 다른 일을 하는 동안 무거운 작업들을 뒤에서 할 수 있으므로
 
 
+
+queue 종류 2가지
+
+main : ui 가 처리되는 queue
+
+Global
+
+
+
+Serial / concurrent 
+
+Sync / async 
+
+sync : 작업 완료되면 호출자에게 제어권 반환
+
+async : 작업 진행시켜놓고 호출자에게 제어권 반환. 작업은 계속 실행되고 있음. 다음 함수 실행되어 시작하는 스레드를 차단하지 않는다.
 
 ## UICollectionView
 
@@ -224,6 +230,22 @@ two way binding
 - Observer-listener 패턴 : view controller - view model 간 양방향 소통을 할 수 있게끔 해줌
 - oberserver 패턴은 subject 에 변동이 생기면 알려달라고 미리 observer 등록을 하면, subject 변동시 알람을 받는 패턴이다
 - control & data provider
+
+
+
+## API 데이터 기반 시간 구하기
+
+- api  의 date & time 정보는 UTC 표준
+- `city.timezone` : 해당 도시의 시간을 UTC로부터 변환하기 위한 차이값. 단위는 초
+- `list.dt_txt` : UTC 시간
+- 각 도시의 시간 = `list.dt_txt` 를 date로 변환한 객체 + `city.timezone`
+- 구현 방법 : `Date` - `addingTimeInterval()` method 사용
+
+
+
+
+
+
 
 
 
