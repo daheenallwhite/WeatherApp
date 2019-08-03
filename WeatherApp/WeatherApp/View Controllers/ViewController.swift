@@ -32,8 +32,9 @@ class ViewController: UIViewController {
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.requestWhenInUseAuthorization()
         
-        locationManager.startUpdatingLocation() //Asynchronous
-        // didUpdataLocation <- when it's done updating
+        if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse || CLLocationManager.authorizationStatus() == .authorizedAlways){
+            locationManager.requestLocation()
+        }
         
         self.hourlyCollectionView.dataSource = self
         self.hourlyCollectionView.delegate = self
@@ -82,7 +83,7 @@ class ViewController: UIViewController {
     func saveCurrentWeather(from data: Weather) {
         let weather = data.list[0].weather[0]
         let firstListItem = data.list[0]
-        currentWeather = CurrentWeather(city: data.city.name, iconName: weather.icon, temperature: firstListItem.main.temp, condition: weather.weatherDescription, date: firstListItem.dtTxt)
+        currentWeather = CurrentWeather(city: data.city.name, iconName: weather.icon, temperature: firstListItem.main.temp, condition: weather.description, date: firstListItem.dtTxt)
     }
     
     func saveHourlyWeatherItems(from data: Weather) {
@@ -119,18 +120,25 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if(status == .authorizedWhenInUse || status == .authorizedAlways){
+            manager.requestLocation()
+        }
+    }
     // when it's done updating current location of device
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //when locationManager finds location information
         // 마지막 element가 가장 정확도가 높은 위치
-        let location = locations[locations.count-1]
         // stop updating when you got a valid result
-        if location.horizontalAccuracy > 0 {
-            locationManager.stopUpdatingLocation()
+        if let location = locations.first {
             let coordinatePair = location.coordinate.getCoordinatePair()
             print("\(coordinatePair)")
             getWeatherData(using: coordinatePair)
         }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        
     }
 }
 
