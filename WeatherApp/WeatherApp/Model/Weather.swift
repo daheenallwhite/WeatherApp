@@ -10,8 +10,6 @@ import Foundation
 
 // MARK: - Weather
 struct Weather: Codable {
-    let cod: String
-    let message: Double
     let cnt: Int
     let list: [List]
     let city: City
@@ -33,21 +31,19 @@ struct Coord: Codable {
 
 // MARK: - List
 struct List: Codable {
-    let dt: Int
+    let dt: Int // Time of data forcasted
     let main: MainClass
     let weather: [WeatherElement]
     let clouds: Clouds
     let wind: Wind
-    let sys: Sys
     let dtTxt: String
+    let rain: Rain?
+    let snow: Snow?
     
     enum CodingKeys: String, CodingKey {
-        case dt, main, weather, clouds, wind, sys
+        case dt, main, weather, clouds, wind
         case dtTxt = "dt_txt"
-    }
-    
-    var date: Date {
-        return DateConverter.getDate(from: dtTxt)
+        case rain, snow
     }
 }
 
@@ -61,7 +57,6 @@ struct MainClass: Codable {
     let temp, tempMin, tempMax, pressure: Double
     let seaLevel, grndLevel: Double
     let humidity: Int
-    let tempKf: Double
     
     enum CodingKeys: String, CodingKey {
         case temp
@@ -71,27 +66,33 @@ struct MainClass: Codable {
         case seaLevel = "sea_level"
         case grndLevel = "grnd_level"
         case humidity
-        case tempKf = "temp_kf"
     }
 }
 
-// MARK: - Sys
-struct Sys: Codable {
-    let pod: String
+// MARK: - Rain
+struct Rain: Codable {
+    let the3H: Double?
+    
+    enum CodingKeys: String, CodingKey {
+        case the3H = "3h"
+    }
+}
+
+// MARK: - Snow
+struct Snow: Codable {
+    let the3H: Double?
+    
+    enum CodingKeys: String, CodingKey {
+        case the3H = "3h"
+    }
 }
 
 // MARK: - WeatherElement
 struct WeatherElement: Codable {
     let id: Int
     let main: String
-    let weatherDescription: String
+    let description: String
     let icon: String
-    
-    enum CodingKeys: String, CodingKey {
-        case id, main
-        case weatherDescription = "description"
-        case icon
-    }
 }
 
 // MARK: - Wind
