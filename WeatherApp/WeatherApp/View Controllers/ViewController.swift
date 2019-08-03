@@ -44,24 +44,15 @@ class ViewController: UIViewController {
     }
     
     func getWeatherData(using coordinate: Coordinate) {
-        guard let weatherRequestURL = Service.getWeatherForecastURL(using: coordinate) else {
-            return
-        }
-        let dataTask = URLSession.shared.weatherTask(with: weatherRequestURL) {
-            [weak self] (data: Weather?, response: URLResponse?, error: Error?) in
-            if let error = error {
-                print("DataTask error:  \(error.localizedDescription)")
-                return
-            }
-            guard let data = data else {
-                print("json parsing error")
+        OpenWeatherMapService.retrieveWeatherInfo(using: coordinate) { [unowned self] (weather, error) in
+            guard let weatherData = weather, error == nil else {
+                print(error ?? "")
                 return
             }
             DispatchQueue.main.async {
-                self?.saveResponse(from: data)
+                self.saveResponse(from: weatherData)
             }
         }
-        dataTask.resume()
     }
 
     func saveResponse(from data: Weather) {
@@ -116,13 +107,10 @@ extension ViewController: CLLocationManagerDelegate {
             manager.requestLocation()
         }
     }
-    // when it's done updating current location of device
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        //when locationManager finds location information
-        // 마지막 element가 가장 정확도가 높은 위치
-        // stop updating when you got a valid result
         if let location = locations.first {
-            let coordinatePair = location.coordinate.getCoordinatePair()
+            let coordinatePair = location.coordinate.getCoordinatePairString()
             print("\(coordinatePair)")
             getWeatherData(using: coordinatePair)
         }
