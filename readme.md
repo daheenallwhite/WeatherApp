@@ -181,5 +181,49 @@ Current, Hourly, Daily Weather 클래스에서 해당 프로토콜을 채택하�
 
 
 
+## JSON Parsing
+
+### CodingKey
+
+encode/decode 될 때 기준이 되는 key
+
+CodingKey protocol 을 준수한 enumeration 이 있다면, 이 case 들은 codable type 에 encode/decode 될 때, 반드시 포함되어야 하는 속성의 리스트를 나타낸다. 
+
+각 case 이름은 주어질 data type과 맞아야 하는데, 다르다면 String 을 상속받아 associated value 로 지정해주면 된다.
+
+- 참조 - [Encoding & Decoding Custom Types](https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types)
+
+
+
+### MVVM
+
+Model 과 view controller 사이의 중재자인 view model 을 넣은 디자인 패턴
+
+왜 이 패턴을 사용할까?
+
+- 기존의 mvc, 특히 apple의 mvc 는 massive view controller 라고 불릴만큼 view controller 가 할 일이 많았음. 
+- 저장된 model 과 view 를 표현할 때 쓸 model 을 다르게 표현할 필요가 생김
+  - 예를들어, 유저 정보를 내부 model 에 가지고 있지만 view model 에서는 일부 정보만 보여준다면? -> controller 가 view 에서 쓸 일부 정보를 가공할 필요가 생김 -> massive view controller 가 될 확률이 높아짐
+- loosely coupled architecture -> 변동, 유연한 구조, 테스트에 용이
+
+구조 ([출처](https://medium.com/@navdeepsingh_2336/creating-an-ios-app-with-mvvm-and-rxswift-in-minutes-b8800633d2e8))
+
+![](https://miro.medium.com/max/700/1*iwgAHz3uZGqyk3OhOOjgyg.jpeg)
+
+
+
+view model 의 역할
+
+- view update
+- View 로부터 받은 update (user 로 부터 받은) update를 처리
+
+
+
+two way binding
+
+- Observer-listener 패턴 : view controller - view model 간 양방향 소통을 할 수 있게끔 해줌
+- oberserver 패턴은 subject 에 변동이 생기면 알려달라고 미리 observer 등록을 하면, subject 변동시 알람을 받는 패턴이다
+- control & data provider
+
 
 
