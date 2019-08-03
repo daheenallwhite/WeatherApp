@@ -23,7 +23,7 @@ class CurrentWeather: Weather, WeatherPresentable {
     
     let condition: String
     
-    init(iconName: String, temperature: Double, condition: String, date: String) {
+    init(iconName: String, temperature: Double, condition: String, date: Date) {
         self.condition = condition
         super.init(iconName: iconName, temperature: temperature, date: date)
     }

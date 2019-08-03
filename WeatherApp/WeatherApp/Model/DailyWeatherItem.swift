@@ -26,7 +26,7 @@ class DailyWeatherItem: Weather, WeatherPresentable {
     private let maxTemperature: Temperature
     private let minTemperature: Temperature
     
-    init(iconName: String, date: String, maxTemperature: Double, minTemperature: Double) {
+    init(iconName: String, date: Date, maxTemperature: Double, minTemperature: Double) {
         self.maxTemperature = Temperature(kelvin: maxTemperature)
         self.minTemperature = Temperature(kelvin: minTemperature)
         super.init(iconName: iconName, temperature: minTemperature, date: date)
