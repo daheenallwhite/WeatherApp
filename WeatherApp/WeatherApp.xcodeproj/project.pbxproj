@@ -31,6 +31,7 @@
 		C26C355922F5CC31001B13B8 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26C355822F5CC31001B13B8 /* Weather.swift */; };
 		C26C355D22F6044C001B13B8 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26C355C22F6044C001B13B8 /* Observable.swift */; };
 		C26C356322F6087E001B13B8 /* LocationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26C356222F6087E001B13B8 /* LocationListViewController.swift */; };
+		C26C356522F60893001B13B8 /* LocationListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26C356422F60893001B13B8 /* LocationListTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		C26C355822F5CC31001B13B8 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		C26C355C22F6044C001B13B8 /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		C26C356222F6087E001B13B8 /* LocationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListViewController.swift; sourceTree = "<group>"; };
+		C26C356422F60893001B13B8 /* LocationListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationListTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 		C2326F7F22F483D800FBEDEB /* Supporting Views */ = {
 			isa = PBXGroup;
 			children = (
+				C26C356422F60893001B13B8 /* LocationListTableViewCell.swift */,
 				C249FB1F22F363F2003297A6 /* HourlyCollectionViewCell.swift */,
 				C249FB2122F369A6003297A6 /* DailyTableViewCell.swift */,
 			);
@@ -244,6 +247,7 @@
 				C26C355522F5C6FF001B13B8 /* WeatherViewController.swift in Sources */,
 				C26C355322F5C654001B13B8 /* WeatherViewModel.swift in Sources */,
 				C26C355922F5CC31001B13B8 /* Weather.swift in Sources */,
+				C26C356522F60893001B13B8 /* LocationListTableViewCell.swift in Sources */,
 				C2326F9322F48D0300FBEDEB /* WeatherIconImagePicker.swift in Sources */,
 				C2326F8B22F4852E00FBEDEB /* OpenWeatherMapService.swift in Sources */,
 				C2326FA122F4B04A00FBEDEB /* SearchViewController.swift in Sources */,

@@ -209,7 +209,30 @@
                     <view key="view" contentMode="scaleToFill" id="iDQ-KY-tn9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZgQ-bN-ErU">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LocationListTableViewCell" id="FVV-hr-Ncg">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FVV-hr-Ncg" id="QkZ-vr-TEe" customClass="LocationListTableViewCell" customModule="WeatherApp" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ZgQ-bN-ErU" firstAttribute="top" secondItem="0U2-Yb-9Hd" secondAttribute="top" id="0Qa-9O-agM"/>
+                            <constraint firstItem="0U2-Yb-9Hd" firstAttribute="trailing" secondItem="ZgQ-bN-ErU" secondAttribute="trailing" id="4i8-TZ-HBs"/>
+                            <constraint firstItem="ZgQ-bN-ErU" firstAttribute="centerX" secondItem="iDQ-KY-tn9" secondAttribute="centerX" id="614-ax-FKv"/>
+                            <constraint firstItem="0U2-Yb-9Hd" firstAttribute="bottom" secondItem="ZgQ-bN-ErU" secondAttribute="bottom" id="frb-1P-0Cs"/>
+                            <constraint firstItem="ZgQ-bN-ErU" firstAttribute="leading" secondItem="0U2-Yb-9Hd" secondAttribute="leading" id="vmB-j9-q4U"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="0U2-Yb-9Hd"/>
                     </view>
                 </viewController>
