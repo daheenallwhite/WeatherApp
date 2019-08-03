@@ -9,26 +9,16 @@
 
 import UIKit
 
-class HourlyWeatherItem: WeatherPresentable {
+class HourlyWeatherItem: Weather, WeatherPresentable {
     var icon: UIImage {
         return WeatherIconImagePicker.getImage(named: iconName)
     }
     
     var temperatureText: String {
-        return "\(self.currentTemperature.toCelcius)"
+        return "\(self.temperature.toCelcius)"
     }
     
     var dateText: String {
         return DateConverter.getHour(from: self.date)
-    }
-    
-    private let iconName: String
-    private let currentTemperature: Temperature
-    private let date: Date
-    
-    init(iconName: String, temperature: Double, date: String) {
-        self.iconName = iconName
-        self.currentTemperature = Temperature(kelvin: temperature)
-        self.date = DateConverter.getDate(from: date)
     }
 }

@@ -8,30 +8,23 @@
 
 import UIKit
 
-class CurrentWeather: WeatherPresentable {
+class CurrentWeather: Weather, WeatherPresentable {
     var icon: UIImage {
         return WeatherIconImagePicker.getImage(named: iconName)
     }
     
     var temperatureText: String {
-        return "\(self.currentTemperature.toCelcius)"
+        return "\(self.temperature.toCelcius)"
     }
     
     var dateText: String {
         return DateConverter.getDayOfWeek(from: self.date)
     }
     
-    let city: String
     let condition: String
-    private let iconName: String
-    private let currentTemperature: Temperature
-    private let date: Date
     
-    init(city: String, iconName: String, temperature: Double, condition: String, date: String) {
-        self.city = city
-        self.iconName = iconName
-        self.currentTemperature = Temperature(kelvin: temperature)
+    init(iconName: String, temperature: Double, condition: String, date: String) {
         self.condition = condition
-        self.date = DateConverter.getDate(from: date)
+        super.init(iconName: iconName, temperature: temperature, date: date)
     }
 }

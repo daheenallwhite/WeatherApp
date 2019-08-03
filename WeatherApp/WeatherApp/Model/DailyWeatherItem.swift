@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DailyWeatherItem: WeatherPresentable {
+class DailyWeatherItem: Weather, WeatherPresentable {
     var icon: UIImage {
         return WeatherIconImagePicker.getImage(named: iconName)
     }
@@ -22,16 +22,13 @@ class DailyWeatherItem: WeatherPresentable {
     var dateText: String {
         return DateConverter.getDayOfWeek(from: self.date)
     }
-    
+
     private let maxTemperature: Temperature
     private let minTemperature: Temperature
-    private let date: Date
-    private let iconName: String
     
     init(iconName: String, date: String, maxTemperature: Double, minTemperature: Double) {
         self.maxTemperature = Temperature(kelvin: maxTemperature)
         self.minTemperature = Temperature(kelvin: minTemperature)
-        self.iconName = iconName
-        self.date = DateConverter.getDate(from: date)
+        super.init(iconName: iconName, temperature: minTemperature, date: date)
     }
 }
