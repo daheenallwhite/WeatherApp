@@ -9,8 +9,9 @@
 import UIKit
 
 class HourlyCollectionViewCell: UICollectionViewCell {
+    static let identifier = "HourlyCollectionViewCell"
     @IBOutlet weak var hourLabel: UILabel!
-    @IBOutlet weak var weatherIconImageView: UIImageView!
+    @IBOutlet weak var weatherIconImageView: UIImageView! 
     @IBOutlet weak var temperatureLabel: UILabel!
     
     func setWeatherData(from weatherItem : HourlyWeatherItem) {

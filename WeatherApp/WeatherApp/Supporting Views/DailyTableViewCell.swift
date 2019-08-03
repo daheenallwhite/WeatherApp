@@ -9,6 +9,7 @@
 import UIKit
 
 class DailyTableViewCell: UITableViewCell {
+    static let identifier = "DailyTableViewCell"
 
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var weatherIconImageView: UIImageView!
