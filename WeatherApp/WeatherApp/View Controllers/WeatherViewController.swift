@@ -24,19 +24,22 @@ class WeatherViewController: UIViewController {
     //MARK: ViewModel
     var viewModel: WeatherViewModel? {
         didSet {
-            viewModel?.city.observe { [unowned self] in
+            guard let viewModel = viewModel else {
+                return
+            }
+            viewModel.city.observe { [unowned self] in
                 self.cityLabel.text = $0
             }
-            viewModel?.currentWeather.observe { [unowned self] in
+            viewModel.currentWeather.observe { [unowned self] in
                 self.condionLabel.text = $0.condition
                 self.temperatureLabel.text = $0.temperatureText
                 self.weatherIconImageView.image = $0.icon
             }
-            viewModel?.hourlyWeatherItems.observe { [unowned self] in
+            viewModel.hourlyWeatherItems.observe { [unowned self] in
                 self.hourlyWeatherItems = $0
                 self.hourlyCollectionView.reloadData()
             }
-            viewModel?.dailyWeatherItems.observe { [unowned self] in
+            viewModel.dailyWeatherItems.observe { [unowned self] in
                 self.dailyWeatherItems = $0
                 self.dailyTableView.reloadData()
             }

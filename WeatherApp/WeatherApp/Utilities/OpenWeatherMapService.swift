@@ -8,7 +8,7 @@
 
 import Foundation
 
-typealias WeatherCompletionHandler = (Weather?, ServiceError?) -> Void
+typealias WeatherCompletionHandler = (WeatherData?, ServiceError?) -> Void
 
 class OpenWeatherMapService {
     static func retrieveWeatherInfo(using coordinate: Coordinate, completionHandler: @escaping WeatherCompletionHandler) {
@@ -32,7 +32,7 @@ class OpenWeatherMapService {
                 return
             }
             let decoder = JSONDecoder()
-            guard let parsedWeatherData = try? decoder.decode(Weather.self, from: data) else {
+            guard let parsedWeatherData = try? decoder.decode(WeatherData.self, from: data) else {
                 let error = ServiceError.impossibleToParseJSON
                 completionHandler(nil, error)
                 return

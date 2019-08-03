@@ -17,10 +17,17 @@ class WeatherViewModel {
     let dailyWeatherItems: Observable<[DailyWeatherItem]>
     let hourlyWeatherItems: Observable<[HourlyWeatherItem]>
     
+    var timezone: Int = 0 {
+        didSet {
+            self.utcTimeConverter = DateConverter(timezone: timezone)
+        }
+    }
+    var utcTimeConverter = DateConverter(timezone: 0)
+    
     init(coordinate: Coordinate) {
         self.coordinate = coordinate
         city = Observable(emptyString)
-        currentWeather = Observable(CurrentWeather(iconName: emptyString, temperature: 0.0, condition: emptyString, date: emptyString))
+        currentWeather = Observable(CurrentWeather(iconName: emptyString, temperature: 0.0, condition: emptyString, date: Date()))
         dailyWeatherItems = Observable([])
         hourlyWeatherItems = Observable([])
     }
@@ -39,6 +46,7 @@ class WeatherViewModel {
     
     func update(using data: WeatherData) {
         self.city.value = data.city.name
+        self.timezone = data.city.timezone
         setCurrentWeather(from: data)
         setHourlyWeatherItems(from: data)
         setDailyWeatherItems(from: data)
@@ -47,7 +55,8 @@ class WeatherViewModel {
     func setCurrentWeather(from data: WeatherData) {
         let weather = data.list[0].weather[0]
         let firstListItem = data.list[0]
-        currentWeather.value = CurrentWeather(iconName: weather.icon, temperature: firstListItem.main.temp, condition: weather.description, date: firstListItem.dtTxt)
+        let convertedDate = utcTimeConverter.convertDateFromUTC(string: firstListItem.dtTxt)
+        currentWeather.value = CurrentWeather(iconName: weather.icon, temperature: firstListItem.main.temp, condition: weather.description, date: convertedDate)
     }
     
     func setHourlyWeatherItems(from data: WeatherData) {
@@ -55,9 +64,9 @@ class WeatherViewModel {
         let weatherList = data.list[0...maxCount]
         hourlyWeatherItems.value = weatherList.map{ (list) -> HourlyWeatherItem in
             let temp = list.main.temp
-            let date = list.dtTxt
             let iconName = list.weather[0].icon
-            return HourlyWeatherItem(iconName: iconName, temperature: temp, date: date)
+            let convertedDate = utcTimeConverter.convertDateFromUTC(string: list.dtTxt)
+            return HourlyWeatherItem(iconName: iconName, temperature: temp, date: convertedDate)
         }
     }
     
@@ -66,9 +75,9 @@ class WeatherViewModel {
         dailyWeatherItems.value = data.list[0...maxCount].map{ (list) -> DailyWeatherItem in
             let max = list.main.tempMax
             let min = list.main.tempMin
-            let date = list.dtTxt
+            let convertedDate = utcTimeConverter.convertDateFromUTC(string: list.dtTxt)
             let iconName = list.weather[0].icon
-            return DailyWeatherItem(iconName: iconName, date: date, maxTemperature: max, minTemperature: min)
+            return DailyWeatherItem(iconName: iconName, date: convertedDate, maxTemperature: max, minTemperature: min)
         }
     }
 }
