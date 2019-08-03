@@ -12,7 +12,7 @@ import CoreLocation
 typealias Coordinate = (latitude: String, longitude: String)
 
 extension CLLocationCoordinate2D {
-    func getCoordinatePair() -> Coordinate {
+    func getCoordinatePairString() -> Coordinate {
         let maxLength = 10
         let latitude = String(self.latitude)
         let longitude = String(self.longitude)
