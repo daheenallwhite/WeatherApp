@@ -119,13 +119,13 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = hourlyCollectionView.dequeueReusableCell(withReuseIdentifier: "HourlyCollectionViewCell", for: indexPath) as? HourlyCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HourlyCollectionViewCell.identifier, for: indexPath) as? HourlyCollectionViewCell else {
             return HourlyCollectionViewCell()
         }
-        let weatherItem = hourlyWeatherItems[indexPath.row]
-        cell.temperatureLabel.text = weatherItem.temperatureText
-        cell.hourLabel.text = weatherItem.dateText
-        cell.weatherIconImageView.image = weatherItem.icon
+        guard let weatherItem = viewModel?.hourlyWeatherItems.value[indexPath.row] else {
+            return HourlyCollectionViewCell()
+        }
+        cell.setWeatherData(from: weatherItem)
         return cell
     }
     
@@ -141,13 +141,13 @@ extension WeatherViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = dailyTableView.dequeueReusableCell(withIdentifier: "DailyTableViewCell", for: indexPath) as? DailyTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: DailyTableViewCell.identifier, for: indexPath) as? DailyTableViewCell else {
             return DailyTableViewCell()
         }
-        let weatherItem = dailyWeatherItems[indexPath.row]
-        cell.weatherIconImageView.image = weatherItem.icon
-        cell.dayLabel.text = weatherItem.dateText
-        cell.maxMinTemperatureLabel.text = weatherItem.temperatureText
+        guard let weatherItem = viewModel?.dailyWeatherItems.value[indexPath.row] else {
+            return DailyTableViewCell()
+        }
+        cell.setWeatherData(from: weatherItem)
         return cell
     }
 }
