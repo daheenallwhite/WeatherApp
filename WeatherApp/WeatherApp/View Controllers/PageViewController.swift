@@ -35,6 +35,21 @@ extension PageViewController: UIPageViewControllerDelegate {
     }
 }
 
+    private func viewControllerAtIndex(_ index: Int) -> WeatherViewController? {
+        if (self.locationList.count == 0) || (index >= self.locationList.count) {
+            return nil
+        }
+        let weatherViewController = mainStroryboard.instantiateViewController(withIdentifier: "WeatherViewController") as! WeatherViewController
+        weatherViewController.coordinate = self.locationList[index]
+        return weatherViewController
+    }
+    
+    private func indexOfViewController(_ viewController: WeatherViewController) -> Int {
+        // Return the index of the given data view controller.
+        // For simplicity, this implementation uses a static array of model objects and the view controller stores the model object; you can therefore use the model object to identify the index.
+        return locationList.firstIndex(of: viewController.coordinate!) ?? NSNotFound
+    }
+    // MARK: - Page View Controller Data Source
     }
     */
 
