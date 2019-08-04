@@ -35,6 +35,8 @@ extension PageViewController: UIPageViewControllerDelegate {
     }
 }
 
+extension PageViewController: UIPageViewControllerDataSource {
+    
     private func viewControllerAtIndex(_ index: Int) -> WeatherViewController? {
         if (self.locationList.count == 0) || (index >= self.locationList.count) {
             return nil
@@ -50,7 +52,30 @@ extension PageViewController: UIPageViewControllerDelegate {
         return locationList.firstIndex(of: viewController.coordinate!) ?? NSNotFound
     }
     // MARK: - Page View Controller Data Source
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        var index = self.indexOfViewController(viewController as! WeatherViewController)
+        if (index == 0) || (index == NSNotFound) {
+            return nil
+        }
+        
+        index -= 1
+        return self.viewControllerAtIndex(index)
     }
-    */
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        var index = self.indexOfViewController(viewController as! WeatherViewController)
+        if index == NSNotFound {
+            return nil
+        }
+        
+        index += 1
+        if index == self.locationList.count {
+            return nil
+        }
+        return self.viewControllerAtIndex(index)
+    }
+    
+    
 
 }
