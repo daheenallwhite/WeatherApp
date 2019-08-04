@@ -9,17 +9,16 @@
 import UIKit
 
 class LocationListViewController: UIViewController {
-    
+    static let identifier = "LocationListViewController"
     let cities = ["London", "Paris", "Seoul"]
+
     @IBOutlet weak var locationListTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.locationListTableView.delegate = self
         self.locationListTableView.dataSource = self
-        
     }
-
 }
 
 extension LocationListViewController: UITableViewDataSource, UITableViewDelegate {

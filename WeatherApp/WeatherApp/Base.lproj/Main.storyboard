@@ -227,7 +227,7 @@
         <!--Location List View Controller-->
         <scene sceneID="gxF-59-df8">
             <objects>
-                <viewController id="Bcx-ho-HFu" customClass="LocationListViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LocationListViewController" id="Bcx-ho-HFu" customClass="LocationListViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iDQ-KY-tn9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

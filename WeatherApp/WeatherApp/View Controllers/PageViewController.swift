@@ -72,7 +72,7 @@ class PageViewController: UIViewController {
     }
     
     @objc func goToLocationList() {
-        let locationListViewController = storyboard?.instantiateViewController(withIdentifier: "LocationListViewController")
+        let locationListViewController = storyboard?.instantiateViewController(withIdentifier: LocationListViewController.identifier)
         self.present(locationListViewController!, animated: true, completion: nil)
     }
 }
