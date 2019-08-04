@@ -47,7 +47,7 @@ class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        coordinate = ("37.5665", "126.978")
-        self.temperatureLabel.text = ""
+//        self.temperatureLabel.text = ""
         self.hourlyCollectionView.dataSource = self
         self.hourlyCollectionView.delegate = self
         self.dailyTableView.dataSource = self
@@ -96,8 +96,8 @@ extension WeatherViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
-            coordinate = location.coordinate.getCoordinatePairString()
-            print("\(String(describing: coordinate))")
+            coordinate = Coordinate(location: location)
+            print("\(coordinate)")
             getWeatherData()
         }
     }
