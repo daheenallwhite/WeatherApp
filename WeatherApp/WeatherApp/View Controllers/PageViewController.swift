@@ -9,13 +9,23 @@
 import UIKit
 
 class PageViewController: UIPageViewController {
-
+    var mainStroryboard: UIStoryboard {
+        return UIStoryboard(name: "Main", bundle: nil)
+    }
     var pageControl = UIPageControl()
+    var locationList: [Coordinate] = [Coordinate(lat: "37.5665", lon: "126.978"), Coordinate(lat: "51.5074", lon: "0.1278")]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.dataSource = self
+        self.delegate = self
+        configurePageControl()
+        let weatherViewController = mainStroryboard.instantiateViewController(withIdentifier: "WeatherViewController") as! WeatherViewController
+        weatherViewController.coordinate = locationList[0]
+        self.setViewControllers([weatherViewController], direction: .forward, animated: false, completion: {done in })
+    }
 
-        // Do any additional setup after loading the view.
-    func configurePageControl() {
+    private func configurePageControl() {
         // The total number of pages that are available is based on how many available colors we have.
         pageControl = UIPageControl(frame: CGRect(x: 0,y: UIScreen.main.bounds.maxY - 50,width: UIScreen.main.bounds.width,height: 50))
         self.pageControl.numberOfPages = locationList.count
