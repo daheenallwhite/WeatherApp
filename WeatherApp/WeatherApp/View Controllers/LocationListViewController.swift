@@ -44,7 +44,7 @@ extension LocationListViewController: UITableViewDataSource, UITableViewDelegate
     
     private func presentSearchViewController() {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let nextVC = mainStoryboard.instantiateViewController(withIdentifier: "SearchVC")
+        let nextVC = mainStoryboard.instantiateViewController(withIdentifier: SearchViewController.identifier)
         self.present(nextVC, animated: true, completion: nil)
     }
 }

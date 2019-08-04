@@ -277,7 +277,7 @@
         <!--Search View Controller-->
         <scene sceneID="PD3-hd-Ngr">
             <objects>
-                <viewController storyboardIdentifier="SearchVC" id="f4i-y3-iqX" customClass="SearchViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchViewController" id="f4i-y3-iqX" customClass="SearchViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hOB-iG-M3n">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

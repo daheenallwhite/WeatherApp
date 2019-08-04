@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 
 class SearchViewController: UIViewController {
+    static let identifier = "SearchViewController" 
     let searchTableCellIdentifier = "searchResultCell"
     var searchCompleter = MKLocalSearchCompleter()
     var searchResults = [MKLocalSearchCompletion]()
@@ -77,6 +78,7 @@ extension SearchViewController: UITableViewDelegate {
                 return
             }
             print("city: \(selectedResult.title), country: \(selectedResult.subtitle)")
+            print("\(placeMark.country), \(placeMark.locality) \(placeMark.subLocality)")
             print("\(Coordinate(coordinate: placeMark.coordinate))")
             // coordinate 데이터 가지고 stored city 화면으로 돌아감
         }
