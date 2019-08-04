@@ -11,9 +11,9 @@ import UIKit
 class PageViewController: UIViewController {
     let pageViewController: UIPageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
     var pageControl = UIPageControl()
-    var mainStroryboard: UIStoryboard {
+    var mainStroryboard: UIStoryboard = {
         return UIStoryboard(name: "Main", bundle: nil)
-    }
+    }()
     var locationList: [Coordinate] = [Coordinate(lat: "37.5665", lon: "126.978"), Coordinate(lat: "51.5074", lon: "0.1278"), Coordinate(lat: "51.5001524", lon: "-0.1262362")]
     
     override func viewDidLoad() {
@@ -71,6 +71,10 @@ class PageViewController: UIViewController {
         setViewControllersForPageViewController(index: self.pageControl.currentPage)
     }
     
+    @objc func goToLocationList() {
+        let locationListViewController = storyboard?.instantiateViewController(withIdentifier: "LocationListViewController")
+        self.present(locationListViewController!, animated: true, completion: nil)
+    }
 }
 
 extension PageViewController: UIPageViewControllerDelegate {
