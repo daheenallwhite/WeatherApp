@@ -15,7 +15,7 @@ class HourlyWeatherItem: Weather, WeatherPresentable {
     }
     
     var temperatureText: String {
-        return "\(self.temperature.toCelcius)"
+        return "\(self.temperature.toCelcius)º"
     }
     
     var dateText: String {
