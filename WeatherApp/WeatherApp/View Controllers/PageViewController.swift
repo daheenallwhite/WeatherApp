@@ -45,6 +45,15 @@ class PageViewController: UIViewController {
         self.pageControl.currentPageIndicatorTintColor = .white
         self.pageControl.backgroundColor = .clear
         self.view.addSubview(pageControl)
+    private func configureLocationListButton() {
+        let buttonRect = CGRect(x: UIScreen.main.bounds.maxX - 50, y: UIScreen.main.bounds.maxY - 40, width: 20, height: 20)
+        let locationListButton = UIImageView(frame: buttonRect)
+        locationListButton.image = UIImage(named: "list-icon")
+        locationListButton.isUserInteractionEnabled = true
+        let singleTap = UITapGestureRecognizer(target: self, action: #selector(goToLocationList))
+        singleTap.numberOfTapsRequired = 1
+        locationListButton.addGestureRecognizer(singleTap)
+        self.view.addSubview(locationListButton)
     }
     
     private func setViewControllersForPageViewController() {
