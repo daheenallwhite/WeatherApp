@@ -8,7 +8,9 @@
 
 import UIKit
 
-class PageViewController: UIPageViewController {
+class PageViewController: UIViewController {
+    let pageViewController: UIPageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+    var pageControl = UIPageControl()
     var mainStroryboard: UIStoryboard {
         return UIStoryboard(name: "Main", bundle: nil)
     }
