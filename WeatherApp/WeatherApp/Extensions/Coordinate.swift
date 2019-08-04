@@ -14,13 +14,8 @@ class Coordinate {
     let longitude: String
     
     init(location: CLLocation) {
-        let maxLength = 10
-        let latitude = String(location.coordinate.latitude)
-        let longitude = String(location.coordinate.longitude)
-        let lengthModifiedLatitude = latitude.prefix(latitude.count > maxLength ? maxLength : latitude.count)
-        let lengthModifiedlongitude = longitude.prefix(longitude.count > maxLength ? maxLength : longitude.count)
-        self.latitude = String(lengthModifiedLatitude)
-        self.longitude =  String(lengthModifiedlongitude)
+        self.latitude = String(location.coordinate.latitude)
+        self.longitude = String(location.coordinate.longitude)
     }
     
     init(coordinate: CLLocationCoordinate2D) {
