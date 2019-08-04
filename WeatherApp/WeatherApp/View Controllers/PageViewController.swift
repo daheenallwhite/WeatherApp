@@ -25,15 +25,16 @@ class PageViewController: UIPageViewController {
         self.pageControl.currentPageIndicatorTintColor = UIColor.white
         self.view.addSubview(pageControl)
     }
-    
+}
 
-    /*
-    // MARK: - Navigation
+extension PageViewController: UIPageViewControllerDelegate {
+    // MARK: Delegate methods
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        let pageContentViewController = pageViewController.viewControllers![0] as! WeatherViewController
+        self.pageControl.currentPage = locationList.firstIndex(of: pageContentViewController.coordinate!) ?? 0
+    }
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
     */
 
