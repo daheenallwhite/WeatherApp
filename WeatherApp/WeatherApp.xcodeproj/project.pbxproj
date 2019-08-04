@@ -42,7 +42,7 @@
 		C2326F8622F484AD00FBEDEB /* Temperature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temperature.swift; sourceTree = "<group>"; };
 		C2326F8822F484F000FBEDEB /* WeatherPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherPresentable.swift; sourceTree = "<group>"; };
 		C2326F8A22F4852E00FBEDEB /* OpenWeatherMapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherMapService.swift; sourceTree = "<group>"; };
-		C2326F8D22F4854C00FBEDEB /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
+		C2326F8D22F4854C00FBEDEB /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Coordinate.swift; path = ../Extensions/Coordinate.swift; sourceTree = "<group>"; };
 		C2326F9222F48D0300FBEDEB /* WeatherIconImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherIconImagePicker.swift; sourceTree = "<group>"; };
 		C2326FA022F4B04A00FBEDEB /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		C2326FA322F4B81600FBEDEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -90,7 +90,6 @@
 		C2326F8C22F4853D00FBEDEB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				C2326F8D22F4854C00FBEDEB /* Coordinate.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -162,6 +161,7 @@
 				C2326F8222F4844F00FBEDEB /* DailyWeatherItem.swift */,
 				C2326F8422F4847F00FBEDEB /* HourlyWeatherItem.swift */,
 				C2326F8622F484AD00FBEDEB /* Temperature.swift */,
+				C2326F8D22F4854C00FBEDEB /* Coordinate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
