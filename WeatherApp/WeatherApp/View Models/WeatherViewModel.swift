@@ -62,7 +62,7 @@ class WeatherViewModel {
     func setHourlyWeatherItems(from data: WeatherData) {
         let maxCount = data.list.count > maxItemCount ? maxItemCount : data.list.count
         let weatherList = data.list[0...maxCount]
-        hourlyWeatherItems.value = weatherList.map{ (list) -> HourlyWeatherItem in
+        hourlyWeatherItems.value = weatherList.map { (list) -> HourlyWeatherItem in
             let temp = list.main.temp
             let iconName = list.weather[0].icon
             let convertedDate = utcTimeConverter.convertDateFromUTC(string: list.dtTxt)
@@ -72,7 +72,7 @@ class WeatherViewModel {
     
     func setDailyWeatherItems(from data: WeatherData) {
         let maxCount = data.list.count > maxItemCount ? maxItemCount : data.list.count
-        dailyWeatherItems.value = data.list[0...maxCount].map{ (list) -> DailyWeatherItem in
+        dailyWeatherItems.value = data.list[0...maxCount].map { (list) -> DailyWeatherItem in
             let max = list.main.tempMax
             let min = list.main.tempMin
             let convertedDate = utcTimeConverter.convertDateFromUTC(string: list.dtTxt)

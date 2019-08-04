@@ -35,25 +35,19 @@ class WeatherViewController: UIViewController {
                 self.temperatureLabel.text = $0.temperatureText
                 self.weatherIconImageView.image = $0.icon
             }
-            viewModel.hourlyWeatherItems.observe { [unowned self] in
-                self.hourlyWeatherItems = $0
+            viewModel.hourlyWeatherItems.observe { [unowned self] list in
                 self.hourlyCollectionView.reloadData()
             }
-            viewModel.dailyWeatherItems.observe { [unowned self] in
-                self.dailyWeatherItems = $0
+            viewModel.dailyWeatherItems.observe { [unowned self] list in
                 self.dailyTableView.reloadData()
             }
         }
     }
     
-    var dailyWeatherItems = [DailyWeatherItem]()
-    var hourlyWeatherItems = [HourlyWeatherItem]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
 //        coordinate = ("37.5665", "126.978")
-        
+        self.temperatureLabel.text = ""
         self.hourlyCollectionView.dataSource = self
         self.hourlyCollectionView.delegate = self
         self.dailyTableView.dataSource = self
@@ -115,7 +109,7 @@ extension WeatherViewController: CLLocationManagerDelegate {
 
 extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.hourlyWeatherItems.count
+        return viewModel?.hourlyWeatherItems.value.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -137,7 +131,7 @@ extension WeatherViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.dailyWeatherItems.count
+        return viewModel?.dailyWeatherItems.value.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
