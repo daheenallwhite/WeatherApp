@@ -12,14 +12,12 @@ typealias WeatherCompletionHandler = (WeatherData?, ServiceError?) -> Void
 
 class OpenWeatherMapService {
     static func retrieveWeatherInfo(using coordinate: Coordinate, completionHandler: @escaping WeatherCompletionHandler) {
-        let sessionConfig = URLSessionConfiguration.default
-        let session = URLSession(configuration: sessionConfig)
         guard let url = getWeatherForecastURL(using: coordinate) else {
             let error = ServiceError.urlError
             completionHandler(nil, error)
             return
         }
-        let task = session.dataTask(with: url) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             // Check network error
             guard error == nil else {
                 let error = ServiceError.networkRequestError
