@@ -130,13 +130,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qfg-93-11U">
-                                                    <rect key="frame" x="277" y="0.0" width="46" height="43.5"/>
+                                                    <rect key="frame" x="184" y="0.0" width="46" height="43.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="qfg-93-11U" secondAttribute="height" multiplier="41:39" id="sUi-L8-dHi"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w2h-BY-zeu">
-                                                    <rect key="frame" x="528" y="4.5" width="42" height="34.5"/>
+                                                    <rect key="frame" x="342" y="4.5" width="42" height="34.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -211,15 +211,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZgQ-bN-ErU">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="60.5" width="414" height="801.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LocationListTableViewCell" id="FVV-hr-Ncg">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LocationListTableViewCell" textLabel="BrX-p2-ApI" style="IBUITableViewCellStyleDefault" id="FVV-hr-Ncg" customClass="LocationListTableViewCell" customModule="WeatherApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FVV-hr-Ncg" id="QkZ-vr-TEe" customClass="LocationListTableViewCell" customModule="WeatherApp" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BrX-p2-ApI">
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -227,23 +236,26 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="ZgQ-bN-ErU" firstAttribute="top" secondItem="0U2-Yb-9Hd" secondAttribute="top" id="0Qa-9O-agM"/>
                             <constraint firstItem="0U2-Yb-9Hd" firstAttribute="trailing" secondItem="ZgQ-bN-ErU" secondAttribute="trailing" id="4i8-TZ-HBs"/>
                             <constraint firstItem="ZgQ-bN-ErU" firstAttribute="centerX" secondItem="iDQ-KY-tn9" secondAttribute="centerX" id="614-ax-FKv"/>
+                            <constraint firstItem="ZgQ-bN-ErU" firstAttribute="height" secondItem="0U2-Yb-9Hd" secondAttribute="height" multiplier="0.98" id="bco-5S-Aw7"/>
                             <constraint firstItem="0U2-Yb-9Hd" firstAttribute="bottom" secondItem="ZgQ-bN-ErU" secondAttribute="bottom" id="frb-1P-0Cs"/>
                             <constraint firstItem="ZgQ-bN-ErU" firstAttribute="leading" secondItem="0U2-Yb-9Hd" secondAttribute="leading" id="vmB-j9-q4U"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0U2-Yb-9Hd"/>
                     </view>
+                    <connections>
+                        <outlet property="locationListTableView" destination="ZgQ-bN-ErU" id="Qex-ie-1fL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n02-ZQ-nUI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1896" y="498"/>
+            <point key="canvasLocation" x="1895.6521739130437" y="497.54464285714283"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="PD3-hd-Ngr">
             <objects>
-                <viewController id="f4i-y3-iqX" customClass="SearchViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchVC" id="f4i-y3-iqX" customClass="SearchViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hOB-iG-M3n">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
