@@ -9,22 +9,43 @@
 import UIKit
 
 class LocationListViewController: UIViewController {
-
+    
+    let cities = ["London", "Paris", "Seoul"]
+    @IBOutlet weak var locationListTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.locationListTableView.delegate = self
+        self.locationListTableView.dataSource = self
+        
+    }
 
-        // Do any additional setup after loading the view.
+}
+
+extension LocationListViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.cities.count + 1
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: LocationListTableViewCell.identifier, for: indexPath)
+        if indexPath.row == cities.count {
+            cell.textLabel?.text = "+"
+        } else {
+            cell.textLabel?.text = cities[indexPath.row]
+        }
+        return cell
     }
-    */
-
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == cities.count {
+            presentSearchViewController()
+        }
+    }
+    
+    private func presentSearchViewController() {
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let nextVC = mainStoryboard.instantiateViewController(withIdentifier: "SearchVC")
+        self.present(nextVC, animated: true, completion: nil)
+    }
 }
