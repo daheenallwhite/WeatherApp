@@ -14,7 +14,6 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var condionLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
-    @IBOutlet weak var weatherIconImageView: UIImageView!
     @IBOutlet weak var hourlyCollectionView: UICollectionView!
     @IBOutlet weak var dailyTableView: UITableView!
     let locationManager = CLLocationManager()
@@ -33,7 +32,6 @@ class WeatherViewController: UIViewController {
             viewModel.currentWeather.observe { [unowned self] in
                 self.condionLabel.text = $0.condition
                 self.temperatureLabel.text = $0.temperatureText
-                self.weatherIconImageView.image = $0.icon
             }
             viewModel.hourlyWeatherItems.observe { [unowned self] list in
                 self.hourlyCollectionView.reloadData()
@@ -46,8 +44,6 @@ class WeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        coordinate = ("37.5665", "126.978")
-//        self.temperatureLabel.text = ""
         self.hourlyCollectionView.dataSource = self
         self.hourlyCollectionView.delegate = self
         self.dailyTableView.dataSource = self
