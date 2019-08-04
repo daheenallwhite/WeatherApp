@@ -21,7 +21,7 @@ struct City: Codable {
     let name: String
     let coord: Coord
     let country: String
-    let population, timezone: Int
+    let timezone: Int
 }
 
 // MARK: - Coord
