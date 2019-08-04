@@ -21,7 +21,8 @@ class PageViewController: UIViewController {
         self.view.backgroundColor = .clear
         configurePageViewController()
         configurePageControl()
-        setViewControllersForPageViewController()
+        configureLocationListButton()
+        setViewControllersForPageViewController(index: 0)
     }
     
     private func configurePageViewController() {
@@ -45,6 +46,9 @@ class PageViewController: UIViewController {
         self.pageControl.currentPageIndicatorTintColor = .white
         self.pageControl.backgroundColor = .clear
         self.view.addSubview(pageControl)
+        pageControl.addTarget(self, action: #selector(self.changeCurrentPageViewController), for: .valueChanged)
+    }
+    
     private func configureLocationListButton() {
         let buttonRect = CGRect(x: UIScreen.main.bounds.maxX - 50, y: UIScreen.main.bounds.maxY - 40, width: 20, height: 20)
         let locationListButton = UIImageView(frame: buttonRect)
@@ -56,11 +60,17 @@ class PageViewController: UIViewController {
         self.view.addSubview(locationListButton)
     }
     
-    private func setViewControllersForPageViewController() {
+    
+    private func setViewControllersForPageViewController(index: Int) {
         let weatherViewController = mainStroryboard.instantiateViewController(withIdentifier: "WeatherViewController") as! WeatherViewController
-        weatherViewController.coordinate = locationList[0]
+        weatherViewController.coordinate = locationList[index]
         self.pageViewController.setViewControllers([weatherViewController], direction: .forward, animated: false, completion: {done in })
     }
+    
+    @objc func changeCurrentPageViewController() {
+        setViewControllersForPageViewController(index: self.pageControl.currentPage)
+    }
+    
 }
 
 extension PageViewController: UIPageViewControllerDelegate {
