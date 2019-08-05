@@ -15,31 +15,24 @@ protocol LocationListViewDelegate {
 }
 
 class LocationListViewController: UIViewController {
-    var testData = [Location(coordinate: Coordinate(lat: "37.5665", lon: "126.978"), name: "Seoul"), Location(coordinate: Coordinate(lat: "40.7128", lon: "74.0060"), name: "New York")]
-    
+    @IBOutlet weak var locationListTableView: UITableView!
     
     static let identifier = "LocationListViewController"
-    let defaults = UserDefaults.standard
-    
+    private let defaults = UserDefaults.standard
     var locations = [Location]()
-    
-
-    @IBOutlet weak var locationListTableView: UITableView!
+    var delegate: LocationListViewDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        defaults.setLocations(testData, forKey: "Locations")
-        locations = defaults.locationArray(Location.self, forKey: "Locations")
-        
         self.locationListTableView.delegate = self
         self.locationListTableView.dataSource = self
     }
-    
 }
 
 extension LocationListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard indexPath.row == locations.count else {
+            self.delegate?.userDidSelectLocation(at: indexPath.row)
             self.dismiss(animated: true, completion: nil)
             return
         }
@@ -63,10 +56,18 @@ extension LocationListViewController: UITableViewDataSource {
         return self.locations.count + 1
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return !(indexPath.row == self.locations.count || indexPath.row == 0)
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: LocationListTableViewCell.identifier, for: indexPath)
         if indexPath.row == locations.count {
             cell.textLabel?.text = "+"
+            return cell
+        }
+        if indexPath.row == 0 {
+            cell.textLabel?.text = "Current Location"
             return cell
         }
         cell.textLabel?.text = locations[indexPath.row].name
@@ -76,16 +77,20 @@ extension LocationListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             self.locations.remove(at: indexPath.row)
-            defaults.setLocations(locations, forKey: "Locations")
+            let sublist = Array(locations[1...locations.count - 1])
+            defaults.setLocations(sublist, forKey: "Locations")
             tableView.deleteRows(at: [indexPath], with: .fade)
+            self.delegate?.userDeleteLocation(at: indexPath.row)
         }
     }
 }
 
 extension LocationListViewController: SearchViewDelegate {
-    func userSelectNew(location: Location) {
-        self.locations.append(location)
-        defaults.setLocations(locations, forKey: "Locations")
+    func userAdd(newLocation: Location) {
+        self.locations.append(newLocation)
+        let sublist = Array(locations[1...locations.count - 1])
+        defaults.setLocations(sublist, forKey: "Locations")
+        self.delegate?.userAdd(newLocation: newLocation)
         self.locationListTableView.reloadData()
     }
 }
