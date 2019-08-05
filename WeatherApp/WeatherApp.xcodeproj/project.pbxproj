@@ -114,8 +114,8 @@
 			isa = PBXGroup;
 			children = (
 				C26C355422F5C6FF001B13B8 /* WeatherViewController.swift */,
-				C2326FA022F4B04A00FBEDEB /* SearchViewController.swift */,
 				C26C356222F6087E001B13B8 /* LocationListViewController.swift */,
+				C2326FA022F4B04A00FBEDEB /* SearchViewController.swift */,
 				C2F0CD3922F7347000D5EEE0 /* PageViewController.swift */,
 			);
 			path = "View Controllers";

@@ -85,8 +85,10 @@ extension SearchViewController: UITableViewDelegate {
             }
             print("city: \(selectedResult.title), country: \(selectedResult.subtitle)")
             print("\(placeMark.country), \(placeMark.locality) \(placeMark.subLocality)")
-            print("\(Coordinate(coordinate: placeMark.coordinate))")
-            // coordinate 데이터 가지고 stored city 화면으로 돌아감
+            let coordinate = Coordinate(coordinate: placeMark.coordinate)
+            print("\(coordinate)")
+            self.delegate?.userSelectNew(location: Location(coordinate: coordinate, name: "\(placeMark.locality ?? "")"))
+            self.dismiss(animated: true, completion: nil)
         }
     }
 }
