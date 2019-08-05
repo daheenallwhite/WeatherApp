@@ -11,7 +11,7 @@ import Foundation
 class WeatherViewModel {
     let maxItemCount = 20
     let emptyString = ""
-    var location: Location
+    var location: Observable<Location>
     let currentWeather: Observable<CurrentWeather>
     let dailyWeatherItems: Observable<[DailyWeatherItem]>
     let hourlyWeatherItems: Observable<[HourlyWeatherItem]>
@@ -24,14 +24,14 @@ class WeatherViewModel {
     var utcTimeConverter = DateConverter(timezone: 0)
     
     init(location: Location) {
-        self.location = location
+        self.location = Observable(location)
         currentWeather = Observable(CurrentWeather(iconName: emptyString, temperature: 0.0, condition: emptyString, date: Date()))
         dailyWeatherItems = Observable([])
         hourlyWeatherItems = Observable([])
     }
     
     func retrieveWeatherData() {
-        OpenWeatherMapService.retrieveWeatherInfo(using: location) { (weather, error) in
+        OpenWeatherMapService.retrieveWeatherInfo(using: location.value) { (weather, error) in
             guard let weatherData = weather, error == nil else {
                 print(error ?? "")
                 return
@@ -44,8 +44,8 @@ class WeatherViewModel {
     
     func update(using data: WeatherData) {
         self.timezone = data.city.timezone
-        if self.location.name == nil {
-            self.location.name = data.city.name
+        if self.location.value.name == nil {
+            self.location.value.name = data.city.name
         }
         setCurrentWeather(from: data)
         setHourlyWeatherItems(from: data)
