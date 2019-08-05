@@ -16,18 +16,15 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var hourlyCollectionView: UICollectionView!
     @IBOutlet weak var dailyTableView: UITableView!
-    let locationManager = CLLocationManager()
-    
-    var coordinate : Coordinate?
+
+    var location : Location?
+    var index = 0
     
     //MARK: ViewModel
     var viewModel: WeatherViewModel? {
         didSet {
             guard let viewModel = viewModel else {
                 return
-            }
-            viewModel.city.observe { [unowned self] in
-                self.cityLabel.text = $0
             }
             viewModel.currentWeather.observe { [unowned self] in
                 self.condionLabel.text = $0.condition
@@ -44,62 +41,34 @@ class WeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("view did load at index \(self.index)")
         self.hourlyCollectionView.dataSource = self
         self.hourlyCollectionView.delegate = self
         self.dailyTableView.dataSource = self
         self.dailyTableView.delegate = self
         dailyTableView.separatorStyle = .none
-        
-        if coordinate == nil {
-            print("location needed")
-            self.locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-            locationManager.requestWhenInUseAuthorization()
-            if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse || CLLocationManager.authorizationStatus() == .authorizedAlways){
-                locationManager.requestLocation()
-            }
-        } else {
-            getWeatherData()
+        if let cityName = location?.name {
+            self.cityLabel.text = cityName
         }
+        getWeatherData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("view will appear")
+        print("view will appear as index \(self.index)")
         super.viewWillAppear(animated)
-        if coordinate != nil, viewModel == nil {
+        if location != nil, viewModel == nil {
             getWeatherData()
         }
     }
     
     func getWeatherData() {
         print("get weather")
-        if let coordinate = coordinate {
-            viewModel = WeatherViewModel(coordinate: coordinate)
+        guard let location = self.location else {
+            print(CreationError.noLocationConfigured)
+            return
         }
-        if let viewModel = viewModel{
-            viewModel.retrieveWeatherData()
-        }
-    }
-
-}
-
-extension WeatherViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if(status == .authorizedWhenInUse || status == .authorizedAlways){
-            manager.requestLocation()
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.first {
-            coordinate = Coordinate(location: location)
-            print("\(coordinate)")
-            getWeatherData()
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        
+        self.viewModel = WeatherViewModel(location: location)
+        self.viewModel?.retrieveWeatherData()
     }
 }
 
