@@ -50,30 +50,28 @@ extension LocationListViewController: UITableViewDelegate {
     }
 }
 
+extension LocationListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.cities.count + 1
+        return self.locations.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: LocationListTableViewCell.identifier, for: indexPath)
-        if indexPath.row == cities.count {
+        if indexPath.row == locations.count {
             cell.textLabel?.text = "+"
-        } else {
-            cell.textLabel?.text = cities[indexPath.row]
+            return cell
         }
+        cell.textLabel?.text = locations[indexPath.row].name
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == cities.count {
-            presentSearchViewController()
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            self.locations.remove(at: indexPath.row)
+            defaults.setLocations(locations, forKey: "Locations")
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
-    
-    private func presentSearchViewController() {
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let nextVC = mainStoryboard.instantiateViewController(withIdentifier: SearchViewController.identifier)
-        self.present(nextVC, animated: true, completion: nil)
 }
 
 extension LocationListViewController: SearchViewDelegate {
