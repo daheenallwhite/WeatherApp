@@ -12,7 +12,7 @@ import CoreLocation
 class WeatherViewController: UIViewController {
     
     @IBOutlet weak var cityLabel: UILabel!
-    @IBOutlet weak var condionLabel: UILabel!
+    @IBOutlet weak var conditionLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var hourlyCollectionView: UICollectionView!
     @IBOutlet weak var dailyTableView: UITableView!
@@ -26,8 +26,13 @@ class WeatherViewController: UIViewController {
             guard let viewModel = viewModel else {
                 return
             }
+            viewModel.location.observe { [unowned self] in
+                if let cityName = $0.name {
+                    self.cityLabel.text = cityName
+                }
+            }
             viewModel.currentWeather.observe { [unowned self] in
-                self.condionLabel.text = $0.condition
+                self.conditionLabel.text = $0.condition
                 self.temperatureLabel.text = $0.temperatureText
             }
             viewModel.hourlyWeatherItems.observe { [unowned self] list in
@@ -43,7 +48,6 @@ class WeatherViewController: UIViewController {
         super.viewDidLoad()
         print("view did load at index \(self.index)")
         self.hourlyCollectionView.dataSource = self
-        self.hourlyCollectionView.delegate = self
         self.dailyTableView.dataSource = self
         self.dailyTableView.delegate = self
         dailyTableView.separatorStyle = .none
@@ -72,7 +76,7 @@ class WeatherViewController: UIViewController {
     }
 }
 
-extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension WeatherViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel?.hourlyWeatherItems.value.count ?? 0
     }

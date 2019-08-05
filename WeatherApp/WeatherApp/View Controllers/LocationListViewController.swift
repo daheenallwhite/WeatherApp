@@ -33,10 +33,12 @@ class LocationListViewController: UIViewController {
 
 extension LocationListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == locations.count {
-            tableView.deselectRow(at: indexPath, animated: true)
-            presentSearchViewController()
+        guard indexPath.row == locations.count else {
+            self.dismiss(animated: true, completion: nil)
+            return
         }
+        tableView.deselectRow(at: indexPath, animated: true)
+        presentSearchViewController()
     }
     
     private func presentSearchViewController() {
