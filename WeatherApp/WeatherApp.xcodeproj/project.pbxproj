@@ -33,6 +33,7 @@
 		C26C356322F6087E001B13B8 /* LocationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26C356222F6087E001B13B8 /* LocationListViewController.swift */; };
 		C26C356522F60893001B13B8 /* LocationListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26C356422F60893001B13B8 /* LocationListTableViewCell.swift */; };
 		C2E2FBF822F833250079B606 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E2FBF722F833250079B606 /* Location.swift */; };
+		C2E2FBFA22F844800079B606 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E2FBF922F844800079B606 /* UserDefaults.swift */; };
 		C2F0CD3A22F7347000D5EEE0 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F0CD3922F7347000D5EEE0 /* PageViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +66,7 @@
 		C26C356222F6087E001B13B8 /* LocationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListViewController.swift; sourceTree = "<group>"; };
 		C26C356422F60893001B13B8 /* LocationListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationListTableViewCell.swift; sourceTree = "<group>"; };
 		C2E2FBF722F833250079B606 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		C2E2FBF922F844800079B606 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		C2F0CD3922F7347000D5EEE0 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,6 +94,7 @@
 		C2326F8C22F4853D00FBEDEB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				C2E2FBF922F844800079B606 /* UserDefaults.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 				C26C355922F5CC31001B13B8 /* Weather.swift in Sources */,
 				C26C356522F60893001B13B8 /* LocationListTableViewCell.swift in Sources */,
 				C2326F9322F48D0300FBEDEB /* WeatherIconImagePicker.swift in Sources */,
+				C2E2FBFA22F844800079B606 /* UserDefaults.swift in Sources */,
 				C2F0CD3A22F7347000D5EEE0 /* PageViewController.swift in Sources */,
 				C2326F8B22F4852E00FBEDEB /* OpenWeatherMapService.swift in Sources */,
 				C2326FA122F4B04A00FBEDEB /* SearchViewController.swift in Sources */,
