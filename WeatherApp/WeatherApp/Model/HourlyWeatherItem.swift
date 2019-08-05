@@ -19,6 +19,6 @@ class HourlyWeatherItem: Weather, WeatherPresentable {
     }
     
     var dateText: String {
-        return DateConverter.getHour(from: self.date)
+        return self.date.getHour()
     }
 }
