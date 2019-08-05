@@ -8,6 +8,12 @@
 
 import UIKit
 
+protocol LocationListViewDelegate {
+    func userDidSelectLocation(at index: Int)
+    func userAdd(newLocation: Location)
+    func userDeleteLocation(at index: Int)
+}
+
 class LocationListViewController: UIViewController {
     var testData = [Location(coordinate: Coordinate(lat: "37.5665", lon: "126.978"), name: "Seoul"), Location(coordinate: Coordinate(lat: "40.7128", lon: "74.0060"), name: "New York")]
     
