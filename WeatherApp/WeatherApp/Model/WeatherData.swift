@@ -50,6 +50,10 @@ struct List: Codable {
 // MARK: - Clouds
 struct Clouds: Codable {
     let all: Int
+    
+    var text: String {
+        return "\(all)%"
+    }
 }
 
 // MARK: - MainClass
@@ -98,4 +102,12 @@ struct WeatherElement: Codable {
 // MARK: - Wind
 struct Wind: Codable {
     let speed, deg: Double
+    
+    var direction: String {
+        return WindDirection.init(degree: self.deg).text
+    }
+    
+    var speedText: String {
+        return "\(Int(speed)) m/s"
+    }
 }
