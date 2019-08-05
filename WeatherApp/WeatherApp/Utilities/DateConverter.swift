@@ -15,19 +15,6 @@ class DateConverter {
         return formatter.date(from: string) ?? Date()
     }
     
-    // 이후에 string interpolation 구현 하기
-    static func getDayOfWeek(from date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE"
-        return formatter.string(from: date)
-    }
-    
-    static func getHour(from date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "ha"
-        return formatter.string(from: date)
-    }
-    
     let timezone: Double
     
     init(timezone: Int) {
@@ -39,3 +26,4 @@ class DateConverter {
         return utcDate.addingTimeInterval(self.timezone)
     }
 }
+

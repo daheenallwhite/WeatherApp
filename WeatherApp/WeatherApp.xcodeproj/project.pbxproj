@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C22D4BC522F8D34A00EB0EA8 /* WeatherBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22D4BC422F8D34A00EB0EA8 /* WeatherBuilder.swift */; };
+		C22D4BC722F8DD5400EB0EA8 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22D4BC622F8DD5400EB0EA8 /* Date.swift */; };
 		C2326F8122F4840300FBEDEB /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2326F8022F4840300FBEDEB /* CurrentWeather.swift */; };
 		C2326F8322F4844F00FBEDEB /* DailyWeatherItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2326F8222F4844F00FBEDEB /* DailyWeatherItem.swift */; };
 		C2326F8522F4847F00FBEDEB /* HourlyWeatherItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2326F8422F4847F00FBEDEB /* HourlyWeatherItem.swift */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		C22D4BC422F8D34A00EB0EA8 /* WeatherBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherBuilder.swift; sourceTree = "<group>"; };
+		C22D4BC622F8DD5400EB0EA8 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		C2326F8022F4840300FBEDEB /* CurrentWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
 		C2326F8222F4844F00FBEDEB /* DailyWeatherItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeatherItem.swift; sourceTree = "<group>"; };
 		C2326F8422F4847F00FBEDEB /* HourlyWeatherItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyWeatherItem.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				C2E2FBF922F844800079B606 /* UserDefaults.swift */,
+				C22D4BC622F8DD5400EB0EA8 /* Date.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -170,7 +173,6 @@
 				C2326F8022F4840300FBEDEB /* CurrentWeather.swift */,
 				C2326F8222F4844F00FBEDEB /* DailyWeatherItem.swift */,
 				C2326F8422F4847F00FBEDEB /* HourlyWeatherItem.swift */,
-				C2E2FBF722F833250079B606 /* Location.swift */,
 				C22D4BC422F8D34A00EB0EA8 /* WeatherBuilder.swift */,
 				C2326F8622F484AD00FBEDEB /* Temperature.swift */,
 				C2326F8D22F4854C00FBEDEB /* Coordinate.swift */,
@@ -259,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2326F8522F4847F00FBEDEB /* HourlyWeatherItem.swift in Sources */,
+				C22D4BC722F8DD5400EB0EA8 /* Date.swift in Sources */,
 				C26C355522F5C6FF001B13B8 /* WeatherViewController.swift in Sources */,
 				C26C355322F5C654001B13B8 /* WeatherViewModel.swift in Sources */,
 				C26C355922F5CC31001B13B8 /* Weather.swift in Sources */,
