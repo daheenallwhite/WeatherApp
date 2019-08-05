@@ -10,14 +10,14 @@ import UIKit
 import MapKit
 
 protocol SearchViewDelegate {
-    func userSelectNew(location: Location) 
+    func userAdd(newLocation: Location) 
 }
 
 class SearchViewController: UIViewController {
     static let identifier = "SearchViewController" 
-    let searchTableCellIdentifier = "searchResultCell"
-    var searchCompleter = MKLocalSearchCompleter()
-    var searchResults = [MKLocalSearchCompletion]()
+    private let searchTableCellIdentifier = "searchResultCell"
+    private var searchCompleter = MKLocalSearchCompleter()
+    private var searchResults = [MKLocalSearchCompletion]()
     
     @IBOutlet weak var searchResultTable: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -91,8 +91,14 @@ extension SearchViewController: UITableViewDelegate {
             print("\(placeMark.country), \(placeMark.locality) \(placeMark.subLocality)")
             let coordinate = Coordinate(coordinate: placeMark.coordinate)
             print("\(coordinate)")
-            self.delegate?.userSelectNew(location: Location(coordinate: coordinate, name: "\(placeMark.locality ?? "")"))
+            self.delegate?.userAdd(newLocation: Location(coordinate: coordinate, name: "\(placeMark.locality ?? selectedResult.title)"))
             self.dismiss(animated: true, completion: nil)
         }
+    }
+}
+
+extension SearchViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.searchBar.resignFirstResponder()
     }
 }
