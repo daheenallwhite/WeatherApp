@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
-class Coordinate {
+class Coordinate: Codable {
     let latitude: String
     let longitude: String
     
