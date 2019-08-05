@@ -9,6 +9,10 @@
 import UIKit
 import MapKit
 
+protocol SearchViewDelegate {
+    func userSelectNew(location: Location) 
+}
+
 class SearchViewController: UIViewController {
     static let identifier = "SearchViewController" 
     let searchTableCellIdentifier = "searchResultCell"
@@ -17,6 +21,8 @@ class SearchViewController: UIViewController {
     
     @IBOutlet weak var searchResultTable: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    
+    var delegate: SearchViewDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
