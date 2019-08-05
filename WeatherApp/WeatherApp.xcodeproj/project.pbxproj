@@ -32,6 +32,7 @@
 		C26C355D22F6044C001B13B8 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26C355C22F6044C001B13B8 /* Observable.swift */; };
 		C26C356322F6087E001B13B8 /* LocationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26C356222F6087E001B13B8 /* LocationListViewController.swift */; };
 		C26C356522F60893001B13B8 /* LocationListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26C356422F60893001B13B8 /* LocationListTableViewCell.swift */; };
+		C2E2FBF822F833250079B606 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E2FBF722F833250079B606 /* Location.swift */; };
 		C2F0CD3A22F7347000D5EEE0 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F0CD3922F7347000D5EEE0 /* PageViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,7 @@
 		C26C355C22F6044C001B13B8 /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		C26C356222F6087E001B13B8 /* LocationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListViewController.swift; sourceTree = "<group>"; };
 		C26C356422F60893001B13B8 /* LocationListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationListTableViewCell.swift; sourceTree = "<group>"; };
+		C2E2FBF722F833250079B606 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		C2F0CD3922F7347000D5EEE0 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -160,6 +162,7 @@
 				C2326F8022F4840300FBEDEB /* CurrentWeather.swift */,
 				C2326F8222F4844F00FBEDEB /* DailyWeatherItem.swift */,
 				C2326F8422F4847F00FBEDEB /* HourlyWeatherItem.swift */,
+				C2E2FBF722F833250079B606 /* Location.swift */,
 				C2326F8622F484AD00FBEDEB /* Temperature.swift */,
 				C2326F8D22F4854C00FBEDEB /* Coordinate.swift */,
 			);
@@ -256,6 +259,7 @@
 				C2326F8B22F4852E00FBEDEB /* OpenWeatherMapService.swift in Sources */,
 				C2326FA122F4B04A00FBEDEB /* SearchViewController.swift in Sources */,
 				C249FB5E22F48367003297A6 /* DateConverter.swift in Sources */,
+				C2E2FBF822F833250079B606 /* Location.swift in Sources */,
 				C2326F8322F4844F00FBEDEB /* DailyWeatherItem.swift in Sources */,
 				C249FB1E22F35EC8003297A6 /* WeatherAPI.swift in Sources */,
 				C26C356322F6087E001B13B8 /* LocationListViewController.swift in Sources */,
