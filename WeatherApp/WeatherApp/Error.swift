@@ -15,3 +15,17 @@ enum ServiceError: Error {
     case impossibleToParseJSON
     case impossibleToGetCurrentLocation
 }
+
+enum CreationError: Error {
+    case downcastingError(String)
+    case noLocationConfigured
+    
+    var detail: String {
+        switch self {
+        case let .downcastingError(toType):
+            return "\(self) \(toType)"
+        case .noLocationConfigured:
+            return "location is not assinged for weather view controller"
+        }
+    }
+}
