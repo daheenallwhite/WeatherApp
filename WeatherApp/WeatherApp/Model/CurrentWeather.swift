@@ -18,7 +18,7 @@ class CurrentWeather: Weather, WeatherPresentable {
     }
     
     var dateText: String {
-        return DateConverter.getDayOfWeek(from: self.date)
+        return self.date.getDayOfWeek()
     }
     
     let condition: String

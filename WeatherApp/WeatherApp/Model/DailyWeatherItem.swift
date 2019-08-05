@@ -20,7 +20,7 @@ class DailyWeatherItem: Weather, WeatherPresentable {
     }
     
     var dateText: String {
-        return DateConverter.getDayOfWeek(from: self.date)
+        return self.date.getDayOfWeek()
     }
 
     private let maxTemperature: Temperature
