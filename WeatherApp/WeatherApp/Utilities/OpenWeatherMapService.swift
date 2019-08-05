@@ -11,8 +11,8 @@ import Foundation
 typealias WeatherCompletionHandler = (WeatherData?, ServiceError?) -> Void
 
 class OpenWeatherMapService {
-    static func retrieveWeatherInfo(using coordinate: Coordinate, completionHandler: @escaping WeatherCompletionHandler) {
-        guard let url = getWeatherForecastURL(using: coordinate) else {
+    static func retrieveWeatherInfo(using location: Location, completionHandler: @escaping WeatherCompletionHandler) {
+        guard let url = getWeatherForecastURL(using: location) else {
             let error = ServiceError.urlError
             completionHandler(nil, error)
             return
@@ -41,18 +41,18 @@ class OpenWeatherMapService {
         task.resume()
     }
     
-    static private func getQueryItems(from coordinate: Coordinate) -> [URLQueryItem] {
+    static private func getQueryItems(from location: Location) -> [URLQueryItem] {
         var queryItems = [URLQueryItem]()
-        let latitudeQuery = URLQueryItem(name: "lat", value: coordinate.latitude)
-        let longtitudeQuery = URLQueryItem(name: "lon", value: coordinate.longitude)
+        let latitudeQuery = URLQueryItem(name: "lat", value: location.coordinate.latitude)
+        let longtitudeQuery = URLQueryItem(name: "lon", value: location.coordinate.longitude)
         let appIdQuery = URLQueryItem(name: "appid", value: WeatherAPI.appID)
         queryItems.append(contentsOf: [latitudeQuery, longtitudeQuery, appIdQuery])
         return queryItems
     }
     
-    static func getWeatherForecastURL(using coordinate: Coordinate) -> URL? {
+    static func getWeatherForecastURL(using location: Location) -> URL? {
         var urlComponents = URLComponents(string: WeatherAPI.forecastURL)
-        urlComponents?.queryItems = getQueryItems(from: coordinate)
+        urlComponents?.queryItems = getQueryItems(from: location)
         return urlComponents?.url
     }
     
