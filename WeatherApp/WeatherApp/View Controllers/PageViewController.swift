@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class PageViewController: UIViewController {
     let pageViewController: UIPageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
@@ -15,10 +16,23 @@ class PageViewController: UIViewController {
         return UIStoryboard(name: "Main", bundle: nil)
     }()
     var locationList: [Coordinate] = [Coordinate(lat: "37.5665", lon: "126.978"), Coordinate(lat: "51.5074", lon: "0.1278"), Coordinate(lat: "51.5001524", lon: "-0.1262362")]
+    let locationManager = CLLocationManager()
+    var userLocationList = [Location](){
+        didSet {
+            self.pageControl.numberOfPages = userLocationList.count
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .clear
+        self.locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.requestWhenInUseAuthorization()
+        if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse || CLLocationManager.authorizationStatus() == .authorizedAlways){
+            locationManager.requestLocation()
+        }
         configurePageViewController()
         configurePageControl()
         configureLocationListButton()
@@ -74,6 +88,33 @@ class PageViewController: UIViewController {
     @objc func goToLocationList() {
         let locationListViewController = storyboard?.instantiateViewController(withIdentifier: LocationListViewController.identifier)
         self.present(locationListViewController!, animated: true, completion: nil)
+    }
+}
+
+//MARK: location manager delegate
+extension PageViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if(status == .authorizedWhenInUse || status == .authorizedAlways){
+            manager.requestLocation()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            let currentLocation = Location(coordinate: Coordinate(coordinate: location.coordinate))
+            print("\(currentLocation)")
+            if didUpdatCurrentLocation { // for preventing creation of current weather view more than twice
+                return
+            }
+            didUpdatCurrentLocation.toggle()
+            self.userLocationList.insert(currentLocation, at: 0)
+            let firstViewController = weatherViewController(at: 0)
+            self.pageViewController.setViewControllers([firstViewController], direction: .forward, animated: false, completion: {done in })
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        
     }
 }
 
