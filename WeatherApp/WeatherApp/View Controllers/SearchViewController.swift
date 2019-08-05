@@ -26,13 +26,14 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.searchBar.showsCancelButton = true
+        self.searchBar.becomeFirstResponder()
         self.searchCompleter.delegate = self
         self.searchCompleter.filterType = .locationsOnly
         self.searchBar.delegate = self
         self.searchResultTable.dataSource = self
         self.searchResultTable.delegate = self
     }
-
 }
 
 extension SearchViewController: UISearchBarDelegate {
@@ -42,6 +43,10 @@ extension SearchViewController: UISearchBarDelegate {
             searchResultTable.reloadData()
         }
         searchCompleter.queryFragment = searchText
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -68,7 +73,6 @@ extension SearchViewController: UITableViewDataSource {
         let cell = searchResultTable.dequeueReusableCell(withIdentifier: searchTableCellIdentifier, for: indexPath)
         let searchResult = searchResults[indexPath.row]
         cell.textLabel?.text = searchResult.title
-        cell.detailTextLabel!.text = searchResult.subtitle
         return cell
     }
     
