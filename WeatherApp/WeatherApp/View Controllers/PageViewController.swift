@@ -10,23 +10,30 @@ import UIKit
 import CoreLocation
 
 class PageViewController: UIViewController {
+    let defaults = UserDefaults.standard
     let pageViewController: UIPageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
     var pageControl = UIPageControl()
     var mainStroryboard: UIStoryboard = {
         return UIStoryboard(name: "Main", bundle: nil)
     }()
-    var locationList: [Coordinate] = [Coordinate(lat: "37.5665", lon: "126.978"), Coordinate(lat: "51.5074", lon: "0.1278"), Coordinate(lat: "51.5001524", lon: "-0.1262362")]
     let locationManager = CLLocationManager()
+    var didUpdatCurrentLocation: Bool = false
     var userLocationList = [Location](){
         didSet {
             self.pageControl.numberOfPages = userLocationList.count
         }
     }
     
+    var cachedWeatherViewControllers = [Int: WeatherViewController]()
+    
+    var testData = [Location(coordinate: Coordinate(lat: "37.5665", lon: "126.978"), name: "Seoul"), Location(coordinate: Coordinate(lat: "43.000351", lon: "-75.499901"), name: "New York"), Location(coordinate: Coordinate(lat: "15.3525", lon: "120.832703"), name: "San Francisco")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.userLocationList = defaults.locationArray(Location.self, forKey: "Locations")
+        print(userLocationList)
         self.view.backgroundColor = .clear
+        
         self.locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.requestWhenInUseAuthorization()
