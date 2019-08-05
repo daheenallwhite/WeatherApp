@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C22D4BC522F8D34A00EB0EA8 /* WeatherBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22D4BC422F8D34A00EB0EA8 /* WeatherBuilder.swift */; };
 		C2326F8122F4840300FBEDEB /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2326F8022F4840300FBEDEB /* CurrentWeather.swift */; };
 		C2326F8322F4844F00FBEDEB /* DailyWeatherItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2326F8222F4844F00FBEDEB /* DailyWeatherItem.swift */; };
 		C2326F8522F4847F00FBEDEB /* HourlyWeatherItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2326F8422F4847F00FBEDEB /* HourlyWeatherItem.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C22D4BC422F8D34A00EB0EA8 /* WeatherBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherBuilder.swift; sourceTree = "<group>"; };
 		C2326F8022F4840300FBEDEB /* CurrentWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
 		C2326F8222F4844F00FBEDEB /* DailyWeatherItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeatherItem.swift; sourceTree = "<group>"; };
 		C2326F8422F4847F00FBEDEB /* HourlyWeatherItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyWeatherItem.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				C2326F8222F4844F00FBEDEB /* DailyWeatherItem.swift */,
 				C2326F8422F4847F00FBEDEB /* HourlyWeatherItem.swift */,
 				C2E2FBF722F833250079B606 /* Location.swift */,
+				C22D4BC422F8D34A00EB0EA8 /* WeatherBuilder.swift */,
 				C2326F8622F484AD00FBEDEB /* Temperature.swift */,
 				C2326F8D22F4854C00FBEDEB /* Coordinate.swift */,
 			);
@@ -271,6 +274,7 @@
 				C2326F8322F4844F00FBEDEB /* DailyWeatherItem.swift in Sources */,
 				C249FB1E22F35EC8003297A6 /* WeatherAPI.swift in Sources */,
 				C26C356322F6087E001B13B8 /* LocationListViewController.swift in Sources */,
+				C22D4BC522F8D34A00EB0EA8 /* WeatherBuilder.swift in Sources */,
 				C2326F8122F4840300FBEDEB /* CurrentWeather.swift in Sources */,
 				C249FB2222F369A6003297A6 /* DailyTableViewCell.swift in Sources */,
 				C2326F8E22F4854C00FBEDEB /* Coordinate.swift in Sources */,
