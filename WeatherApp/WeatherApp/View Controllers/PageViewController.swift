@@ -10,11 +10,9 @@ import UIKit
 import CoreLocation
 
 class PageViewController: UIViewController {
-    let defaults = UserDefaults.standard
-    let pageViewController: UIPageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-    private let mainStroryboard: UIStoryboard = {
-        return UIStoryboard(name: "Main", bundle: nil)
-    }()
+    private let defaults = UserDefaults.standard
+    private let pageViewController: UIPageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+    private let mainStroryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
     private var pageControl = UIPageControl()
     private var locationManager = LocationManager()
     private var cachedWeatherViewControllers = [Int: WeatherViewController]()
@@ -70,7 +68,7 @@ class PageViewController: UIViewController {
         let locationListButton = UIImageView(frame: buttonRect)
         locationListButton.image = UIImage(named: "list-icon")
         locationListButton.isUserInteractionEnabled = true
-        let singleTap = UITapGestureRecognizer(target: self, action: #selector(goToLocationList))
+        let singleTap = UITapGestureRecognizer(target: self, action: #selector(presentLocationListViewController))
         singleTap.numberOfTapsRequired = 1
         locationListButton.addGestureRecognizer(singleTap)
         self.view.addSubview(locationListButton)
@@ -82,8 +80,12 @@ class PageViewController: UIViewController {
         self.pageViewController.setViewControllers([pickedViewController], direction: .forward, animated: false, completion: {done in })
     }
     
-    @objc func goToLocationList() {
-        let locationListViewController = mainStroryboard.instantiateViewController(withIdentifier: LocationListViewController.identifier)
+    @objc func presentLocationListViewController() {
+        guard let locationListViewController = mainStroryboard.instantiateViewController(withIdentifier: LocationListViewController.identifier) as? LocationListViewController else {
+            return
+        }
+        locationListViewController.locations = self.userLocationList
+        locationListViewController.delegate = self
         self.present(locationListViewController, animated: true, completion: nil)
     }
 }
@@ -138,3 +140,30 @@ extension PageViewController: UIPageViewControllerDataSource {
 
 }
 
+extension PageViewController: LocationListViewDelegate {
+    func userDidSelectLocation(at index: Int) {
+        guard let weatherViewController = weatherViewController(at: index) as? WeatherViewController else {
+            return
+        }
+        self.pageViewController.setViewControllers([weatherViewController], direction: .forward, animated: false, completion: nil)
+        self.pageControl.currentPage = index
+    }
+    
+    func userAdd(newLocation: Location) {
+        self.userLocationList.append(newLocation)
+    }
+    
+    func userDeleteLocation(at index: Int) {
+        print("page vc delete location at index \(index)")
+        self.userLocationList.remove(at: index)
+        self.cachedWeatherViewControllers.removeValue(forKey: index)
+        var needChangeIndex = index + 1
+        while let vc = cachedWeatherViewControllers[needChangeIndex] {
+            vc.index = vc.index - 1
+            cachedWeatherViewControllers[vc.index] = vc
+            needChangeIndex += 1
+        }
+    }
+    
+    
+}
