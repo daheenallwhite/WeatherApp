@@ -12,12 +12,11 @@ class WeatherIconImagePicker {
     static var icons = [String: UIImage]()
     
     static func getImage(named name: String) -> UIImage {
-        if icons.keys.contains(name) {
-            return icons[name] ?? UIImage()
-        } else {
+        guard icons.keys.contains(name) else {
             let newImage = UIImage(named: name) ?? UIImage()
             icons[name] = newImage
             return newImage
         }
+        return icons[name]!
     }
 }
