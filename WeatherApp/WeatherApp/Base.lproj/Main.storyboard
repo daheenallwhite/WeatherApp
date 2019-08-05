@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bPZ-MZ-wK4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Bcx-ho-HFu">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -282,18 +282,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searchBackground" translatesAutoresizingMaskIntoConstraints="NO" id="eTH-7u-tQo">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
-                            </imageView>
-                            <searchBar contentMode="redraw" placeholder="Search Location" translatesAutoresizingMaskIntoConstraints="NO" id="RaM-C7-jPe">
-                                <rect key="frame" x="0.0" y="44" width="414" height="56"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WBP-St-K9F">
                                 <rect key="frame" x="0.0" y="100" width="414" height="752"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="searchResultCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchResultCell" textLabel="ABX-z9-wpM" detailTextLabel="VMd-s2-S1O" style="IBUITableViewCellStyleSubtitle" id="rmh-hJ-c7X">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="searchResultCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchResultCell" textLabel="ABX-z9-wpM" style="IBUITableViewCellStyleDefault" id="rmh-hJ-c7X">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rmh-hJ-c7X" id="pYW-gq-7pR">
@@ -301,16 +294,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ABX-z9-wpM">
-                                                    <rect key="frame" x="20" y="5" width="33.5" height="20.5"/>
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VMd-s2-S1O">
-                                                    <rect key="frame" x="20" y="25.5" width="44" height="14.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -319,19 +305,19 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <searchBar contentMode="redraw" placeholder="Search Location" translatesAutoresizingMaskIntoConstraints="NO" id="RaM-C7-jPe">
+                                <rect key="frame" x="0.0" y="44" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="WBP-St-K9F" firstAttribute="top" secondItem="RaM-C7-jPe" secondAttribute="bottom" id="DBX-gq-anz"/>
-                            <constraint firstItem="eTH-7u-tQo" firstAttribute="trailing" secondItem="05e-Lp-MhF" secondAttribute="trailing" id="FvZ-C7-IsT"/>
-                            <constraint firstItem="eTH-7u-tQo" firstAttribute="top" secondItem="hOB-iG-M3n" secondAttribute="top" id="Rab-hT-QxZ"/>
-                            <constraint firstItem="eTH-7u-tQo" firstAttribute="bottom" secondItem="05e-Lp-MhF" secondAttribute="bottom" id="Ucy-dV-HrZ"/>
+                            <constraint firstItem="RaM-C7-jPe" firstAttribute="top" secondItem="05e-Lp-MhF" secondAttribute="top" id="9fz-6M-AZZ"/>
+                            <constraint firstItem="RaM-C7-jPe" firstAttribute="leading" secondItem="05e-Lp-MhF" secondAttribute="leading" id="Dth-zy-Uc8"/>
                             <constraint firstItem="WBP-St-K9F" firstAttribute="centerX" secondItem="hOB-iG-M3n" secondAttribute="centerX" id="YdB-vr-dTY"/>
-                            <constraint firstItem="RaM-C7-jPe" firstAttribute="width" secondItem="05e-Lp-MhF" secondAttribute="width" id="ZEd-IX-6Ah"/>
-                            <constraint firstItem="eTH-7u-tQo" firstAttribute="leading" secondItem="05e-Lp-MhF" secondAttribute="leading" id="cCN-UW-eLf"/>
                             <constraint firstItem="05e-Lp-MhF" firstAttribute="bottom" secondItem="WBP-St-K9F" secondAttribute="bottom" constant="10" id="jYj-qQ-IgU"/>
-                            <constraint firstItem="RaM-C7-jPe" firstAttribute="centerX" secondItem="hOB-iG-M3n" secondAttribute="centerX" id="lfk-xc-SrQ"/>
-                            <constraint firstItem="RaM-C7-jPe" firstAttribute="top" secondItem="05e-Lp-MhF" secondAttribute="top" id="t3s-5j-mP8"/>
+                            <constraint firstItem="WBP-St-K9F" firstAttribute="top" secondItem="RaM-C7-jPe" secondAttribute="bottom" id="sMW-a8-4wm"/>
+                            <constraint firstItem="RaM-C7-jPe" firstAttribute="trailing" secondItem="05e-Lp-MhF" secondAttribute="trailing" id="tqy-UY-vx3"/>
                             <constraint firstItem="WBP-St-K9F" firstAttribute="width" secondItem="hOB-iG-M3n" secondAttribute="width" id="xSs-js-jrE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="05e-Lp-MhF"/>
@@ -343,11 +329,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D8R-gb-CM2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2765" y="-384"/>
+            <point key="canvasLocation" x="2762.3188405797105" y="-384.375"/>
         </scene>
     </scenes>
     <resources>
         <image name="background" width="682.5" height="512"/>
-        <image name="searchBackground" width="1088" height="816"/>
     </resources>
 </document>
