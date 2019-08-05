@@ -243,6 +243,19 @@ two way binding
 
 
 
+## UserDefaults
+
+앱의 data 를 백그라운드 상태 혹은 종료시에도 없어지지 않고 persistent(영구) 보존할 수 있도록 해주는 user default database
+
+- key-value 형태로 저장된다. Key 는 String 만 가능
+- 저장 가능한 Value 형태 : NSData, NSString, NSNumber, NSArray, NSDictionary
+- 특성
+  - UserDefaults 통해 가져온 데이터는 immutable 
+  - plist extension 으로 저장됨
+  - app launch 될 때, memory 에 올라온다. 
+- UserDefaults 변경에 알림을 받고 싶다면
+  - didChangeNotification 에 observer 를 등록하면 된다.
+
 
 
 
