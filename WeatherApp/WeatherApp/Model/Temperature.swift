@@ -17,6 +17,11 @@ class Temperature {
         self.kelvinValue = kelvin
     }
     
+    var text: String {
+        let temperatureUnit = UserDefaults.standard.bool(forKey: DataKeys.temperatureUnit)
+        return temperatureUnit ? "\(toCelcius)" : "\(toFahrenheit)"
+    }
+    
     var toCelcius: Int {
         return Int(kelvinValue - Temperature.celciusGap)
     }
