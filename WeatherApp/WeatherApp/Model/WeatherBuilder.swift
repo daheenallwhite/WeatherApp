@@ -57,4 +57,9 @@ class WeatherBuilder {
             first.date < second.date
         })
     }
+    
+    func getDetailWeather() -> DetailWeather {
+        let firstItem = data.list[0].main
+        return DetailWeather(humidity: firstItem.humidity, regularPressure: firstItem.pressure, seaLevelPressure: firstItem.seaLevel, groundLevelPressure: firstItem.grndLevel, wind: data.list[0].wind, clouds: data.list[0].clouds)
+    }
 }
