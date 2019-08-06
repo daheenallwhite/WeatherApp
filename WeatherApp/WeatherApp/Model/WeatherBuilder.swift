@@ -11,16 +11,11 @@ import Foundation
 class WeatherBuilder {
     private let data: WeatherData
     private let maxItemCount = 25
-    private var timezone: Int = 0 {
-        didSet {
-            self.utcTimeConverter = DateConverter(timezone: timezone)
-        }
-    }
-    private var utcTimeConverter = DateConverter(timezone: 0)
+    private var utcTimeConverter: DateConverter
     
     init(data: WeatherData) {
         self.data = data
-        timezone = data.city.timezone
+        self.utcTimeConverter = DateConverter(timezone: data.city.timezone)
     }
     
     func getCurrentWeather() -> CurrentWeather {
