@@ -25,7 +25,6 @@
 		C249FB1622F35706003297A6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C249FB1422F35706003297A6 /* LaunchScreen.storyboard */; };
 		C249FB1E22F35EC8003297A6 /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249FB1D22F35EC8003297A6 /* WeatherAPI.swift */; };
 		C249FB2022F363F2003297A6 /* HourlyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249FB1F22F363F2003297A6 /* HourlyCollectionViewCell.swift */; };
-		C249FB2222F369A6003297A6 /* DailyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249FB2122F369A6003297A6 /* DailyTableViewCell.swift */; };
 		C249FB5B22F482FE003297A6 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249FB5A22F482FE003297A6 /* WeatherData.swift */; };
 		C249FB5E22F48367003297A6 /* DateConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C249FB5D22F48367003297A6 /* DateConverter.swift */; };
 		C26C355022F5B5EE001B13B8 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26C354F22F5B5EE001B13B8 /* Error.swift */; };
@@ -35,6 +34,8 @@
 		C26C355D22F6044C001B13B8 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26C355C22F6044C001B13B8 /* Observable.swift */; };
 		C26C356322F6087E001B13B8 /* LocationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26C356222F6087E001B13B8 /* LocationListViewController.swift */; };
 		C26C356522F60893001B13B8 /* LocationListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26C356422F60893001B13B8 /* LocationListTableViewCell.swift */; };
+		C2E2898D22F9CFA90049CF08 /* DailyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E2898B22F9CFA90049CF08 /* DailyTableViewCell.swift */; };
+		C2E2898E22F9CFA90049CF08 /* DailyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E2898C22F9CFA90049CF08 /* DailyTableViewCell.xib */; };
 		C2E2FBF822F833250079B606 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E2FBF722F833250079B606 /* Location.swift */; };
 		C2E2FBFA22F844800079B606 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E2FBF922F844800079B606 /* UserDefaults.swift */; };
 		C2E2FBFC22F8947B0079B606 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E2FBFB22F8947B0079B606 /* LocationManager.swift */; };
@@ -63,7 +64,6 @@
 		C249FB1722F35706003297A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C249FB1D22F35EC8003297A6 /* WeatherAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPI.swift; sourceTree = "<group>"; };
 		C249FB1F22F363F2003297A6 /* HourlyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyCollectionViewCell.swift; sourceTree = "<group>"; };
-		C249FB2122F369A6003297A6 /* DailyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTableViewCell.swift; sourceTree = "<group>"; };
 		C249FB5A22F482FE003297A6 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		C249FB5D22F48367003297A6 /* DateConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateConverter.swift; sourceTree = "<group>"; };
 		C26C354F22F5B5EE001B13B8 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
@@ -73,6 +73,8 @@
 		C26C355C22F6044C001B13B8 /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		C26C356222F6087E001B13B8 /* LocationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListViewController.swift; sourceTree = "<group>"; };
 		C26C356422F60893001B13B8 /* LocationListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationListTableViewCell.swift; sourceTree = "<group>"; };
+		C2E2898B22F9CFA90049CF08 /* DailyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTableViewCell.swift; sourceTree = "<group>"; };
+		C2E2898C22F9CFA90049CF08 /* DailyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyTableViewCell.xib; sourceTree = "<group>"; };
 		C2E2FBF722F833250079B606 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		C2E2FBF922F844800079B606 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		C2E2FBFB22F8947B0079B606 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -96,7 +98,8 @@
 			children = (
 				C26C356422F60893001B13B8 /* LocationListTableViewCell.swift */,
 				C249FB1F22F363F2003297A6 /* HourlyCollectionViewCell.swift */,
-				C249FB2122F369A6003297A6 /* DailyTableViewCell.swift */,
+				C2E2898B22F9CFA90049CF08 /* DailyTableViewCell.swift */,
+				C2E2898C22F9CFA90049CF08 /* DailyTableViewCell.xib */,
 			);
 			path = "Supporting Views";
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C249FB1622F35706003297A6 /* LaunchScreen.storyboard in Resources */,
+				C2E2898E22F9CFA90049CF08 /* DailyTableViewCell.xib in Resources */,
 				C2326FA422F4B81600FBEDEB /* Assets.xcassets in Resources */,
 				C249FB1122F35705003297A6 /* Main.storyboard in Resources */,
 			);
@@ -288,7 +292,7 @@
 				C26C356322F6087E001B13B8 /* LocationListViewController.swift in Sources */,
 				C22D4BC522F8D34A00EB0EA8 /* WeatherBuilder.swift in Sources */,
 				C2326F8122F4840300FBEDEB /* CurrentWeather.swift in Sources */,
-				C249FB2222F369A6003297A6 /* DailyTableViewCell.swift in Sources */,
+				C2E2898D22F9CFA90049CF08 /* DailyTableViewCell.swift in Sources */,
 				C2326F8E22F4854C00FBEDEB /* Coordinate.swift in Sources */,
 				C2326F8722F484AD00FBEDEB /* Temperature.swift in Sources */,
 				C2326F8922F484F000FBEDEB /* WeatherPresentable.swift in Sources */,
