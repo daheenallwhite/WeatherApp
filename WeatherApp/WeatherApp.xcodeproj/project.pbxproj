@@ -38,7 +38,9 @@
 		C2E2898E22F9CFA90049CF08 /* DailyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E2898C22F9CFA90049CF08 /* DailyTableViewCell.xib */; };
 		C2E2899122F9D58A0049CF08 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E2898F22F9D58A0049CF08 /* DetailTableViewCell.swift */; };
 		C2E2899222F9D58A0049CF08 /* DetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C2E2899022F9D58A0049CF08 /* DetailTableViewCell.xib */; };
+		C2E2899422FA006F0049CF08 /* DataKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E2899322FA006F0049CF08 /* DataKeys.swift */; };
 		C2E2899622FA0DD80049CF08 /* UnitSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E2899522FA0DD80049CF08 /* UnitSymbol.swift */; };
+		C2E2899822FA0EB40049CF08 /* StringInterpolation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E2899722FA0EB40049CF08 /* StringInterpolation.swift */; };
 		C2E2FBF822F833250079B606 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E2FBF722F833250079B606 /* Location.swift */; };
 		C2E2FBFA22F844800079B606 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E2FBF922F844800079B606 /* UserDefaults.swift */; };
 		C2E2FBFC22F8947B0079B606 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E2FBFB22F8947B0079B606 /* LocationManager.swift */; };
@@ -80,7 +82,9 @@
 		C2E2898C22F9CFA90049CF08 /* DailyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyTableViewCell.xib; sourceTree = "<group>"; };
 		C2E2898F22F9D58A0049CF08 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		C2E2899022F9D58A0049CF08 /* DetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTableViewCell.xib; sourceTree = "<group>"; };
+		C2E2899322FA006F0049CF08 /* DataKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataKeys.swift; sourceTree = "<group>"; };
 		C2E2899522FA0DD80049CF08 /* UnitSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitSymbol.swift; sourceTree = "<group>"; };
+		C2E2899722FA0EB40049CF08 /* StringInterpolation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringInterpolation.swift; sourceTree = "<group>"; };
 		C2E2FBF722F833250079B606 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		C2E2FBF922F844800079B606 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		C2E2FBFB22F8947B0079B606 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -117,6 +121,7 @@
 			children = (
 				C2E2FBF922F844800079B606 /* UserDefaults.swift */,
 				C22D4BC622F8DD5400EB0EA8 /* Date.swift */,
+				C2E2899722FA0EB40049CF08 /* StringInterpolation.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -129,6 +134,7 @@
 				C2E2FBFB22F8947B0079B606 /* LocationManager.swift */,
 				C2326F9222F48D0300FBEDEB /* WeatherIconImagePicker.swift */,
 				C249FB1D22F35EC8003297A6 /* WeatherAPI.swift */,
+				C2E2899322FA006F0049CF08 /* DataKeys.swift */,
 				C2E2899522FA0DD80049CF08 /* UnitSymbol.swift */,
 			);
 			path = Utilities;
@@ -300,6 +306,7 @@
 				C2326F8322F4844F00FBEDEB /* DailyWeatherItem.swift in Sources */,
 				C249FB1E22F35EC8003297A6 /* WeatherAPI.swift in Sources */,
 				C26C356322F6087E001B13B8 /* LocationListViewController.swift in Sources */,
+				C2E2899822FA0EB40049CF08 /* StringInterpolation.swift in Sources */,
 				C22D4BC522F8D34A00EB0EA8 /* WeatherBuilder.swift in Sources */,
 				C2326F8122F4840300FBEDEB /* CurrentWeather.swift in Sources */,
 				C2E2898D22F9CFA90049CF08 /* DailyTableViewCell.swift in Sources */,
@@ -312,6 +319,7 @@
 				C26C355022F5B5EE001B13B8 /* Error.swift in Sources */,
 				C249FB2022F363F2003297A6 /* HourlyCollectionViewCell.swift in Sources */,
 				C2E2899122F9D58A0049CF08 /* DetailTableViewCell.swift in Sources */,
+				C2E2899422FA006F0049CF08 /* DataKeys.swift in Sources */,
 				C2E2899622FA0DD80049CF08 /* UnitSymbol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
