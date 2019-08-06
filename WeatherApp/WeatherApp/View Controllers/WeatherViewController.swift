@@ -107,21 +107,52 @@ extension WeatherViewController: UICollectionViewDataSource {
 
 extension WeatherViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel?.dailyWeatherItems.value.count ?? 0
+        guard let section = Section(sectionIndex: section) else {
+            return 0
+        }
+        switch section {
+        case .daily:
+            return viewModel?.dailyWeatherItems.value?.count ?? 0
+        case .detail:
+            return viewModel?.detailWeather.value?.totalRow ?? 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: DailyTableViewCell.identifier, for: indexPath) as? DailyTableViewCell else {
+        guard let section = Section(sectionIndex: indexPath.section) else {
             return DailyTableViewCell()
         }
-        guard let weatherItem = viewModel?.dailyWeatherItems.value[indexPath.row] else {
-            return DailyTableViewCell()
+        switch section {
+        case .daily:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: DailyTableViewCell.identifier, for: indexPath) as? DailyTableViewCell,
+                let weatherItem = viewModel?.dailyWeatherItems.value?[indexPath.row] else {
+                return DailyTableViewCell()
+            }
+            cell.setWeatherData(from: weatherItem)
+            return cell
+        case .detail:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailTableViewCell.identifier, for: indexPath) as? DetailTableViewCell,
+                let weatherPair = viewModel?.detailWeather.value?.getDetailWeather(at: indexPath.row) else {
+                return DetailTableViewCell()
+            }
+            cell.setWeatherData(using: weatherPair)
+            return cell
         }
-        cell.setWeatherData(from: weatherItem)
-        return cell
+    }
+}
+
+enum Section: Int {
+    case daily = 0
+    case detail = 1
+    
+    init?(sectionIndex: Int) {
+        guard let section = Section(rawValue: sectionIndex) else {
+            return nil
+        }
+        self = section
     }
 }
