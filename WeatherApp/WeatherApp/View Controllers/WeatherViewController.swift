@@ -41,16 +41,20 @@ class WeatherViewController: UIViewController {
             viewModel.dailyWeatherItems.observe { [unowned self] list in
                 self.dailyTableView.reloadData()
             }
+            viewModel.detailWeather.observe { [unowned self] list in
+                self.dailyTableView.reloadData()
+            }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("view did load at index \(self.index)")
+        registerDailyTableViewCells()
         self.hourlyCollectionView.dataSource = self
         self.dailyTableView.dataSource = self
         self.dailyTableView.delegate = self
-        dailyTableView.separatorStyle = .none
+        self.dailyTableView.separatorStyle = .none
         if let cityName = location?.name {
             self.cityLabel.text = cityName
         }
