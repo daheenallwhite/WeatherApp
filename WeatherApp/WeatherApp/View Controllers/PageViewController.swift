@@ -21,17 +21,17 @@ class PageViewController: UIViewController {
             self.pageControl.numberOfPages = userLocationList.count
         }
     }
+    var currentPageIndex: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.userLocationList = defaults.locationArray(Location.self, forKey: "Locations")
+        self.userLocationList = defaults.locationArray(Location.self, forKey: DataKeys.locations)
+        self.currentPageIndex = defaults.integer(forKey: DataKeys.currentPage)
+        configureSubViews()
         print(userLocationList)
         self.view.backgroundColor = .clear
-        
         self.locationManager.delegate = self
         self.locationManager.requestCurrentLocation()
-        
-        configureSubViews()
     }
     
     private func configureSubViews() {
@@ -53,8 +53,8 @@ class PageViewController: UIViewController {
     
     private func configurePageControl(inside bounds: CGRect) {
         pageControl = UIPageControl(frame: CGRect(x: 0,y: bounds.maxY - 50,width: bounds.maxX, height: 50))
-        self.pageControl.numberOfPages = userLocationList.count
-        self.pageControl.currentPage = 0
+        self.pageControl.numberOfPages = defaults.integer(forKey: DataKeys.locationCount) + 1
+        self.pageControl.currentPage = currentPageIndex
         self.pageControl.tintColor = .gray
         self.pageControl.pageIndicatorTintColor = .gray
         self.pageControl.currentPageIndicatorTintColor = .white
@@ -76,6 +76,7 @@ class PageViewController: UIViewController {
     
     @objc func changeCurrentPageViewController() {
         print("tapped at \(self.pageControl.currentPage)")
+        currentPageIndex = self.pageControl.currentPage
         let pickedViewController = weatherViewController(at: self.pageControl.currentPage)
         self.pageViewController.setViewControllers([pickedViewController], direction: .forward, animated: false, completion: {done in })
     }
@@ -93,7 +94,7 @@ class PageViewController: UIViewController {
 extension PageViewController: LocationManagerDelegate {
     func locationManagerDidUpdate(currenLocation: Location) {
         self.userLocationList.insert(currenLocation, at: 0)
-        let currentWeatherViewController = weatherViewController(at: 0)
+        let currentWeatherViewController = weatherViewController(at: currentPageIndex)
         self.pageViewController.setViewControllers([currentWeatherViewController], direction: .forward, animated: false, completion: nil)
     }
 }
@@ -147,6 +148,7 @@ extension PageViewController: LocationListViewDelegate {
         }
         self.pageViewController.setViewControllers([weatherViewController], direction: .forward, animated: false, completion: nil)
         self.pageControl.currentPage = index
+        currentPageIndex = index
     }
     
     func userAdd(newLocation: Location) {
