@@ -17,17 +17,18 @@ class DetailWeather {
     }
     
     init(humidity: Int, regularPressure: Double, seaLevelPressure: Double, groundLevelPressure: Double, wind: Wind, clouds: Clouds) {
-        titleValuPairs.append(("humidity", "\(humidity)"))
-        titleValuPairs.append(("pressure", "\(regularPressure)"))
-        titleValuPairs.append(("sea level pressure", "\(seaLevelPressure)"))
-        titleValuPairs.append(("ground level pressure", "\(groundLevelPressure)"))
-        titleValuPairs.append(("wind", "\(wind.speedText)"))
-        titleValuPairs.append(("clouds", "\(clouds.text)"))
+        titleValuPairs.append(("humidity", "\(humidity: humidity)"))
+        titleValuPairs.append(("pressure", "\(pressure: regularPressure)"))
+        titleValuPairs.append(("sea level pressure", "\(pressure: seaLevelPressure)"))
+        titleValuPairs.append(("ground level pressure", "\(pressure: groundLevelPressure)"))
+        titleValuPairs.append(("wind", "\(wind: wind)"))
+        titleValuPairs.append(("clouds", "\(clouds: clouds)"))
     }
     
     func getDetailWeather(at rowIndex: Int) -> DetailWeatherAtRow {
-        let leftItem = titleValuPairs[rowIndex]
-        let rightItem = titleValuPairs[rowIndex + 1]
+        let index = rowIndex * 2
+        let leftItem = titleValuPairs[index]
+        let rightItem = titleValuPairs[index + 1]
         return (leftItem, rightItem)
     }
 }

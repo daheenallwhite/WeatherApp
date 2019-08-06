@@ -52,7 +52,7 @@ struct Clouds: Codable {
     let all: Int
     
     var text: String {
-        return "\(all)%"
+        return "\(all)"
     }
 }
 
@@ -103,11 +103,7 @@ struct WeatherElement: Codable {
 struct Wind: Codable {
     let speed, deg: Double
     
-    var direction: String {
-        return WindDirection.init(degree: self.deg).text
-    }
-    
-    var speedText: String {
-        return "\(Int(speed)) m/s"
+    var direction: WindDirection {
+        return WindDirection.init(degree: self.deg)
     }
 }

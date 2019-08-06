@@ -19,8 +19,4 @@ enum WindDirection: Int {
         let convertedValue = Int((degree - 22.5) + 0.5)
         self = WindDirection(rawValue: convertedValue % 16) ?? .n
     }
-    
-    var text: String {
-        return "\(self)".uppercased()
-    }
 }

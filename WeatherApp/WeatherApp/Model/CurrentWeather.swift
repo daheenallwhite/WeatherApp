@@ -14,7 +14,7 @@ class CurrentWeather: Weather, WeatherPresentable {
     }
     
     var temperatureText: String {
-        return "\(self.temperature.toCelcius)º"
+        return "\(temperature: self.temperature)"
     }
     
     var dateText: String {
