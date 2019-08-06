@@ -15,16 +15,21 @@ class WeatherViewModel {
     let currentWeather: Observable<CurrentWeather>
     let dailyWeatherItems: Observable<[DailyWeatherItem]>
     let hourlyWeatherItems: Observable<[HourlyWeatherItem]>
+    let detailWeather: Observable<DetailWeather>!
     
     init(location: Location) {
         self.location = Observable(location)
-        currentWeather = Observable(CurrentWeather(iconName: emptyString, temperature: 0.0, condition: emptyString, date: Date()))
+        currentWeather = Observable(nil)
         dailyWeatherItems = Observable([])
         hourlyWeatherItems = Observable([])
+        detailWeather = Observable(nil)
     }
     
     func retrieveWeatherData() {
-        OpenWeatherMapService.retrieveWeatherInfo(using: location.value) { (weather, error) in
+        guard let location = location.value else {
+            return
+        }
+        OpenWeatherMapService.retrieveWeatherInfo(using: location) { (weather, error) in
             guard let weatherData = weather, error == nil else {
                 print(error ?? "")
                 return
@@ -36,12 +41,13 @@ class WeatherViewModel {
     }
     
     func update(using data: WeatherData) {
-        if self.location.value.name == nil {
-            self.location.value.name = data.city.name
+        if self.location.value?.name == nil {
+            self.location.value?.name = data.city.name
         }
         let weatherBuilder = WeatherBuilder(data: data)
         currentWeather.value = weatherBuilder.getCurrentWeather()
         hourlyWeatherItems.value = weatherBuilder.getHourlyWeatherItems()
         dailyWeatherItems.value = weatherBuilder.getDailyWeatherItems()
+        detailWeather.value = weatherBuilder.getDetailWeather()
     }
 }
