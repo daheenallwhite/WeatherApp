@@ -14,8 +14,8 @@ class DailyWeatherItem: Weather, WeatherPresentable {
     }
     
     var temperatureText: String {
-        let max = "\(maxTemperature.toCelcius)"
-        let min = "\(minTemperature.toCelcius)"
+        let max = "\(temperature: maxTemperature)"
+        let min = "\(temperature: minTemperature)"
         return "\(max)  \(min)"
     }
     
