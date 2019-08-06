@@ -15,16 +15,22 @@ class Observable<T> {
     
     func observe(_ observer: Observer?) {
         self.observer = observer
+        guard let value = value else {
+            return
+        }
         observer?(value)
     }
     
-    var value: T {
+    var value: T? {
         didSet {
+            guard let value = value else {
+                return
+            }
             observer?(value)
         }
     }
     
-    init(_ value: T) {
+    init(_ value: T?) {
         self.value = value
     }
 }
