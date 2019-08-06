@@ -142,52 +142,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cwO-aC-1g5">
                                 <rect key="frame" x="0.0" y="403" width="414" height="459"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DailyTableViewCell" id="WZp-mM-nGn" customClass="DailyTableViewCell" customModule="WeatherApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WZp-mM-nGn" id="Ugx-BE-Zs8">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i6v-tC-ZC5">
-                                                    <rect key="frame" x="30" y="4.5" width="42" height="34.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qfg-93-11U">
-                                                    <rect key="frame" x="184" y="0.0" width="46" height="43.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="qfg-93-11U" secondAttribute="height" multiplier="41:39" id="sUi-L8-dHi"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w2h-BY-zeu">
-                                                    <rect key="frame" x="342" y="4.5" width="42" height="34.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="w2h-BY-zeu" firstAttribute="centerY" secondItem="Ugx-BE-Zs8" secondAttribute="centerY" id="2FJ-S6-PcD"/>
-                                                <constraint firstItem="qfg-93-11U" firstAttribute="centerX" secondItem="Ugx-BE-Zs8" secondAttribute="centerX" id="9Aw-Zt-qvA"/>
-                                                <constraint firstItem="qfg-93-11U" firstAttribute="height" secondItem="Ugx-BE-Zs8" secondAttribute="height" id="DYq-q5-1y3"/>
-                                                <constraint firstItem="i6v-tC-ZC5" firstAttribute="leading" secondItem="Ugx-BE-Zs8" secondAttribute="leadingMargin" constant="10" id="EnE-dC-vbt"/>
-                                                <constraint firstItem="i6v-tC-ZC5" firstAttribute="height" secondItem="Ugx-BE-Zs8" secondAttribute="height" multiplier="0.8" id="Ffi-4r-xpZ"/>
-                                                <constraint firstItem="w2h-BY-zeu" firstAttribute="height" secondItem="Ugx-BE-Zs8" secondAttribute="height" multiplier="0.8" id="Ptd-Yl-tLB"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="w2h-BY-zeu" secondAttribute="trailing" constant="10" id="Qif-7w-TTm"/>
-                                                <constraint firstItem="i6v-tC-ZC5" firstAttribute="centerY" secondItem="Ugx-BE-Zs8" secondAttribute="centerY" id="a4o-ac-dAi"/>
-                                                <constraint firstItem="qfg-93-11U" firstAttribute="centerY" secondItem="Ugx-BE-Zs8" secondAttribute="centerY" id="dD3-F6-Ecy"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="dayLabel" destination="i6v-tC-ZC5" id="Byj-Kg-PiB"/>
-                                            <outlet property="maxMinTemperatureLabel" destination="w2h-BY-zeu" id="fzm-aV-wfj"/>
-                                            <outlet property="weatherIconImageView" destination="qfg-93-11U" id="6h2-Le-fqP"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

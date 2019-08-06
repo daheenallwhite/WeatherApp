@@ -62,11 +62,18 @@ class WeatherViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("view will appear as index \(self.index)")
         super.viewWillAppear(animated)
+        print("view will appear as index \(self.index)")
         if location != nil, viewModel == nil {
             getWeatherData()
         }
+    }
+    
+    private func registerDailyTableViewCells() {
+        let dailyTableViewCellNib = UINib(nibName: DailyTableViewCell.identifier, bundle: nil)
+        dailyTableView.register(dailyTableViewCellNib, forCellReuseIdentifier: DailyTableViewCell.identifier)
+        let detailTableViewCell = UINib(nibName: DetailTableViewCell.identifier, bundle: nil)
+        dailyTableView.register(detailTableViewCell, forCellReuseIdentifier: DetailTableViewCell.identifier)
     }
     
     func getWeatherData() {
@@ -82,14 +89,14 @@ class WeatherViewController: UIViewController {
 
 extension WeatherViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel?.hourlyWeatherItems.value.count ?? 0
+        return viewModel?.hourlyWeatherItems.value?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HourlyCollectionViewCell.identifier, for: indexPath) as? HourlyCollectionViewCell else {
             return HourlyCollectionViewCell()
         }
-        guard let weatherItem = viewModel?.hourlyWeatherItems.value[indexPath.row] else {
+        guard let weatherItem = viewModel?.hourlyWeatherItems.value?[indexPath.row] else {
             return HourlyCollectionViewCell()
         }
         cell.setWeatherData(from: weatherItem)
