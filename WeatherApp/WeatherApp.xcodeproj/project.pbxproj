@@ -42,6 +42,7 @@
 		C2E2899622FA0DD80049CF08 /* UnitSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E2899522FA0DD80049CF08 /* UnitSymbol.swift */; };
 		C2E2899822FA0EB40049CF08 /* StringInterpolation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E2899722FA0EB40049CF08 /* StringInterpolation.swift */; };
 		C2E2899A22FA1DFE0049CF08 /* DailyTableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E2899922FA1DFE0049CF08 /* DailyTableViewSection.swift */; };
+		C2E289A222FA3D860049CF08 /* LocationListCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E289A122FA3D860049CF08 /* LocationListCellType.swift */; };
 		C2E2FBF822F833250079B606 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E2FBF722F833250079B606 /* Location.swift */; };
 		C2E2FBFA22F844800079B606 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E2FBF922F844800079B606 /* UserDefaults.swift */; };
 		C2E2FBFC22F8947B0079B606 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E2FBFB22F8947B0079B606 /* LocationManager.swift */; };
@@ -87,6 +88,7 @@
 		C2E2899522FA0DD80049CF08 /* UnitSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitSymbol.swift; sourceTree = "<group>"; };
 		C2E2899722FA0EB40049CF08 /* StringInterpolation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringInterpolation.swift; sourceTree = "<group>"; };
 		C2E2899922FA1DFE0049CF08 /* DailyTableViewSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyTableViewSection.swift; sourceTree = "<group>"; };
+		C2E289A122FA3D860049CF08 /* LocationListCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListCellType.swift; sourceTree = "<group>"; };
 		C2E2FBF722F833250079B606 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		C2E2FBF922F844800079B606 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		C2E2FBFB22F8947B0079B606 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				C2E2899322FA006F0049CF08 /* DataKeys.swift */,
 				C2E2899522FA0DD80049CF08 /* UnitSymbol.swift */,
 				C2E2899922FA1DFE0049CF08 /* DailyTableViewSection.swift */,
+				C2E289A122FA3D860049CF08 /* LocationListCellType.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				C2E2FBFC22F8947B0079B606 /* LocationManager.swift in Sources */,
 				C2326F8322F4844F00FBEDEB /* DailyWeatherItem.swift in Sources */,
 				C249FB1E22F35EC8003297A6 /* WeatherAPI.swift in Sources */,
+				C2E289A222FA3D860049CF08 /* LocationListCellType.swift in Sources */,
 				C26C356322F6087E001B13B8 /* LocationListViewController.swift in Sources */,
 				C2E2899822FA0EB40049CF08 /* StringInterpolation.swift in Sources */,
 				C22D4BC522F8D34A00EB0EA8 /* WeatherBuilder.swift in Sources */,
