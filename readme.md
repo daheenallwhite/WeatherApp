@@ -384,7 +384,9 @@ network request 같은 무거운 작업을 할 때는 background queue 에서 �
 
 - view controller 간 데이터 전달
   - 보여줄 view controller 인스턴스를 생성하여 `present()` method 
-  - 다시 현재의 view controller 를 보여준 이전의 view controller 로 데이터를 보내려면? delegate
+  - 다시 현재의 view controller 를 보여준 이전의 view controller 로 데이터를 보내려면? delegate 통해 전달~전달
+    - 쉽게 말해서 새로운 view controller 를 instantiate 해서 present 하기 전에 내가 널 보냈다는 연결을 delegate 를 통해 하는 것이다
+    - 그 연결 방식은 protocol 을 통해서 해당 protocol을 구현한 타입이라면 누구나 delegate 로 소통할 수 있다는 뜻이다.
 
 ### UserDefaults
 
