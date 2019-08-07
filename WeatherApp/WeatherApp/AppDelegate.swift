@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let rootViewController = window?.rootViewController as? PageViewController else {
             return
         }
-        UserDefaults.standard.set(rootViewController.currentPageIndex, forKey: DataKeys.currentPage)
+        UserDefaults.standard.set(rootViewController.lastViewedPageIndex, forKey: DataKeys.lastViewedPage)
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
 
