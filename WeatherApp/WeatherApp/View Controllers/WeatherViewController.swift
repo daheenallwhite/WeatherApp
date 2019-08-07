@@ -17,8 +17,13 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var hourlyCollectionView: UICollectionView!
     @IBOutlet weak var dailyTableView: UITableView!
 
-    var location : Location?
+    var location : Location!
     var index = 0
+    var temperatureUnit: TemperatureUnit! {
+        didSet {
+            viewModel?.temperatureUnit.value = temperatureUnit
+        }
+    }
     
     //MARK: ViewModel
     var viewModel: WeatherViewModel? {
@@ -44,6 +49,11 @@ class WeatherViewController: UIViewController {
             viewModel.detailWeather.observe { [unowned self] list in
                 self.dailyTableView.reloadData()
             }
+            viewModel.temperatureUnit.observe { [unowned self] unit in
+                self.temperatureLabel.text = viewModel.currentWeather.value?.temperatureText
+                self.dailyTableView.reloadData()
+                self.hourlyCollectionView.reloadData()
+            }
         }
     }
     
@@ -63,10 +73,18 @@ class WeatherViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        viewModel?.temperatureUnit.value = TemperatureUnitState.shared.unit
         print("view will appear as index \(self.index)")
         if location != nil, viewModel == nil {
             getWeatherData()
         }
+    }
+    
+    private func setEmptyStringToLables() {
+        let emptyString = ""
+        self.cityLabel.text = emptyString
+        self.conditionLabel.text = emptyString
+        self.temperatureLabel.text = emptyString
     }
     
     private func registerDailyTableViewCells() {
