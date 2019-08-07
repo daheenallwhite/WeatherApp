@@ -105,13 +105,13 @@ extension WeatherViewController: UICollectionViewDataSource {
     
 }
 
-extension WeatherViewController: UITableViewDataSource, UITableViewDelegate {
+extension WeatherViewController: UITableViewDataSource { 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return DailyTableViewSection.numberOfSections
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let section = Section(sectionIndex: section) else {
+        guard let section = DailyTableViewSection(sectionIndex: section) else {
             return 0
         }
         switch section {
@@ -123,7 +123,7 @@ extension WeatherViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let section = Section(sectionIndex: indexPath.section) else {
+        guard let section = DailyTableViewSection(sectionIndex: indexPath.section) else {
             return DailyTableViewCell()
         }
         switch section {
@@ -145,14 +145,12 @@ extension WeatherViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-enum Section: Int {
-    case daily = 0
-    case detail = 1
-    
-    init?(sectionIndex: Int) {
-        guard let section = Section(rawValue: sectionIndex) else {
-            return nil
+extension WeatherViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard let section = DailyTableViewSection(sectionIndex: indexPath.section) else {
+            return DailyTableViewSection.defaultCellHeight
         }
-        self = section
+        return section.cellHeight
     }
 }
+
