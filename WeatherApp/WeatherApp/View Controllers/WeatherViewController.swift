@@ -14,6 +14,7 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var conditionLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
+    @IBOutlet weak var dayOfWeekLabel: UILabel!
     @IBOutlet weak var hourlyCollectionView: UICollectionView!
     @IBOutlet weak var dailyTableView: UITableView!
 
@@ -39,6 +40,7 @@ class WeatherViewController: UIViewController {
             viewModel.currentWeather.observe { [unowned self] in
                 self.conditionLabel.text = $0.condition
                 self.temperatureLabel.text = $0.temperatureText
+                self.dayOfWeekLabel.text = $0.dateText
             }
             viewModel.hourlyWeatherItems.observe { [unowned self] list in
                 self.hourlyCollectionView.reloadData()
