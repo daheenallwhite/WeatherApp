@@ -142,6 +142,13 @@ extension PageViewController: UIPageViewControllerDataSource {
 }
 
 extension PageViewController: LocationListViewDelegate {
+    func userChangeTemperatureUnit(with newUnit: TemperatureUnit) {
+        self.temperatureUnit = newUnit
+        self.cachedWeatherViewControllers.forEach { (key, weatherViewControllers) in
+            weatherViewControllers.temperatureUnit = newUnit
+        }
+    }
+    
     func userDidSelectLocation(at index: Int) {
         guard let weatherViewController = weatherViewController(at: index) as? WeatherViewController else {
             return
