@@ -10,7 +10,7 @@ import UIKit
 
 class DetailTableViewCell: UITableViewCell {
     static let identifier = "DetailTableViewCell"
-    
+    static let height: CGFloat = 90
     @IBOutlet weak var leftTitleLabel: UILabel!
     @IBOutlet weak var leftValueLable: UILabel!
     @IBOutlet weak var rightTitleLable: UILabel!
@@ -21,6 +21,8 @@ class DetailTableViewCell: UITableViewCell {
         super.awakeFromNib()
         self.selectionStyle = .none
         self.backgroundColor = .clear
+        self.leftTitleLabel.adjustsFontSizeToFitWidth = true
+        self.rightTitleLable.adjustsFontSizeToFitWidth = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
