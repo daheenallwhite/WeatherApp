@@ -19,9 +19,9 @@ class TemperatureUnitState {
 }
 
 enum TemperatureUnit {
-    case celcius, farenheit
+    case celcius, fahrenheit
     init(bool: Bool) {
-        self = bool ? .celcius : .farenheit
+        self = bool ? .celcius : .fahrenheit
     }
     
     var boolValue: Bool {
