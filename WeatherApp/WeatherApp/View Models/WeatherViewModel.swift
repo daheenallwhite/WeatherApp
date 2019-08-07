@@ -15,14 +15,17 @@ class WeatherViewModel {
     let currentWeather: Observable<CurrentWeather>
     let dailyWeatherItems: Observable<[DailyWeatherItem]>
     let hourlyWeatherItems: Observable<[HourlyWeatherItem]>
-    let detailWeather: Observable<DetailWeather>!
+    let detailWeather: Observable<DetailWeather>
+    let temperatureUnit: Observable<TemperatureUnit>
+    
     
     init(location: Location) {
         self.location = Observable(location)
-        currentWeather = Observable(nil)
-        dailyWeatherItems = Observable([])
-        hourlyWeatherItems = Observable([])
-        detailWeather = Observable(nil)
+        self.currentWeather = Observable(nil)
+        self.dailyWeatherItems = Observable([])
+        self.hourlyWeatherItems = Observable([])
+        self.detailWeather = Observable(nil)
+        self.temperatureUnit = Observable(TemperatureUnitState.shared.unit)
     }
     
     func retrieveWeatherData() {
