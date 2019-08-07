@@ -100,11 +100,11 @@ extension LocationListViewController: UITableViewDataSource {
 extension LocationListViewController: SearchViewDelegate {
     func userAdd(newLocation: Location) {
         self.locations.append(newLocation)
-        let sublist = Array(locations[1...locations.count - 1])
-        defaults.setLocations(sublist, forKey: "Locations")
+        let savingList = Array(locations[1...locations.count - 1])
+        defaults.setLocations(savingList, forKey: DataKeys.locations)
+        defaults.set(savingList.count, forKey: DataKeys.locationCount)
         self.delegate?.userAdd(newLocation: newLocation)
         self.locationListTableView.reloadData()
     }
 }
-
 
