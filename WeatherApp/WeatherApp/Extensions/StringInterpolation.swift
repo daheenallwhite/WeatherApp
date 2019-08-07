@@ -10,7 +10,7 @@ import Foundation
 
 extension String.StringInterpolation {
     mutating func appendInterpolation(temperature value: Temperature) {
-        appendInterpolation("\(value.text) \(UnitSymbol.forTemperature)")
+        appendInterpolation("\(value.text)\(UnitSymbol.forTemperature)")
     }
     
     mutating func appendInterpolation(pressure value: Double) {
