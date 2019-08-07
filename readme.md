@@ -128,17 +128,13 @@
 
 ### ViewController 간 Data 주고 받기 - Delegate 사용
 
-[*관련 학습한 내용*]()
+[*관련 학습한 내용- 1*](#view-controller-양방향-데이터-전달)     [*관련 학습한 내용- 2*](https://daheenallwhite.github.io/ios/2019/07/22/Delegation/)
 
-#### LocationManagerDelegate : PageViewController  - LocationManager
+view controller 간 데이터를 backward 로 받기 위해서, delegate protocol 을 구현하여 사용
 
-
-
-#### LocationListDelegate : PageViewController - LocationListViewController
+![](./images/implementation-delegate.jpg)
 
 
-
-#### SearchViewDelegate : LocationListViewController - SearchViewDelegate
 
 &nbsp;
 
@@ -167,7 +163,7 @@
 
 ![](./images/api-data-structure.png)
 
-- [URLSession 학습한 내용]()
+- [URLSession 학습한 내용](#url-loading-system)
 - Codable : `Data` → `WeatherData` 변환하기
   - `WeatherData` 는 `Codable` protocol 을 준수
   - `JSONDecoder` 사용하여 변환
