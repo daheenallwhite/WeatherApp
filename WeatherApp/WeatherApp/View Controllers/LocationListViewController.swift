@@ -52,33 +52,38 @@ extension LocationListViewController: UITableViewDelegate {
 }
 
 extension LocationListViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.locations.count + 1
+        return self.locations.count
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return !(indexPath.row == self.locations.count || indexPath.row == 0)
+        guard let cellType = LocationListCellType(rowIndex: indexPath.row) else {
+            return false
+        }
+        return cellType.canEditRows
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: LocationListTableViewCell.identifier, for: indexPath)
-        if indexPath.row == locations.count {
-            cell.textLabel?.text = "+"
+        guard let cellType = LocationListCellType(rowIndex: indexPath.row) else {
             return cell
         }
-        if indexPath.row == 0 {
-            cell.textLabel?.text = "Current Location"
-            return cell
-        }
-        cell.textLabel?.text = locations[indexPath.row].name
+        cell.textLabel?.text = cellType.defaultText ?? self.locations[indexPath.row].name
         return cell
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             self.locations.remove(at: indexPath.row)
-            let sublist = Array(locations[1...locations.count - 1])
-            defaults.setLocations(sublist, forKey: "Locations")
+            if self.locations.count > 1 {
+                let savingList = Array(locations[1...locations.count - 1])
+                defaults.setLocations(savingList, forKey: DataKeys.locations)
+            }
+            defaults.set(locations.count - 1, forKey: DataKeys.locationCount)
             tableView.deleteRows(at: [indexPath], with: .fade)
             self.delegate?.userDeleteLocation(at: indexPath.row)
         }
