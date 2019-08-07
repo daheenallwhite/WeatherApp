@@ -10,6 +10,7 @@ import UIKit
 
 class DailyTableViewCell: UITableViewCell {
     static let identifier = "DailyTableViewCell"
+    static let height: CGFloat = 44
 
     @IBOutlet weak var dayOfWeekLabel: UILabel!
     @IBOutlet weak var weatherIconImageView: UIImageView!
