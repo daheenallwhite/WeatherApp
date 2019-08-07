@@ -1,6 +1,277 @@
 # WeatherApp
 
-## 구현 & 학습한 내용
+> 이다흰<br>
+>
+> 날씨 OpenAPI를 이용해서 Apple 기본 날씨앱 또는 Yahoo 날씨앱과 유사한 기능셋을 구현하기
+
+&nbsp;
+
+### Index
+
+- [기능]()
+- [설계 및 구현]()
+- [trouble shooting]()
+- [소감]()
+- [학습한 내용]()
+
+---
+
+<p float="left">
+  <img src="./images/display-1.gif" width="250" />
+  <img src="./images/display-2.gif" width="250" /> 
+  <img src="./images/display-3.gif" width="250" />
+</p>
+
+ &nbsp;
+
+---
+
+## 기능
+
+### 날씨 정보
+
+현재 위치 포함한 저장된 장소 리스트의 날씨를 가로 스크롤하여 조회 가능
+
+![](./images/display-4.gif)
+
+### 장소 저장 및 리스트 조작
+
+추가했던 장소 리스트를 볼 수 있고, 삭제할 수 있다
+
+![](./images/display-5.gif)
+
+### 장소 검색 및 추가
+
+원하는 장소를 검색하여 추가하고, 관련 날씨 정보를 볼 수 있다
+
+![](./images/display-6.gif)
+
+### 온도 단위 설정
+
+온도 단위를 **섭씨 혹은 화씨**로 변환하여 볼 수 있다
+
+![](./images/display-7.gif)
+
+### 사용자 설정 저장
+
+다음 설정을 저장하여 앱을 다시 실행시, 기존의 설정대로 실행되도록 한다
+
+| 추가한 장소                 | 온도 단위 설정              | 마지막으로 본 페이지         |
+| --------------------------- | --------------------------- | ---------------------------- |
+| ![](./images/display-8.gif) | ![](./images/display-9.gif) | ![](./images/display-10.gif) |
+
+&nbsp;
+
+---
+
+## 설계 및 구현
+
+### View Controller 구성
+
+![](./images/implementation-1.jpeg)
+
+&nbsp;
+
+### 날씨 모델과 View - MVVM
+
+#### WeatherViewController - WeatherViewModel
+
+![](./images/implementation-2.jpeg)
+
+- ViewModel 의 view 관련 type 에 Observer 를 등록할 수 있는 타입을 구현
+  - Observable protocol
+  - ViewModel - CurrentWeather, HourlyWeatherItem, DailyWetherItem, DetailWeather 대상
+  - observer handler 에 관련 view 나 label text 를 변경할 수 있는 함수를 등록
+  - view model 변경시에 해당 observer가 실행되어 view 도 같이 그에 맞게 업데이트 된다
+
+&nbsp;
+
+### 역할 분배
+
+#### view 관련
+
+| class / struct               | 역할                                                         |
+| ---------------------------- | ------------------------------------------------------------ |
+| `PageViewController`         | LocationManager 사용해서 받은 현재위치를 포함하여, 저장된 위치의 날씨를 보여줄 WeatherViewController 를 보여준다 |
+| `WeatherViewController`      | Location 객체에 해당하는 위치 정보를 보여준다                |
+| `WeatherViewModel`           | - OpenWeatherMapService 를 이용하여 위치에 맞는 날씨 정보를 가져온다<br />- WeatherBuilder 객체를 통해 가져온 정보를 view 에 필요한 데이터 타입들로 만든다 |
+| `WeatherBuilder`             | 네트워킹을 통해 받아온 `WeatherData` 객체를 view model 의 각 필요에 맞게 가공한다 |
+| `LocationListViewController` | - 저장된 위치를 사용자에게 보여준다 <br />- 저장된 위치를 삭제한다 <br />- 온도 단위를 바꾼다 <br />- SearchViewController 를 보여준다 |
+| `SearchViewController`       | - 사용자 검색 문자열을 사용하여 위치 자동완성 <br />- 사용자가 선택한 위치 정보(장소이름, 위도, 경도) 를 LocationViewController delegate 통해 넘긴다 |
+| `Observable`                 | - ViewModel 의 각 데이터 타입에 observer 기능을 구현하기 위한 generic type<br />- `WeatherViewModel` 에서 observer 등록이 필요한 속성에 사용됨 |
+
+
+
+#### Unitilies
+
+| class / struct          | 역할                                                         |
+| ----------------------- | ------------------------------------------------------------ |
+| `LocationManager`       | CLLocationManager 사용하여 현재 위치 가져오기                |
+| `OpenWeatherMapService` | - 네트워킹 통한 날씨 예측 정보 가져오기<br />- `WeatherData` 타입으로 json decoding 하기 |
+| `WeatherBuilder`        | `WeatherData` → `WeatherViewModel` 이 가진 각 type으로 데이터 가공 |
+| `WindDirection`         | 바람의 방향 값(360도 내)을 compass direction으로 변환        |
+| `DateConverter`         | 주어진 timezone 을 사용하여 문자열로 된 날짜를 변환해 주는 역할 |
+
+&nbsp;
+
+### Weather Model Hierarchy
+
+![](./images/weather-hierarchy.png)
+
+&nbsp;
+
+### ViewController 간 Data 주고 받기 - Delegate 사용
+
+[*관련 학습한 내용*]()
+
+#### LocationManagerDelegate : PageViewController  - LocationManager
+
+
+
+#### LocationListDelegate : PageViewController - LocationListViewController
+
+
+
+#### SearchViewDelegate : LocationListViewController - SearchViewDelegate
+
+
+
+### 현재 위치 - CLLocationManager 활용
+
+> `LocationMagnager` class 로 구현
+
+#### 위치 가져오는 과정
+
+1. `CLLocationManager` 객체 생성
+2. location 데이터의 정확도 설정 : `desiredAccuracy` property 설정
+3. 사용자에게 위치정보 사용 허가 받기 : `requestWhenInUseAuthorization()` method 
+4. 위치 요청이 가능한 허가 상태 `CLAuthorizationStatus` : `.authorizedWhenInUse` / `.authorizedAlways`
+5. 위치 요청: `requestLocation()`
+   - 해당 method는 즉각 return 한다
+   - 위치 값을 얻은 후, delegate 의 `didUpdateLocation` method 를 호출한다
+6. Delegate method - `didUpdateLocation` 
+
+&nbsp;
+
+### 날씨 정보 받아오기 & 파싱하기 - OpenWeather API / URLSession / Codable
+
+>  [5 days / 3 hours forcast api](https://openweathermap.org/forecast5)
+
+*API JSON 구조 (orange color : 배열 구조)*
+
+![](./images/api-data-structure.png)
+
+- [URLSession 학습한 내용]()
+- Codable : `Data` → `WeatherData` 변환하기
+  - `WeatherData` 는 `Codable` protocol 을 준수
+  - `JSONDecoder` 사용하여 변환
+
+&nbsp;
+
+### 장소 검색 & 자동완성 - MKLocalSearchCompleter 
+
+> 문자열로 위치를 제공하면 그에 맞는 자동완성된 comletion string list 를 제공하는 utility 객체
+
+- 구현 원리 
+
+  ![](./images/implementation-search.jpeg)
+
+- `results` property : `MKLocalSearchCompleter` 의 자동완성 처리된 데이터를 얻는 속성
+  - `MKLocalSearchCompletion` type
+  - 직접 생성할 수는 없다. Completer 에 의해서만 생성되는 객체
+- completion 될 대상 지정 방법
+  - 위치 문자열, 지역, 필터 타입 등을 지정할 수 있다.
+  - 도시명 검색 : `queryFragment` property 에 사용자가 입력하는 문자열 설정
+  - 필터 타입 : locationAndQueries / locationsOnly 
+- delgate : search completion data 를 가져오기 위한 메소드가 정의됨
+  - `MKLocalSearchCompleterDelegate`
+  - `completerDidUpdateResults()` 메소드 : completer 가 검색 완성 배열을 업데이트 한 뒤 호출하는 메소드.
+  - 이 메소드 안에 search 결과 table view 를 reload 하도록 구현함
+
+&nbsp;
+
+### 사용자 설정 저장 - UserDefaults
+
+[*관련 학습한 내용*]()
+
+사용자 설정 항목
+
+- 마지막으로 본 날씨의 위치 
+- 사용자가 저장한 위치 리스트
+- 온도 단위 선택 정보
+
+UserDefaults 에 사용될 key 관리하는 struct `DataKeys`
+
+&nbsp;
+
+### API 데이터 기반 시간 구하기
+
+API 에서 받아온 date & time (UTC 표준)  → 각 나라별 시간으로 변환하기
+
+1. `list.dt_text` string (utc 단위 시간) → `Date` 객체로 변환
+2. `city.timezone` : 해당 도시의 시간을 UTC로부터 변환하기 위한 차이값. 단위는 초
+3. 각 도시의 시간 = `list.dt_txt` 를 date로 변환한 객체 + `city.timezone`
+4. 차이값 더해주기 : `Date` - `addingTimeInterval()` method 사용
+
+&nbsp;
+
+### 온도 단위 설정대로 정보 보여주기 - Singleton 활용
+
+- Singleton 으로 구현한 이유
+  - view controller 뿐만 아니라 날씨 관련된 거의 모든 data model 에서 온도와 관련된 부분이 많음
+  - Singleton 통해서 하나의 인스턴스로 사용자가 설정한 온도 단위를 이용하는게 적절하다고 판단
+
+- `TemperatureUnitState` 의 `shared` property 로 단위 접근 가능
+
+&nbsp;
+
+---
+
+## Trouble Shooting
+
+### Page View Controller 에서 계속해서 WeatherViewController 를 생성하는 문제
+
+- 문제상황  
+  - PageViewController 에서 swipe 에 따른 이전/이후 페이지 요청시마다 새롭게 view controller instance (WeatherViewController) 를 생성
+  - 메모리 부하로 인해 갑자기 꺼지는 현상
+- 해결 방법 : **View Controller Caching**
+  - view controller를 한번 생성한 뒤, caching 하여 이후의 view controller 의 요청이 있을 때, 이미 인스턴스가 있다면 이를 반환하는 기능을 구현
+  - PageViewController 에서 dictionary 타입으로 view controller 인스턴스 관리
+    - Key: page index
+    - Value: `WeatherViewController` instance
+
+&nbsp;
+
+### 마지막으로 본 위치를 리스트에서 삭제할 경우
+
+- 문제상황
+  - 마지막으로 날씨 정보를 본 위치를 리스트에서 삭제할 경우, 다시 page view 로 돌아갔을 때 page index 가 불일치 하는 현상
+- 해결 방법 
+  - 삭제시 위치정보의 index 가 마지막일 경우, 마지막으로 본 list index 를 0으로 설정한다.
+
+&nbsp;
+
+### API 에서 받아온 데이터 - 시간별 O 일별 X
+
+- 문제상황
+  - open weather map 의 5일 / 3시간 api 에는 3시간 마다의 날씨 예측 정보는 있지만, 일별 예측 정보는 없다.
+  - 따라서, 3시간 마다의 데이터를 일별로 분류하고 이를 다시 가공하는 절차가 필요
+- 해결방법
+  - `WeatherData` → `WeatherViewModel` 이 가진 각 model 별로 가공하는 역할을 담당하는 클래스 구현
+  - `WeatherBuilder`
+  - 3시간 별 데이터를 일자별로 모아서, 일자별 최대/최소 온도를 계산 → `HourlyWeatherItem` 으로 만들기
+
+&nbsp;
+
+---
+
+## 소감
+
+
+
+---
+
+## 관련 학습 내용
 
 ### URL Loading System
 
@@ -97,153 +368,19 @@ network request 같은 무거운 작업을 할 때는 background queue 에서 �
 
 
 
-queue 종류 2가지
+### View Controller 양방향 데이터 전달
 
-main : ui 가 처리되는 queue
+- view controller present 관계
+  - presenting view controller : 나(view controller) 를 띄워준, 보여준 view controller
+  - presented view controller : 내가 (view controller) present 하는, 띄운, 보여준 view controller
 
-Global
+![](https://github.com/daheenallwhite/swift-photoframe/raw/daheenallwhite/images/vc-relationship.jpeg)
 
+- view controller 간 데이터 전달
+  - 보여줄 view controller 인스턴스를 생성하여 `present()` method 
+  - 다시 현재의 view controller 를 보여준 이전의 view controller 로 데이터를 보내려면? delegate
 
-
-Serial / concurrent 
-
-Sync / async 
-
-sync : 작업 완료되면 호출자에게 제어권 반환
-
-async : 작업 진행시켜놓고 호출자에게 제어권 반환. 작업은 계속 실행되고 있음. 다음 함수 실행되어 시작하는 스레드를 차단하지 않는다.
-
-## UICollectionView
-
-> 순서가 있는 데이터 아이템의 모음을 관리하고, 이를 커스터마이징 가능한 레이아웃을 이용해서 보여주는 객체
-
-- data source : collection view 는 UITableView 처럼 data source 객체로부터 data 를 얻어온다. - `UICollectionViewDataSource` protocol 을 채택한 타입
-- 각 item 은 cell 을 이용하여 보여진다 - `UICollectionViewCell`
-- Data source, cell 은 UITableView 방식과 비슷하다
-- 게다가, collection view 는 다른 타입의 view 를 사용해서 data 를 보여줄 수도 있다.
-  - section header, footer 
-  - cell 과는 분리되어 있으나 여전히 어떤 정보를 전달하는 목적으로 사용됨
-
-### UICollectionViewLayout class
-
-- cell 의 구성과 위치를 담당
-- collectionViewLayout property 값으로 설정 가능
-  - 값 설정하면 layout 도 즉시 업데이트됨
-  - 애니메이션과 함께 업데이트 원하면 setCollectionViewLayout() method 사용
-
-### cell 생성 & view 보충하기
-
-- collection view 의 data source 가 제공하는 두가지
-  - Content of items
-  - 그 content를 보여주기 위한 views
-- cell 가져오기 : dequeueReusableCell(with~)
-- 추가 view 가져오기 : dequeReusableSupplementaryView(~)
-- nib file 로 cell 등록하기 : register(_: forCellWithReuseIdentifier:)
-
-
-
-## Model
-
-first scene 세가지 부분 구성
-
-1. CurrentWeather
-2. HourlyWeather list
-3. DailyWeather list
-
-|           | CurrentWeather | HourlyWeather | DailyWeather |
-| --------- | -------------- | ------------- | ------------ |
-| icon      | O              | O             | O            |
-| condition | Description    |               |              |
-| temp      | current        | Current       | min/max      |
-| Date      | 요일           | 시간          | 요일         |
-
-
-
-### 설계 - WeatherPresentable protocol
-
-icon image, tempText, dateText 를 제공하는 자격요건을 명시한 프로토콜을 정의한다.
-
-Current, Hourly, Daily Weather 클래스에서 해당 프로토콜을 채택하여 준수한다
-
-
-
-## 검색 구현하기
-
-### MKLocalSearchCompleter
-
-> 문자열로 위치를 제공하면 그에 맞는 자동완성된 comletion string list 를 제공하는 utility 객체
-
-- `results` property : `MKLocalSearchCompleter` 의 자동완성 처리된 데이터를 얻는 속성
-  -  `MKLocalSearchCompletion` type
-  - 직접 생성할 수는 없다. Completer 에 의해서만 생성되는 객체
-- completion 될 대상 지정 방법
-  - 위치 문자열, 지역, 필터 타입 등을 지정할 수 있다.
-  - 도시명 검색 : `queryFragment` property 에 사용자가 입력하는 문자열 설정
-  - 필터 타입 : locationAndQueries / locationsOnly 
-- delgate : search completion data 를 가져오기 위한 메소드가 정의됨
-  - `MKLocalSearchCompleterDelegate`
-  - `completerDidUpdateResults()` 메소드 : completer 가 검색 완성 배열을 업데이트 한 뒤 호출하는 메소드.
-  - 이 메소드 안에 search 결과 table view 를 reload 하도록 구현함
-
-
-
-## JSON Parsing
-
-### CodingKey
-
-encode/decode 될 때 기준이 되는 key
-
-CodingKey protocol 을 준수한 enumeration 이 있다면, 이 case 들은 codable type 에 encode/decode 될 때, 반드시 포함되어야 하는 속성의 리스트를 나타낸다. 
-
-각 case 이름은 주어질 data type과 맞아야 하는데, 다르다면 String 을 상속받아 associated value 로 지정해주면 된다.
-
-- 참조 - [Encoding & Decoding Custom Types](https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types)
-
-
-
-### MVVM
-
-Model 과 view controller 사이의 중재자인 view model 을 넣은 디자인 패턴
-
-왜 이 패턴을 사용할까?
-
-- 기존의 mvc, 특히 apple의 mvc 는 massive view controller 라고 불릴만큼 view controller 가 할 일이 많았음. 
-- 저장된 model 과 view 를 표현할 때 쓸 model 을 다르게 표현할 필요가 생김
-  - 예를들어, 유저 정보를 내부 model 에 가지고 있지만 view model 에서는 일부 정보만 보여준다면? -> controller 가 view 에서 쓸 일부 정보를 가공할 필요가 생김 -> massive view controller 가 될 확률이 높아짐
-- loosely coupled architecture -> 변동, 유연한 구조, 테스트에 용이
-
-구조 ([출처](https://medium.com/@navdeepsingh_2336/creating-an-ios-app-with-mvvm-and-rxswift-in-minutes-b8800633d2e8))
-
-![](https://miro.medium.com/max/700/1*iwgAHz3uZGqyk3OhOOjgyg.jpeg)
-
-
-
-view model 의 역할
-
-- view update
-- View 로부터 받은 update (user 로 부터 받은) update를 처리
-
-
-
-two way binding
-
-- Observer-listener 패턴 : view controller - view model 간 양방향 소통을 할 수 있게끔 해줌
-- oberserver 패턴은 subject 에 변동이 생기면 알려달라고 미리 observer 등록을 하면, subject 변동시 알람을 받는 패턴이다
-- control & data provider
-
-
-
-## API 데이터 기반 시간 구하기
-
-- api  의 date & time 정보는 UTC 표준
-- `city.timezone` : 해당 도시의 시간을 UTC로부터 변환하기 위한 차이값. 단위는 초
-- `list.dt_txt` : UTC 시간
-- 각 도시의 시간 = `list.dt_txt` 를 date로 변환한 객체 + `city.timezone`
-- 구현 방법 : `Date` - `addingTimeInterval()` method 사용
-
-
-
-## UserDefaults
+### UserDefaults
 
 앱의 data 를 백그라운드 상태 혹은 종료시에도 없어지지 않고 persistent(영구) 보존할 수 있도록 해주는 user default database
 
@@ -255,10 +392,4 @@ two way binding
   - app launch 될 때, memory 에 올라온다. 
 - UserDefaults 변경에 알림을 받고 싶다면
   - didChangeNotification 에 observer 를 등록하면 된다.
-
-
-
-
-
-
 
