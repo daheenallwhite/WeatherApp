@@ -8,11 +8,11 @@
 
 ### Index
 
-- [기능]()
-- [설계 및 구현]()
-- [trouble shooting]()
-- [소감]()
-- [학습한 내용]()
+- [기능](#기능)
+- [설계 및 구현](#설계-및-구현)
+- [trouble shooting](#trouble-shooting)
+- [소감](#소감)
+- [학습한 내용](#관련-학습-내용)
 
 ---
 
@@ -27,6 +27,12 @@
 ---
 
 ## 기능
+
+- [날씨 정보](#날씨-정보)
+- [장소 저장 리스트](#장소-저장-리스트)
+- [장소 검색 및 추가](#장소-검색-및-추가)
+- [온도 단위 설정](#온도-단위-설정)
+- [사용자 설정 저장](#사용자-설정-저장)
 
 ### 날씨 정보
 
@@ -79,8 +85,8 @@
 ![](./images/implementation-2.jpeg)
 
 - ViewModel 의 view 관련 type 에 Observer 를 등록할 수 있는 타입을 구현
-  - Observable protocol
-  - ViewModel - CurrentWeather, HourlyWeatherItem, DailyWetherItem, DetailWeather 대상
+  - `Observable` protocol
+  - ViewModel - CurrentWeather, HourlyWeatherItem, DailyWetherItem, DetailWeather 대상 data 변화에 대해 observer 를 등록할 수 있다
   - observer handler 에 관련 view 나 label text 를 변경할 수 있는 함수를 등록
   - view model 변경시에 해당 observer가 실행되어 view 도 같이 그에 맞게 업데이트 된다
 
@@ -134,7 +140,7 @@
 
 #### SearchViewDelegate : LocationListViewController - SearchViewDelegate
 
-
+&nbsp;
 
 ### 현재 위치 - CLLocationManager 활용
 
