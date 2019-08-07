@@ -9,9 +9,7 @@
 import UIKit
 import MapKit
 
-protocol SearchViewDelegate {
-    func userAdd(newLocation: Location) 
-}
+
 
 class SearchViewController: UIViewController {
     static let identifier = "SearchViewController" 

@@ -9,10 +9,6 @@
 import Foundation
 import CoreLocation
 
-protocol LocationManagerDelegate {
-    func locationManagerDidUpdate(currenLocation: Location)
-}
-
 class LocationManager: NSObject {
     var delegate: LocationManagerDelegate?
     private let manager = CLLocationManager()

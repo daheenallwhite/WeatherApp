@@ -8,13 +8,6 @@
 
 import UIKit
 
-protocol LocationListViewDelegate {
-    func userDidSelectLocation(at index: Int)
-    func userAdd(newLocation: Location)
-    func userDeleteLocation(at index: Int)
-    func userChangeTemperatureUnit(with value: TemperatureUnit)
-}
-
 class LocationListViewController: UIViewController {
     @IBOutlet weak var locationListTableView: UITableView!
     @IBOutlet weak var addLocationButton: UIButton!
