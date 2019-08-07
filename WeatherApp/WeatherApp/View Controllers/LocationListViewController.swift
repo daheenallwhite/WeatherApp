@@ -40,6 +40,21 @@ class LocationListViewController: UIViewController {
         searcheViewController.delegate = self
         self.present(searcheViewController, animated: true, completion: nil)
     }
+    
+    @IBAction func temperatureSwitchValueChanged(_ sender: UISwitch) {
+        let newUnit = TemperatureUnit(bool: sender.isOn)
+        self.defaults.set(sender.isOn, forKey: DataKeys.temperatureUnit)
+        TemperatureUnitState.shared.unit = newUnit
+        self.delegate?.userChangeTemperatureUnit(with: newUnit)
+    }
+    
+}
+
+extension LocationListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.delegate?.userDidSelectLocation(at: indexPath.row)
+        self.dismiss(animated: true, completion: nil)
+    }
 }
 
 extension LocationListViewController: UITableViewDataSource {
