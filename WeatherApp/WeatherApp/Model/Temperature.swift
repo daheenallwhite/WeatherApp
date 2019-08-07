@@ -18,8 +18,7 @@ class Temperature {
     }
     
     var text: String {
-        let temperatureUnit = UserDefaults.standard.bool(forKey: DataKeys.temperatureUnit)
-        return temperatureUnit ? "\(toCelcius)" : "\(toFahrenheit)"
+        return TemperatureUnitState.shared.unit.boolValue ? "\(toCelcius)" : "\(toFahrenheit)"
     }
     
     var toCelcius: Int {
