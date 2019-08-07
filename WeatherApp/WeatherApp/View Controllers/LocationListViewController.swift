@@ -16,6 +16,8 @@ protocol LocationListViewDelegate {
 
 class LocationListViewController: UIViewController {
     @IBOutlet weak var locationListTableView: UITableView!
+    @IBOutlet weak var addLocationButton: UIButton!
+    @IBOutlet weak var temperatureSwitch: UISwitch!
     
     static let identifier = "LocationListViewController"
     private let defaults = UserDefaults.standard
@@ -26,21 +28,10 @@ class LocationListViewController: UIViewController {
         super.viewDidLoad()
         self.locationListTableView.delegate = self
         self.locationListTableView.dataSource = self
-    }
-}
-
-extension LocationListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard indexPath.row == locations.count else {
-            self.delegate?.userDidSelectLocation(at: indexPath.row)
-            self.dismiss(animated: true, completion: nil)
-            return
-        }
-        tableView.deselectRow(at: indexPath, animated: true)
-        presentSearchViewController()
+        self.temperatureSwitch.isOn = TemperatureUnitState.shared.unit.boolValue
     }
     
-    private func presentSearchViewController() {
+    @IBAction func addLocationButtonTouched(_ sender: Any) {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         guard let searcheViewController = mainStoryboard.instantiateViewController(withIdentifier: SearchViewController.identifier) as? SearchViewController else {
             print(CreationError.downcastingError(SearchViewController.identifier))
