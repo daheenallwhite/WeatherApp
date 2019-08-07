@@ -170,17 +170,32 @@ extension PageViewController: LocationListViewDelegate {
         self.userLocationList.append(newLocation)
     }
     
-    func userDeleteLocation(at index: Int) {
-        print("page vc delete location at index \(index)")
-        self.userLocationList.remove(at: index)
-        self.cachedWeatherViewControllers.removeValue(forKey: index)
-        var needChangeIndex = index + 1
-        while let vc = cachedWeatherViewControllers[needChangeIndex] {
-            vc.index = vc.index - 1
-            cachedWeatherViewControllers[vc.index] = vc
-            needChangeIndex += 1
+    func userDeleteLocation(at deletingIndex: Int) {
+        print("page vc delete location at index \(deletingIndex)")
+        if self.lastViewedPageIndex == deletingIndex {
+            self.lastViewedPageIndex = 0
         }
+        guard isLastLocationInList(using: deletingIndex) else {
+            self.userLocationList.remove(at: deletingIndex)
+            self.cachedWeatherViewControllers.removeValue(forKey: deletingIndex)
+            return
+        }
+        self.userLocationList.remove(at: deletingIndex)
+        changeIndexOfCachedWeatherViewControllers(after: deletingIndex)
     }
     
+    private func isLastLocationInList(using index: Int) -> Bool {
+        return index != userLocationList.count - 1
+    }
     
+    private func changeIndexOfCachedWeatherViewControllers(after deletingIndex: Int) {
+        var needChangeIndex = deletingIndex + 1
+        repeat {
+            if let indexChangingViewController = self.cachedWeatherViewControllers.removeValue(forKey: needChangeIndex) {
+                indexChangingViewController.index = indexChangingViewController.index - 1
+                self.cachedWeatherViewControllers[indexChangingViewController.index] = indexChangingViewController
+            }
+            needChangeIndex += 1
+        } while needChangeIndex < userLocationList.count
+    }
 }
