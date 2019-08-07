@@ -10,7 +10,6 @@ import Foundation
 
 class Temperature {
     static let celciusGap = 273.15
-    static let fahrenheitGap = 459.67
     let kelvinValue: Double
     
     init(kelvin: Double) {
@@ -25,7 +24,8 @@ class Temperature {
         return Int(kelvinValue - Temperature.celciusGap)
     }
     
-    var toFahrenheit: Int {
-        return Int(kelvinValue - Temperature.fahrenheitGap)
+    var toFahrenheit: Int { // (0K − 273.15) × 9/5 + 32 = -459.7°F
+        let convertedValue = (kelvinValue - 273.15) * 9/5 + 32
+        return Int(convertedValue)
     }
 }
