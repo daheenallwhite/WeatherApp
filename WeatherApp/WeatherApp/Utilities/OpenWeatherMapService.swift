@@ -18,7 +18,6 @@ class OpenWeatherMapService {
             return
         }
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            // Check network error
             guard error == nil else {
                 let error = ServiceError.networkRequestError
                 completionHandler(nil, error)
@@ -35,7 +34,6 @@ class OpenWeatherMapService {
                 completionHandler(nil, error)
                 return
             }
-            // view model 에 weather builder 통해 데이터 파싱하여 저장            
             completionHandler(parsedWeatherData, nil)
         }
         task.resume()
