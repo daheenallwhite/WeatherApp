@@ -122,8 +122,8 @@ extension PageViewController: UIPageViewControllerDataSource {
         if let cachedWeatherViewController = cachedWeatherViewControllers[index] {
             return cachedWeatherViewController
         }
-        guard let createdWeatherViewController = mainStroryboard.instantiateViewController(withIdentifier: "WeatherViewController") as? WeatherViewController else {
-            fatalError("WeatherViewcontroller....error")
+        guard let createdWeatherViewController = mainStroryboard.instantiateViewController(withIdentifier: WeatherViewController.identifier) as? WeatherViewController else {
+            CreationError.toWeatherViewController.andReturn()
         }
         createdWeatherViewController.location = userLocationList[index]
         createdWeatherViewController.index = index
@@ -159,6 +159,7 @@ extension PageViewController: LocationListViewDelegate {
     
     func userDidSelectLocation(at index: Int) {
         guard let weatherViewController = weatherViewController(at: index) as? WeatherViewController else {
+            print(CreationError.toWeatherViewController)
             return
         }
         self.pageViewController.setViewControllers([weatherViewController], direction: .forward, animated: false, completion: nil)

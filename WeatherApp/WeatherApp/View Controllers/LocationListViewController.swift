@@ -35,7 +35,7 @@ class LocationListViewController: UIViewController {
     @IBAction func addLocationButtonTouched(_ sender: Any) {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         guard let searcheViewController = mainStoryboard.instantiateViewController(withIdentifier: SearchViewController.identifier) as? SearchViewController else {
-            print(CreationError.downcastingError(SearchViewController.identifier))
+            print(CreationError.toSearchViewController)
             return
         }
         searcheViewController.delegate = self

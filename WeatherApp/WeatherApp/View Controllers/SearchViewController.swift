@@ -56,7 +56,7 @@ extension SearchViewController: MKLocalSearchCompleterDelegate {
         searchResultTable.reloadData()
     }
     func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
-//        invalidLocationSearched()
+        print(LocationError.localSearchCompleterFail)
     }
 }
 
@@ -84,13 +84,14 @@ extension SearchViewController: UITableViewDelegate {
         let searchRequest = MKLocalSearch.Request(completion: selectedResult)
         let search = MKLocalSearch(request: searchRequest)
         search.start { (response, error) in
+            guard error == nil else {
+                print(LocationError.localSearchRequstFail)
+                return
+            }
             guard let placeMark = response?.mapItems[0].placemark else {
                 return
             }
-            print("city: \(selectedResult.title), country: \(selectedResult.subtitle)")
-            print("\(placeMark.country), \(placeMark.locality) \(placeMark.subLocality)")
             let coordinate = Coordinate(coordinate: placeMark.coordinate)
-            print("\(coordinate)")
             self.delegate?.userAdd(newLocation: Location(coordinate: coordinate, name: "\(placeMark.locality ?? selectedResult.title)"))
             self.dismiss(animated: true, completion: nil)
         }

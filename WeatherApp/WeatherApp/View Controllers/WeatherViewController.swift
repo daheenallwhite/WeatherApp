@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 
 class WeatherViewController: UIViewController {
-    
+    static let identifier = "WeatherViewController"
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var conditionLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
@@ -99,7 +99,7 @@ class WeatherViewController: UIViewController {
     func getWeatherData() {
         print("get weather")
         guard let location = self.location else {
-            print(CreationError.noLocationConfigured)
+            print(LocationError.noLocationConfigured.localizedDescription)
             return
         }
         self.viewModel = WeatherViewModel(location: location)
