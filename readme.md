@@ -132,7 +132,9 @@
 
 view controller 간 데이터를 backward 로 받기 위해서, delegate protocol 을 구현하여 사용
 
-![](./images/implementation-delegate.jpg)
+<p float="left">
+  <img src="./images/implementation-delegate.jpg" width="600" />
+</p>
 
 
 
