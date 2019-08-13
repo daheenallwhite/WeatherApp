@@ -39,7 +39,7 @@ extension LocationManager: CLLocationManagerDelegate {
         if let location = locations.first {
             let currentLocation = Location(coordinate: Coordinate(coordinate: location.coordinate))
             print("\(currentLocation)")
-            if didUpdateCurrentLocation { // for preventing creation of current weather view more than twice
+            if didUpdateCurrentLocation { // for preventing creation of current weather view more than once
                 return
             }
             didUpdateCurrentLocation.toggle()
