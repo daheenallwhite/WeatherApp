@@ -15,7 +15,7 @@ class PageViewController: UIViewController {
     private let mainStroryboard = UIStoryboard(name: "Main", bundle: nil)
     private var pageControl = UIPageControl()
     private var locationManager = LocationManager()
-    private var cachedWeatherViewControllers = [Int: WeatherViewController]()
+    private var cachedWeatherViewControllers = NSCache<NSNumber, WeatherViewController>()
     private var userLocationList = [Location](){
         didSet {
             self.pageControl.numberOfPages = userLocationList.count
@@ -105,7 +105,9 @@ extension PageViewController: LocationManagerDelegate {
 //MARK: page view controller delegate
 extension PageViewController: UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        let displayedContentViewController = pageViewController.viewControllers![0] as! WeatherViewController
+        guard let displayedContentViewController = pageViewController.viewControllers?[0] as? WeatherViewController else {
+            return
+        }
         self.pageControl.currentPage = displayedContentViewController.index
         self.lastViewedPageIndex = displayedContentViewController.index
     }
@@ -115,7 +117,7 @@ extension PageViewController: UIPageViewControllerDelegate {
 //MARK: page view controller data source
 extension PageViewController: UIPageViewControllerDataSource {
     func weatherViewController(at index: Int) -> UIViewController {
-        if let cachedWeatherViewController = cachedWeatherViewControllers[index] {
+        if let cachedWeatherViewController = cachedWeatherViewControllers.object(forKey: NSNumber(value: index)) {
             return cachedWeatherViewController
         }
         guard let createdWeatherViewController = mainStroryboard.instantiateViewController(withIdentifier: WeatherViewController.identifier) as? WeatherViewController else {
@@ -123,8 +125,7 @@ extension PageViewController: UIPageViewControllerDataSource {
         }
         createdWeatherViewController.location = userLocationList[index]
         createdWeatherViewController.index = index
-        createdWeatherViewController.temperatureUnit = self.temperatureUnit
-        cachedWeatherViewControllers[index] = createdWeatherViewController
+        cachedWeatherViewControllers.setObject(createdWeatherViewController, forKey: NSNumber(value: index))
         return createdWeatherViewController
     }
     
@@ -172,9 +173,9 @@ extension PageViewController: LocationListViewDelegate {
         if self.lastViewedPageIndex == deletingIndex {
             self.lastViewedPageIndex = 0
         }
-        guard isLastLocationInList(using: deletingIndex) else {
+        if isLastLocationInList(using: deletingIndex) {
             self.userLocationList.remove(at: deletingIndex)
-            self.cachedWeatherViewControllers.removeValue(forKey: deletingIndex)
+            self.cachedWeatherViewControllers.removeObject(forKey: NSNumber(value: deletingIndex))
             return
         }
         self.userLocationList.remove(at: deletingIndex)
@@ -188,9 +189,11 @@ extension PageViewController: LocationListViewDelegate {
     private func changeIndexOfCachedWeatherViewControllers(after deletingIndex: Int) {
         var needChangeIndex = deletingIndex + 1
         repeat {
-            if let indexChangingViewController = self.cachedWeatherViewControllers.removeValue(forKey: needChangeIndex) {
-                indexChangingViewController.index = indexChangingViewController.index - 1
-                self.cachedWeatherViewControllers[indexChangingViewController.index] = indexChangingViewController
+            let targetIndex = NSNumber(value: needChangeIndex)
+            if let indexChangingViewController = self.cachedWeatherViewControllers.object(forKey: targetIndex) {
+                self.cachedWeatherViewControllers.removeObject(forKey: targetIndex)
+                indexChangingViewController.index -= 1
+                self.cachedWeatherViewControllers.setObject(indexChangingViewController, forKey: NSNumber(value: indexChangingViewController.index))
             }
             needChangeIndex += 1
         } while needChangeIndex < userLocationList.count
