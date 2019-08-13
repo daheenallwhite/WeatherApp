@@ -193,12 +193,11 @@
 				C2326FA322F4B81600FBEDEB /* Assets.xcassets */,
 				C2326FA222F4B04F00FBEDEB /* View Controllers */,
 				C2E289B522FAA0110049CF08 /* Delegates */,
-				C26C355122F5C633001B13B8 /* View Models */,
+				C2326F7F22F483D800FBEDEB /* Supporting Views */,
 				C249FB5C22F48340003297A6 /* Model */,
 				C2326F9122F48CDB00FBEDEB /* Utilities */,
 				C2E289AA22FA8C090049CF08 /* Error */,
 				C2326F8C22F4853D00FBEDEB /* Extensions */,
-				C2326F7F22F483D800FBEDEB /* Supporting Views */,
 				C249FB1422F35706003297A6 /* LaunchScreen.storyboard */,
 				C249FB1722F35706003297A6 /* Info.plist */,
 			);
@@ -208,6 +207,7 @@
 		C249FB5C22F48340003297A6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C26C355122F5C633001B13B8 /* View Model */,
 				C249FB5A22F482FE003297A6 /* WeatherData.swift */,
 				C2326F8822F484F000FBEDEB /* WeatherPresentable.swift */,
 				C26C355822F5CC31001B13B8 /* Weather.swift */,
@@ -225,13 +225,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		C26C355122F5C633001B13B8 /* View Models */ = {
+		C26C355122F5C633001B13B8 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
 				C26C355222F5C654001B13B8 /* WeatherViewModel.swift */,
 				C26C355C22F6044C001B13B8 /* Observable.swift */,
 			);
-			path = "View Models";
+			path = "View Model";
 			sourceTree = "<group>";
 		};
 		C2E289AA22FA8C090049CF08 /* Error */ = {
