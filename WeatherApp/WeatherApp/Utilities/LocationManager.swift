@@ -10,7 +10,7 @@ import Foundation
 import CoreLocation
 
 class LocationManager: NSObject {
-    var delegate: LocationManagerDelegate?
+    weak var delegate: LocationManagerDelegate?
     private let manager = CLLocationManager()
     var didUpdateCurrentLocation = false
     
@@ -43,7 +43,7 @@ extension LocationManager: CLLocationManagerDelegate {
                 return
             }
             didUpdateCurrentLocation.toggle()
-            self.delegate?.locationManagerDidUpdate(currenLocation: currentLocation)
+            self.delegate?.locationManagerDidUpdate(currentLocation: currentLocation)
         }
     }
     

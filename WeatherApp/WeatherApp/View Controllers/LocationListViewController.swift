@@ -16,7 +16,7 @@ class LocationListViewController: UIViewController {
     static let identifier = "LocationListViewController"
     private let defaults = UserDefaults.standard
     var locations = [Location]()
-    var delegate: LocationListViewDelegate?
+    weak var delegate: LocationListViewDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()

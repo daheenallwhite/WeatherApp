@@ -9,8 +9,6 @@
 import UIKit
 import MapKit
 
-
-
 class SearchViewController: UIViewController {
     static let identifier = "SearchViewController" 
     private let searchTableCellIdentifier = "searchResultCell"
@@ -20,15 +18,28 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchResultTable: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var delegate: SearchViewDelegate?
+    weak var delegate: SearchViewDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        setUpSearchBar()
+        setUpSearchCompleter()
+        setUpSearchResultTable()
+    }
+    
+    private func setUpSearchBar() {
         self.searchBar.showsCancelButton = true
         self.searchBar.becomeFirstResponder()
+        self.searchBar.delegate = self
+    }
+    
+    private func setUpSearchCompleter() {
         self.searchCompleter.delegate = self
         self.searchCompleter.filterType = .locationsOnly
-        self.searchBar.delegate = self
+    }
+    
+    private func setUpSearchResultTable() {
         self.searchResultTable.dataSource = self
         self.searchResultTable.delegate = self
     }
@@ -59,10 +70,6 @@ extension SearchViewController: MKLocalSearchCompleterDelegate {
 }
 
 extension SearchViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchResults.count
     }
@@ -90,7 +97,8 @@ extension SearchViewController: UITableViewDelegate {
                 return
             }
             let coordinate = Coordinate(coordinate: placeMark.coordinate)
-            self.delegate?.userAdd(newLocation: Location(coordinate: coordinate, name: "\(placeMark.locality ?? selectedResult.title)"))
+            let locationName = "\(placeMark.locality ?? selectedResult.title)"
+            self.delegate?.userAdd(newLocation: Location(coordinate: coordinate, name: locationName))
             self.dismiss(animated: true, completion: nil)
         }
     }
