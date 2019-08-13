@@ -37,29 +37,28 @@ class PageViewController: UIViewController {
     private func setSavedDataInUserDefaults() {
         self.userLocationList = defaults.locationArray(Location.self, forKey: DataKeys.locations)
         self.lastViewedPageIndex = defaults.integer(forKey: DataKeys.lastViewedPage)
-        self.temperatureUnit = TemperatureUnit(bool: defaults.bool(forKey: DataKeys.temperatureUnit))
-        TemperatureUnitState.shared.unit = self.temperatureUnit
+        self.temperatureUnit = TemperatureUnitState.shared.unit
     }
     
     private func configureSubViews() {
-        let screenMainBounds = UIScreen.main.bounds
-        configurePageViewController(inside: screenMainBounds)
-        configurePageControl(inside: screenMainBounds)
-        configureListButton(inside: screenMainBounds)
+        let pageViewFrame = self.view.frame
+        configurePageViewController(inside: pageViewFrame)
+        configurePageControl(inside: pageViewFrame)
+        configureListButton(inside: pageViewFrame)
     }
     
-    private func configurePageViewController(inside bounds: CGRect) {
+    private func configurePageViewController(inside frame: CGRect) {
         self.pageViewController.delegate = self
         self.pageViewController.dataSource = self
         self.addChild(self.pageViewController)
         self.view.addSubview(self.pageViewController.view)
-        let weatherViewRect = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height - 50)
+        let weatherViewRect = CGRect(x: 0, y: 0, width: frame.width, height: frame.height - 50)
         self.pageViewController.view.frame = weatherViewRect
         self.pageViewController.didMove(toParent: self)
     }
     
-    private func configurePageControl(inside bounds: CGRect) {
-        pageControl = UIPageControl(frame: CGRect(x: 0,y: bounds.maxY - 50,width: bounds.maxX, height: 50))
+    private func configurePageControl(inside frame: CGRect) {
+        pageControl = UIPageControl(frame: CGRect(x: 0,y: frame.maxY - 50, width: frame.maxX, height: 50))
         self.pageControl.numberOfPages = defaults.integer(forKey: DataKeys.locationCount) + 1
         self.pageControl.currentPage = lastViewedPageIndex
         self.pageControl.tintColor = .gray
