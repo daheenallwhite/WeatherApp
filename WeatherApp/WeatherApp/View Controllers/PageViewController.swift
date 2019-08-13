@@ -69,14 +69,11 @@ class PageViewController: UIViewController {
         pageControl.addTarget(self, action: #selector(self.changeCurrentPageViewController), for: .valueChanged)
     }
     
-    func configureListButton(inside bounds: CGRect) {
-        let buttonRect = CGRect(x: bounds.maxX - 50, y: bounds.maxY - 40, width: 20, height: 20)
-        let locationListButton = UIImageView(frame: buttonRect)
-        locationListButton.image = UIImage(named: "list-icon")
-        locationListButton.isUserInteractionEnabled = true
-        let singleTap = UITapGestureRecognizer(target: self, action: #selector(presentLocationListViewController))
-        singleTap.numberOfTapsRequired = 1
-        locationListButton.addGestureRecognizer(singleTap)
+    func configureListButton(inside frame: CGRect) {
+        let buttonRect = CGRect(x: frame.maxX - 50, y: frame.maxY - 40, width: 20, height: 20)
+        let locationListButton = UIButton(frame: buttonRect)
+        locationListButton.setImage(UIImage(named: "list-icon"), for: .normal)
+        locationListButton.addTarget(self, action: #selector(self.presentLocationListViewController), for: .touchUpInside)
         self.view.addSubview(locationListButton)
     }
     
