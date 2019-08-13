@@ -132,9 +132,7 @@
 
 view controller 간 데이터를 backward 로 받기 위해서, delegate protocol 을 구현하여 사용
 
-<p float="left">
-  <img src="./images/implementation-delegate.jpg" width="600" />
-</p>
+![](./images/implementation-delegate.jpg)
 
 
 
@@ -225,7 +223,7 @@ API 에서 받아온 date & time (UTC 표준)  → 각 나라별 시간으로 �
   - view controller 뿐만 아니라 날씨 관련된 거의 모든 data model 에서 온도와 관련된 부분이 많음
   - Singleton 통해서 하나의 인스턴스로 사용자가 설정한 온도 단위를 이용하는게 적절하다고 판단
 
-- `TemperatureUnitState` 의 `shared` property 로 단위 접근 가능
+- `TemperatureUnit` 의 `shared` property 로 단위 접근 가능
 
 &nbsp;
 
@@ -315,7 +313,7 @@ resource loading 은 **asynchronously** (**비동기**) 로 수행되므로, 유
   - suspend
   - resume
   - cancel
-- URLSession 이 데이터를 반환하는 두가지 방법
+- URLSession 이 데이터를 반환하는 두가지 방법 (비동기적으로 수행되므로, 끝남을 알리는 방법)
   1. completion handler - task 가 끝날 때 실행됨
   2. delegate 의 method 호출
 
@@ -346,9 +344,11 @@ completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessio
 
 
 
+- `shared` : singleton URLSession instance - 간단한 request 용도
+
 ```swift
 let task = URLSession.shared.dataTask(with: url) {
-	
+	// completion handler
 }
 ```
 
