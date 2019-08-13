@@ -8,18 +8,16 @@
 
 import Foundation
 
-class TemperatureUnitState {
-    static var shared = TemperatureUnitState()
-    var unit: TemperatureUnit
+enum TemperatureUnit {
+    case celcius, fahrenheit
+    
+    static var shared = TemperatureUnit()
     
     init() {
         let bool = UserDefaults.standard.bool(forKey: DataKeys.temperatureUnit)
-        self.unit = TemperatureUnit(bool: bool)
+        self = TemperatureUnit(bool: bool)
     }
-}
-
-enum TemperatureUnit {
-    case celcius, fahrenheit
+    
     init(bool: Bool) {
         self = bool ? .celcius : .fahrenheit
     }
