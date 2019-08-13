@@ -159,7 +159,7 @@ view controller 간 데이터를 backward 로 받기 위해서, delegate protoco
 
 ### 날씨 정보 받아오기 & 파싱하기 - OpenWeather API / URLSession / Codable
 
->  [5 days / 3 hours forcast api](https://openweathermap.org/forecast5)
+>  [5 days / 3 hours forecast api](https://openweathermap.org/forecast5)
 
 *API JSON 구조 (orange color : 배열 구조)*
 
@@ -238,10 +238,20 @@ API 에서 받아온 date & time (UTC 표준)  → 각 나라별 시간으로 �
 - 문제상황  
   - PageViewController 에서 swipe 에 따른 이전/이후 페이지 요청시마다 새롭게 view controller instance (WeatherViewController) 를 생성
   - 메모리 부하로 인해 갑자기 꺼지는 현상
-- 해결 방법 : **View Controller Caching**
+- 해결 방법 : **View Controller Caching - NSCache**
+  - NSCache 
+  
+    - 캐싱을 구현한 클래스로 mutable dictionary type 처럼 사용할 수 있다 - key 를 통해 캐싱한 인스턴스 접근 가능
+    - 디바이스가 메모리 부족을 겪을 때 이 캐시에 있는 인스턴스의 메모리 공간을 자동으로 회수함
+  
+    ```swift
+    var cachedWeatherViewControllers = NSCache<NSNumber, WeatherViewController>()
+    ```
+  
   - view controller를 한번 생성한 뒤, caching 하여 이후의 view controller 의 요청이 있을 때, 이미 인스턴스가 있다면 이를 반환하는 기능을 구현
-  - PageViewController 에서 dictionary 타입으로 view controller 인스턴스 관리
-    - Key: page index
+  
+  - PageViewController 에서 캐싱한 WeatherViewController 인스턴스 관리
+    - Key: page index (`NSNumber` type)
     - Value: `WeatherViewController` instance
 
 &nbsp;
