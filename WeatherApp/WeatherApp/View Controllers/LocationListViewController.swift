@@ -36,9 +36,8 @@ class LocationListViewController: UIViewController {
     }
     
     @IBAction func temperatureSwitchValueChanged(_ sender: UISwitch) {
-        let newUnit = TemperatureUnit(bool: sender.isOn)
         self.defaults.set(sender.isOn, forKey: DataKeys.temperatureUnit)
-        TemperatureUnit.shared = newUnit
+        TemperatureUnit.shared.setUnit(with: sender.isOn)
     }
     
 }

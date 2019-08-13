@@ -70,7 +70,10 @@ class WeatherViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel?.temperatureUnit.value = TemperatureUnit.shared
+        let temperatureUnit = TemperatureUnit.shared.unit
+        if viewModel?.temperatureUnit.value != temperatureUnit {
+            viewModel?.temperatureUnit.value = temperatureUnit
+        }
         print("view will appear as index \(self.index)")
     }
     
