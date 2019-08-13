@@ -39,6 +39,12 @@ class OpenWeatherMapService {
         task.resume()
     }
     
+    static func getWeatherForecastURL(using location: Location) -> URL? {
+        var urlComponents = URLComponents(string: WeatherAPI.forecastURL)
+        urlComponents?.queryItems = getQueryItems(from: location)
+        return urlComponents?.url
+    }
+    
     static private func getQueryItems(from location: Location) -> [URLQueryItem] {
         var queryItems = [URLQueryItem]()
         let latitudeQuery = URLQueryItem(name: "lat", value: location.coordinate.latitude)
@@ -47,11 +53,4 @@ class OpenWeatherMapService {
         queryItems.append(contentsOf: [latitudeQuery, longtitudeQuery, appIdQuery])
         return queryItems
     }
-    
-    static func getWeatherForecastURL(using location: Location) -> URL? {
-        var urlComponents = URLComponents(string: WeatherAPI.forecastURL)
-        urlComponents?.queryItems = getQueryItems(from: location)
-        return urlComponents?.url
-    }
-    
 }
