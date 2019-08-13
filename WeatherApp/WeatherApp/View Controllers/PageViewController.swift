@@ -22,7 +22,6 @@ class PageViewController: UIViewController {
         }
     }
     var lastViewedPageIndex: Int = 0
-    var temperatureUnit: TemperatureUnit!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,8 +35,9 @@ class PageViewController: UIViewController {
     
     private func setSavedDataInUserDefaults() {
         self.userLocationList = defaults.locationArray(Location.self, forKey: DataKeys.locations)
-        self.lastViewedPageIndex = defaults.integer(forKey: DataKeys.lastViewedPage)
-        self.temperatureUnit = TemperatureUnitState.shared.unit
+        let savedLocationCount = defaults.integer(forKey: DataKeys.locationCount)
+        let savedLastViewedIndex = defaults.integer(forKey: DataKeys.lastViewedPage)
+        self.lastViewedPageIndex = savedLocationCount >= savedLastViewedIndex ? savedLastViewedIndex : 0
     }
     
     private func configureSubViews() {
@@ -147,13 +147,6 @@ extension PageViewController: UIPageViewControllerDataSource {
 }
 
 extension PageViewController: LocationListViewDelegate {
-    func userChangeTemperatureUnit(with newUnit: TemperatureUnit) {
-        self.temperatureUnit = newUnit
-        self.cachedWeatherViewControllers.forEach { (key, weatherViewControllers) in
-            weatherViewControllers.temperatureUnit = newUnit
-        }
-    }
-    
     func userDidSelectLocation(at index: Int) {
         guard let weatherViewController = weatherViewController(at: index) as? WeatherViewController else {
             print(CreationError.toWeatherViewController)
@@ -161,7 +154,7 @@ extension PageViewController: LocationListViewDelegate {
         }
         self.pageViewController.setViewControllers([weatherViewController], direction: .forward, animated: false, completion: nil)
         self.pageControl.currentPage = index
-        lastViewedPageIndex = index
+        self.lastViewedPageIndex = index
     }
     
     func userAdd(newLocation: Location) {
@@ -173,17 +166,24 @@ extension PageViewController: LocationListViewDelegate {
         if self.lastViewedPageIndex == deletingIndex {
             self.lastViewedPageIndex = 0
         }
-        if isLastLocationInList(using: deletingIndex) {
-            self.userLocationList.remove(at: deletingIndex)
-            self.cachedWeatherViewControllers.removeObject(forKey: NSNumber(value: deletingIndex))
+        if self.lastViewedPageIndex > deletingIndex {
+            self.lastViewedPageIndex -= 1
+        }
+        if isLastLocationInList(index: deletingIndex) {
+            removeLocation(at: deletingIndex)
             return
         }
-        self.userLocationList.remove(at: deletingIndex)
+        removeLocation(at: deletingIndex)
         changeIndexOfCachedWeatherViewControllers(after: deletingIndex)
     }
     
-    private func isLastLocationInList(using index: Int) -> Bool {
-        return index != userLocationList.count - 1
+    private func isLastLocationInList(index: Int) -> Bool {
+        return index == userLocationList.count - 1
+    }
+    
+    private func removeLocation(at index: Int) {
+        self.userLocationList.remove(at: index)
+        self.cachedWeatherViewControllers.removeObject(forKey: NSNumber(value: index))
     }
     
     private func changeIndexOfCachedWeatherViewControllers(after deletingIndex: Int) {
@@ -196,6 +196,6 @@ extension PageViewController: LocationListViewDelegate {
                 self.cachedWeatherViewControllers.setObject(indexChangingViewController, forKey: NSNumber(value: indexChangingViewController.index))
             }
             needChangeIndex += 1
-        } while needChangeIndex < userLocationList.count
+        } while needChangeIndex <= userLocationList.count
     }
 }
