@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol SearchViewDelegate {
+protocol SearchViewDelegate: AnyObject {
     func userAdd(newLocation: Location)
 }

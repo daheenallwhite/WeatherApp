@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol LocationManagerDelegate {
-    func locationManagerDidUpdate(currenLocation: Location)
+protocol LocationManagerDelegate: AnyObject {
+    func locationManagerDidUpdate(currentLocation: Location)
 }
