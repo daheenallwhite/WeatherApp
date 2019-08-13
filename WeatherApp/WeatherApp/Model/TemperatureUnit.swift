@@ -8,21 +8,32 @@
 
 import Foundation
 
-enum TemperatureUnit {
-    case celcius, fahrenheit
+class TemperatureUnit {
+    enum Unit {
+        case celcius, fahrenheit
+        
+        init(bool: Bool) {
+            self = bool ? .celcius : .fahrenheit
+        }
+    }
+    static let shared = TemperatureUnit()
     
-    static var shared = TemperatureUnit()
+    var unit: Unit
     
     init() {
         let bool = UserDefaults.standard.bool(forKey: DataKeys.temperatureUnit)
-        self = TemperatureUnit(bool: bool)
+        self.unit = Unit(bool: bool)
     }
     
     init(bool: Bool) {
-        self = bool ? .celcius : .fahrenheit
+        self.unit = Unit(bool: bool)
+    }
+    
+    func setUnit(with newValue: Bool) {
+        self.unit = Unit(bool: newValue)
     }
     
     var boolValue: Bool {
-        return self == .celcius ? true : false
+        return self.unit == .celcius ? true : false
     }
 }
