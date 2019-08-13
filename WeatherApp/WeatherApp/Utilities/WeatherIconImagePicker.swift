@@ -9,14 +9,15 @@
 import UIKit
 
 class WeatherIconImagePicker {
-    static var icons = [String: UIImage]()
+    static var cachedIconImages = NSCache<NSString, UIImage>()
     
     static func getImage(named name: String) -> UIImage {
-        guard icons.keys.contains(name) else {
+        let convertedName = NSString(string: name)
+        guard let wantedImage = cachedIconImages.object(forKey: convertedName) else {
             let newImage = UIImage(named: name) ?? UIImage()
-            icons[name] = newImage
+            cachedIconImages.setObject(newImage, forKey: convertedName)
             return newImage
         }
-        return icons[name]!
+        return wantedImage
     }
 }
