@@ -17,14 +17,9 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var dayOfWeekLabel: UILabel!
     @IBOutlet weak var hourlyCollectionView: UICollectionView!
     @IBOutlet weak var dailyTableView: UITableView!
-
+    
     var location : Location!
     var index = 0
-    var temperatureUnit: TemperatureUnit! {
-        didSet {
-            viewModel?.temperatureUnit.value = temperatureUnit
-        }
-    }
     
     //MARK: ViewModel
     var viewModel: WeatherViewModel? {
@@ -75,11 +70,8 @@ class WeatherViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel?.temperatureUnit.value = TemperatureUnitState.shared.unit
+        viewModel?.temperatureUnit.value = TemperatureUnit.shared
         print("view will appear as index \(self.index)")
-        if location != nil, viewModel == nil {
-            getWeatherData()
-        }
     }
     
     private func setEmptyStringToLables() {
@@ -96,7 +88,7 @@ class WeatherViewController: UIViewController {
         dailyTableView.register(detailTableViewCell, forCellReuseIdentifier: DetailTableViewCell.identifier)
     }
     
-    func getWeatherData() {
+    private func getWeatherData() {
         print("get weather")
         guard let location = self.location else {
             print(LocationError.noLocationConfigured.localizedDescription)

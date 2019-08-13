@@ -22,7 +22,7 @@ class LocationListViewController: UIViewController {
         super.viewDidLoad()
         self.locationListTableView.delegate = self
         self.locationListTableView.dataSource = self
-        self.temperatureSwitch.isOn = TemperatureUnitState.shared.unit.boolValue
+        self.temperatureSwitch.isOn = TemperatureUnit.shared.boolValue
     }
     
     @IBAction func addLocationButtonTouched(_ sender: Any) {
@@ -38,8 +38,7 @@ class LocationListViewController: UIViewController {
     @IBAction func temperatureSwitchValueChanged(_ sender: UISwitch) {
         let newUnit = TemperatureUnit(bool: sender.isOn)
         self.defaults.set(sender.isOn, forKey: DataKeys.temperatureUnit)
-        TemperatureUnitState.shared.unit = newUnit
-        self.delegate?.userChangeTemperatureUnit(with: newUnit)
+        TemperatureUnit.shared = newUnit
     }
     
 }
@@ -52,10 +51,6 @@ extension LocationListViewController: UITableViewDelegate {
 }
 
 extension LocationListViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.locations.count
     }

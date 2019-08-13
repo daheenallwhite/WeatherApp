@@ -17,7 +17,7 @@ class Temperature {
     }
     
     var text: String {
-        return TemperatureUnitState.shared.unit.boolValue ? "\(toCelcius)" : "\(toFahrenheit)"
+        return TemperatureUnit.shared.boolValue ? "\(toCelcius)" : "\(toFahrenheit)"
     }
     
     var toCelcius: Int {

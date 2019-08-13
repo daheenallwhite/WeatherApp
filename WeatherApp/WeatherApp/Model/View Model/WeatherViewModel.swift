@@ -25,7 +25,7 @@ class WeatherViewModel {
         self.dailyWeatherItems = Observable([])
         self.hourlyWeatherItems = Observable([])
         self.detailWeather = Observable(nil)
-        self.temperatureUnit = Observable(TemperatureUnitState.shared.unit)
+        self.temperatureUnit = Observable(TemperatureUnit.shared)
     }
     
     func retrieveWeatherData() {
