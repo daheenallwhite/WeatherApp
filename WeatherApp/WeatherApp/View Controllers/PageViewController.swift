@@ -11,8 +11,8 @@ import CoreLocation
 
 class PageViewController: UIViewController {
     private let defaults = UserDefaults.standard
-    private let pageViewController: UIPageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-    private let mainStroryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+    private let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+    private let mainStroryboard = UIStoryboard(name: "Main", bundle: nil)
     private var pageControl = UIPageControl()
     private var locationManager = LocationManager()
     private var cachedWeatherViewControllers = [Int: WeatherViewController]()
@@ -81,7 +81,7 @@ class PageViewController: UIViewController {
         print("tapped at \(self.pageControl.currentPage)")
         lastViewedPageIndex = self.pageControl.currentPage
         let pickedViewController = weatherViewController(at: self.pageControl.currentPage)
-        self.pageViewController.setViewControllers([pickedViewController], direction: .forward, animated: false, completion: {done in })
+        self.pageViewController.setViewControllers([pickedViewController], direction: .forward, animated: false, completion: nil)
     }
     
     @objc func presentLocationListViewController() {
@@ -95,8 +95,8 @@ class PageViewController: UIViewController {
 }
 
 extension PageViewController: LocationManagerDelegate {
-    func locationManagerDidUpdate(currenLocation: Location) {
-        self.userLocationList.insert(currenLocation, at: 0)
+    func locationManagerDidUpdate(currentLocation: Location) {
+        self.userLocationList.insert(currentLocation, at: 0)
         let currentWeatherViewController = weatherViewController(at: lastViewedPageIndex)
         self.pageViewController.setViewControllers([currentWeatherViewController], direction: .forward, animated: false, completion: nil)
     }
