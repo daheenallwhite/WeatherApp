@@ -14,7 +14,7 @@ class HourlyCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var weatherIconImageView: UIImageView! 
     @IBOutlet weak var temperatureLabel: UILabel!
     
-    func setWeatherData(from weatherItem : HourlyWeatherItem) {
+    func setWeatherData(from weatherItem : WeatherPresentable) {
         self.temperatureLabel.text = weatherItem.temperatureText
         self.hourLabel.text = weatherItem.dateText
         self.weatherIconImageView.image = weatherItem.icon

@@ -31,7 +31,7 @@ class DailyTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setWeatherData(from weatherItem: DailyWeatherItem) {
+    func setWeatherData(from weatherItem: WeatherPresentable) {
         self.weatherIconImageView.image = weatherItem.icon
         self.dayOfWeekLabel.text = weatherItem.dateText
         self.maxMinTemperatureLabel.text = weatherItem.temperatureText
