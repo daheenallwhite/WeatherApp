@@ -73,11 +73,13 @@ extension LocationListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             self.locations.remove(at: indexPath.row)
+            defaults.set(locations.count - 1, forKey: DataKeys.locationCount)
             if self.locations.count > 1 {
                 let savingList = Array(locations[1...locations.count - 1])
                 defaults.setLocations(savingList, forKey: DataKeys.locations)
+            } else {
+                defaults.removeObject(forKey: DataKeys.locations)
             }
-            defaults.set(locations.count - 1, forKey: DataKeys.locationCount)
             tableView.deleteRows(at: [indexPath], with: .fade)
             self.delegate?.userDeleteLocation(at: indexPath.row)
         }
