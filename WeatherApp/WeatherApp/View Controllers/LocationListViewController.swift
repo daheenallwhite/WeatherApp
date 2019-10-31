@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Promises
 
 class LocationListViewController: UIViewController {
     @IBOutlet weak var locationListTableView: UITableView!
@@ -26,13 +27,10 @@ class LocationListViewController: UIViewController {
     }
     
     @IBAction func addLocationButtonTouched(_ sender: Any) {
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let searcheViewController = mainStoryboard.instantiateViewController(withIdentifier: SearchViewController.identifier) as? SearchViewController else {
-            print(CreationError.toSearchViewController)
-            return
+        SearchViewController.start(on: self)
+        .then { location in
+            self.userAdd(newLocation: location)
         }
-        searcheViewController.delegate = self
-        self.present(searcheViewController, animated: true, completion: nil)
     }
     
     @IBAction func temperatureSwitchValueChanged(_ sender: UISwitch) {
@@ -86,7 +84,7 @@ extension LocationListViewController: UITableViewDataSource {
     }
 }
 
-extension LocationListViewController: SearchViewDelegate {
+extension LocationListViewController {
     func userAdd(newLocation: Location) {
         self.locations.append(newLocation)
         let savingList = Array(locations[1...locations.count - 1])

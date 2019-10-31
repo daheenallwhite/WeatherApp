@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import Promises
 
 class SearchViewController: UIViewController {
     static let identifier = "SearchViewController" 
@@ -17,8 +18,8 @@ class SearchViewController: UIViewController {
     
     @IBOutlet weak var searchResultTable: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    
-    weak var delegate: SearchViewDelegate?
+
+    var promise: Promise<Location> = Promise<Location>.pending()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,15 +91,17 @@ extension SearchViewController: UITableViewDelegate {
         let search = MKLocalSearch(request: searchRequest)
         search.start { (response, error) in
             guard error == nil else {
-                print(LocationError.localSearchRequstFail)
+                self.promise.reject(LocationError.localSearchRequstFail)
                 return
             }
             guard let placeMark = response?.mapItems[0].placemark else {
+                self.promise.reject(LocationError.localSearchRequstFail)
                 return
             }
             let coordinate = Coordinate(coordinate: placeMark.coordinate)
             let locationName = "\(placeMark.locality ?? selectedResult.title)"
-            self.delegate?.userAdd(newLocation: Location(coordinate: coordinate, name: locationName))
+            let location = Location(coordinate: coordinate, name: locationName)
+            self.promise.fulfill(location)
             self.dismiss(animated: true, completion: nil)
         }
     }
@@ -107,5 +110,16 @@ extension SearchViewController: UITableViewDelegate {
 extension SearchViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.searchBar.resignFirstResponder()
+    }
+}
+
+extension SearchViewController {
+    static func start(on baseViewController: UIViewController) -> Promise<Location> {
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let searchViewController = mainStoryboard.instantiateViewController(withIdentifier: SearchViewController.identifier) as? SearchViewController else {
+            CreationError.toSearchViewController.andReturn()
+        }
+        baseViewController.present(searchViewController, animated: true, completion: nil)
+        return searchViewController.promise
     }
 }
